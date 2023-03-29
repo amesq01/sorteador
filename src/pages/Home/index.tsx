@@ -1,11 +1,19 @@
 import { useState } from 'react';
-import { Container, ContentContainer, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult } from './styles';
+import { Container, ContentContainer, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult, SortButton } from './styles';
 
 
 
 export function Home() {
 
-  const [lista, setLista] = useState('');
+  const [lista, setLista] = useState(['']);
+  const [listaSorteados, setListaSorteados] = useState(['']);
+  const [listaSorteadosDispensadoMP, setListaSorteadosDispensadoMP] = useState(['']);
+  const [listaSorteadosDispensadoADV, setListaSorteadosDispensadoADV] = useState(['']);
+  const [listaSorteadosDispensadoMM, setListaSorteadosDispensadoMM] = useState(['']);
+
+  const [showAllName, setShowAllName]= useState(false);
+  const [formShow, setFormShow]= useState(true);
+
 
 
   function AddJurors(e: any) {
@@ -14,6 +22,16 @@ export function Home() {
 
   }
 
+  function handleShowAllName(){
+    setShowAllName(true);
+    setFormShow(false);
+  }
+
+  function handleSort(){
+    const addList = lista.slice((0.5 - Math.random()), 1);
+    console.log(addList);
+
+  }
 
   return (
     <>
@@ -24,21 +42,46 @@ export function Home() {
           <Title>
             Sorteador de Jurados
           </Title>
+          {
 
-          <FormContainer onSubmit={AddJurors} >
+            formShow &&
+  <FormContainer onSubmit={AddJurors} >
 
-            <TextAreaJurors className='lista-jurados' wrap='' onChange={(e) => setLista(e.target.value)} />
+    <TextAreaJurors className='lista-jurados' wrap=',' onChange={(e) => setLista(e.target.value.split('\n'))} />
 
-            <AddButton >
-              Adicionar Lista
-            </AddButton>
+    <AddButton  onClick={handleShowAllName}>
+    Adicionar Lista
+    </AddButton>
 
 
-          </FormContainer>
+  </FormContainer>
 
+
+          }
+          {
+            showAllName &&
           <ShowsResult>
-            {lista}
+            {lista.map((item, index)=>{
+              if(lista.length!=0){
+
+                return(
+                  <div className="divShow" key={item}>
+                    <ul >
+                      <li>{item}</li>
+                    </ul>
+                  </div>
+                );
+              }
+            })}
           </ShowsResult>
+
+          }
+
+
+
+          <SortButton onClick={handleSort} >
+              Sortear
+          </SortButton>
 
         </ContentContainer>
 
