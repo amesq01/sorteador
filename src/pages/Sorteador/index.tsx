@@ -7,6 +7,8 @@ export function SorteadorDeNomes() {
 
   function sortearNome() {
     const nomesNaoSorteados = nomes.filter(nome => !nomesSorteados.includes(nome));
+    //pega todos os nomes e filtra aqueles que foram sorteado
+
     if (nomesNaoSorteados.length === 0) {
       setNomesSorteados([]);
     } else {

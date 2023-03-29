@@ -1,18 +1,50 @@
 import { useState } from 'react';
 import { Container, ContentContainer, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult, SortButton } from './styles';
+import Modal from 'react-modal';
 
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 export function Home() {
 
-  const [lista, setLista] = useState(['']);
-  const [listaSorteados, setListaSorteados] = useState(['']);
-  const [listaSorteadosDispensadoMP, setListaSorteadosDispensadoMP] = useState(['']);
-  const [listaSorteadosDispensadoADV, setListaSorteadosDispensadoADV] = useState(['']);
-  const [listaSorteadosDispensadoMM, setListaSorteadosDispensadoMM] = useState(['']);
+  const [listAllJurors, setListAllJurors] = useState<string[]>([]);
+  const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
 
-  const [showAllName, setShowAllName]= useState(false);
-  const [formShow, setFormShow]= useState(true);
+  //const [jurorsNotDrawn, setJurorsNotDrawn] = useState<string[]>([]);
+
+  let subtitle: any;
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+
+
+  const jurorsNotDrawnConst = listAllJurors.filter(nome => !jurorsDrawn.includes(nome));
+
+
+  const [showAllName, setShowAllName] = useState(false);
+  const [formShow, setFormShow] = useState(true);
 
 
 
@@ -22,16 +54,26 @@ export function Home() {
 
   }
 
-  function handleShowAllName(){
+  function handleShowAllName() {
     setShowAllName(true);
     setFormShow(false);
   }
 
-  function handleSort(){
-    const addList = lista.slice((0.5 - Math.random()), 1);
-    console.log(addList);
+  function handleSort() {
+    console.log(jurorsNotDrawnConst);
+    const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
+    console.log(jurorDrawn);
+    setJurorsDrawn([...jurorsDrawn, jurorDrawn]);
+
+    if (jurorsNotDrawnConst.length === 0) {
+      alert('chegou ao fim da lista');
+    }
+    openModal();
+
 
   }
+
+
 
   return (
     <>
@@ -42,50 +84,84 @@ export function Home() {
           <Title>
             Sorteador de Jurados
           </Title>
+
           {
-
             formShow &&
-  <FormContainer onSubmit={AddJurors} >
 
-    <TextAreaJurors className='lista-jurados' wrap=',' onChange={(e) => setLista(e.target.value.split('\n'))} />
+            <FormContainer onSubmit={AddJurors} >
 
-    <AddButton  onClick={handleShowAllName}>
-    Adicionar Lista
-    </AddButton>
+              <TextAreaJurors className='lista-jurados' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
+
+              <AddButton onClick={handleShowAllName}>
+                Adicionar Lista
+              </AddButton>
 
 
-  </FormContainer>
+            </FormContainer>
 
 
           }
           {
             showAllName &&
-          <ShowsResult>
-            {lista.map((item, index)=>{
-              if(lista.length!=0){
+            <ShowsResult>
+              {jurorsNotDrawnConst.map((item, index) => {
+                if (jurorsNotDrawnConst.length != 0) {
 
-                return(
-                  <div className="divShow" key={item}>
-                    <ul >
-                      <li>{item}</li>
-                    </ul>
-                  </div>
-                );
-              }
-            })}
-          </ShowsResult>
+                  return (
+                    <div className="divShow" key={item}>
+                      <ul >
+                        <li>{item}</li>
+                      </ul>
+                    </div>
+                  );
+                }
+              })}
+            </ShowsResult>
 
           }
 
 
 
           <SortButton onClick={handleSort} >
-              Sortear
+            Sortear
           </SortButton>
 
+
+          <div>
+            <button onClick={openModal}>Open Modal</button>
+            <Modal
+              isOpen={modalIsOpen}
+              onAfterOpen={afterOpenModal}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <div>
+                {
+                  jurorsDrawn[(jurorsDrawn.length - 1)]
+                }
+                <div className="buttons">
+                  <button
+                    onClick={closeModal}
+                  >Aceito</button>
+                  <button>
+                    Dispensa MM
+                  </button>
+                  <button>
+                    Dispensa MP
+                  </button>
+                  <button>
+                    Dispensa ADV
+                  </button>
+
+                </div>
+              </div>
+            </Modal>
+          </div>
         </ContentContainer>
 
       </Container>
     </>
   );
 }
+
