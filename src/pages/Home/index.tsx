@@ -18,12 +18,15 @@ export function Home() {
 
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
+  const [showAllName, setShowAllName] = useState(false);
+  const [formShow, setFormShow] = useState(true);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
+  const jurorsNotDrawnConst = listAllJurors.filter(nome => !jurorsDrawn.includes(nome));
   //const [jurorsNotDrawn, setJurorsNotDrawn] = useState<string[]>([]);
 
   let subtitle: any;
 
-  const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -40,18 +43,8 @@ export function Home() {
 
 
 
-  const jurorsNotDrawnConst = listAllJurors.filter(nome => !jurorsDrawn.includes(nome));
-
-
-  const [showAllName, setShowAllName] = useState(false);
-  const [formShow, setFormShow] = useState(true);
-
-
-
   function AddJurors(e: any) {
-
     e.preventDefault();
-
   }
 
   function handleShowAllName() {
@@ -60,10 +53,8 @@ export function Home() {
   }
 
   function handleSort() {
-    console.log(jurorsNotDrawnConst);
     const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
-    console.log(jurorDrawn);
-    setJurorsDrawn([...jurorsDrawn, jurorDrawn]);
+    setJurorsDrawn(prev=>[...prev, jurorDrawn]);
 
     if (jurorsNotDrawnConst.length === 0) {
       alert('chegou ao fim da lista');
@@ -98,13 +89,11 @@ export function Home() {
 
 
             </FormContainer>
-
-
           }
           {
             showAllName &&
             <ShowsResult>
-              {jurorsNotDrawnConst.map((item, index) => {
+              {jurorsNotDrawnConst.sort().map((item, index) => {
                 if (jurorsNotDrawnConst.length != 0) {
 
                   return (
@@ -115,7 +104,7 @@ export function Home() {
                     </div>
                   );
                 }
-              })}
+              }).sort()}
             </ShowsResult>
 
           }
