@@ -56,17 +56,13 @@ export function Home() {
 
   function handleSort() {
     const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
-    setJurorsDrawn(prev=>[...prev, jurorDrawn]);
+    setJurorsDrawn(prev => [...prev, jurorDrawn]);
 
     if (jurorsNotDrawnConst.length === 0) {
       alert('chegou ao fim da lista');
     }
     openModal();
-
-
   }
-
-
 
   return (
     <>
@@ -84,7 +80,7 @@ export function Home() {
 
             <FormContainer onSubmit={AddJurors} >
 
-              <TextAreaJurors className='lista-jurados' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
+              <TextAreaJurors className='lista-jurados' value='teste' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
 
               <AddButton onClick={handleShowAllName}>
                 Adicionar Lista
@@ -111,8 +107,6 @@ export function Home() {
             </ShowsResult>
 
           }
-
-
 
           <SortButton onClick={handleSort} >
             Sortear
