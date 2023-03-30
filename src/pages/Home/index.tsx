@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container, ContentContainer, Header, LogoImg, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult, SortButton } from './styles';
 import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 import logo from '../../../src/assets/logo.png';
 

@@ -10,33 +10,22 @@ import { auth } from '../../utils/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
+
+
+
 export const Login = () => {
+
+
+
+
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const entrar = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setEmail('');
-        setPassword('');
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        navigate('/home');
 
-        // ...
-      })
-      .catch((error) => {
-        const errorCode: any = error.code;
-        const errorMessage = error.message;
-        setEmail('');
-        setPassword('');
-        setError(errorMessage);
-      });
-  };
 
 
   return (
@@ -84,7 +73,7 @@ export const Login = () => {
             </div>
           )}
 
-          <button type="submit" onClick={() => entrar()}>
+          <button type="submit" onClick={() => alert(email)}>
             LOGIN
           </button>
           {/* <Link to="/home" className="button" >

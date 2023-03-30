@@ -9,8 +9,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/home" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path='/home' element={<Home />} />
       </Routes>
     </Router>
   );
