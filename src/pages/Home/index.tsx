@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Container, ContentContainer, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult, SortButton } from './styles';
+import { Container, ContentContainer, Header, LogoImg, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult, SortButton } from './styles';
 import Modal from 'react-modal';
+
+import logo from '../../../src/assets/logo.png';
 
 
 const customStyles = {
@@ -70,12 +72,13 @@ export function Home() {
     <>
       <Container>
 
-        <ContentContainer>
-
+        <Header>
+          <LogoImg src={logo} />
           <Title>
             Sorteador de Jurados
           </Title>
-
+        </Header>
+        <ContentContainer>
           {
             formShow &&
 
@@ -148,6 +151,9 @@ export function Home() {
             </Modal>
           </div>
         </ContentContainer>
+
+        <span>Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA.</span>
+        <span>@AdailtonMesquita</span>
 
       </Container>
     </>

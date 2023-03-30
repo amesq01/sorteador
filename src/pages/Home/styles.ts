@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background-color: #252525;
+  background-color: #fff;
   min-height: 100vh;
   height: 100%;
   padding-bottom: 10rem;
@@ -19,17 +19,34 @@ export const ContentContainer = styled.main`
   height: 100%;
   margin-top: 3rem;
 
+`;
 
+export const Header = styled.header`
+  width: 100% ;
+  height: fit-content;
 
+  padding:1.6rem 4rem;
+
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ghostwhite;
+  border-bottom: .4rem solid rgba(0,0,0,0.01);
+`;
+
+export const LogoImg = styled.img`
+  height: 7rem;
 
 `;
 
 export const Title = styled.h1`
   text-align: center;
-  font-size: 3.2rem;
-  margin-bottom: 2rem;
-  color: #ccc;
+  font-size: 3.6rem;
+  color: #252525;
   text-transform: uppercase ;
+  font-family: 'Gruppo', cursive;
+  letter-spacing:.8rem ;
+
 
 `;
 
