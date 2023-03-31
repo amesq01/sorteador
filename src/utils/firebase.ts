@@ -4,13 +4,13 @@ import * as firebaseAuth from 'firebase/auth';
 import { browserLocalPersistence } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDBl_eu3QrIXtB8fNX5VE_tRJCRnXkcKoA',
-  authDomain: 'sorteador-jurados.firebaseapp.com',
-  projectId: 'sorteador-jurados',
-  storageBucket: 'sorteador-jurados.appspot.com',
-  messagingSenderId: '203981270022',
-  appId: '1:203981270022:web:28a2c4d0340716bfc0e787',
-  measurementId: 'G-HQEB3JWWZ8',
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECTD_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SEND_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 
 };
 const app = firebase.initializeApp(firebaseConfig);

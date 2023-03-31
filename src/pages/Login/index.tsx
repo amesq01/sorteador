@@ -63,7 +63,7 @@ export const Login = () => {
 
 
 
-              Email ou senha invalidos
+              Email ou senha inválidos
 
             </C.Error>
           )}
