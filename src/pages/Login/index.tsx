@@ -7,17 +7,14 @@ import logoIMG from '../../assets/logo.png';
 
 import { auth } from '../../utils/firebase';
 
+
+
+
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 
-
-
 export const Login = () => {
-
-
-
-
 
   const navigate = useNavigate();
 
@@ -25,20 +22,30 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  function enter() {
+    alert(email);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((teste) => {
+        const user = teste.user;
+        const email = user.email;
+        console.log(user.email);
+        navigate(`/home/${email}`,);
+      })
+      .catch(error => alert(error));
 
-
+  }
 
   return (
-    <C.Container>
+    <C.Container bg={bac} >
       <C.Content>
         <C.LogoContainer>
           <C.Logo src={logoIMG} />
-          <h1>MINISTÉRIO PÚBLICO DO MARANHÃO</h1>
-          <h2>PROCURADORIA GERAL DE JUSTIÇA</h2>
-          <h2>COORDENADORIA DE GESTÃO DE PESSOAS</h2>
+          <h1>Fórum Desembargador <span> Raimundo Ewerton De Paiva</span></h1>
+          <h2>São Luís Gonzaga do Maranhão</h2>
+
         </C.LogoContainer>
         <C.InputsContainer>
-          <h1>SIMULADOR DE APOSENTADORIA</h1>
+          <h1>SORTEADOR DE JURADOS</h1>
           <h2>Faça Login para acessar o Sistema</h2>
           <input
             type="email"
@@ -73,7 +80,7 @@ export const Login = () => {
             </div>
           )}
 
-          <button type="submit" onClick={() => alert(email)}>
+          <button type="submit" onClick={enter}>
             LOGIN
           </button>
           {/* <Link to="/home" className="button" >
@@ -82,11 +89,11 @@ export const Login = () => {
           <span onClick={() => alert('acesso solicitado')}>
             Solicitar acesso
           </span>
-          <footer>
-            © Licenciado gratuitamente por Adailton Mesquita e Adriano Mesquita
-            ao Ministério Público do Estado do Maranhão - ano 2021 -2022.
-          </footer>
+
         </C.InputsContainer>
+        <C.Footer>
+          2023 - © Licenciado gratuitamente por Adailton Mesquita.
+        </C.Footer>
       </C.Content>
     </C.Container>
   );

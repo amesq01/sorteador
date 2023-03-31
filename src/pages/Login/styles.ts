@@ -1,37 +1,29 @@
 import styled from 'styled-components';
 
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #3b8fe7;
+  background-color: rgba(0,0, 0, 0.1);
   width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
   font-family: "Ruda", sans-serif;
+
 `;
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  background: linear-gradient(90deg, #3b8fe7 0%, rgba(255, 31, 0, 0.65) 100%);
-  width: 90vw;
-  max-width: 1150px;
-  height: 90vh;
-  max-height: 650px;
+  background: linear-gradient(90deg, #3b8fe7 0%, rgba(0,0,0, 0.2) 100%);
+  width: 95vw;
+  max-width: 1200px;
+  height: 95vh;
+  max-height: 700px;
   box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  position: relative;
 
-  @media (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    max-height: 1024px;
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(
-      180deg,
-      #3b8fe7 0%,
-      rgba(255, 31, 0, 0.65) 120%
-    );
-  }
 `;
 export const LogoContainer = styled.div`
   width: 50%;
@@ -39,42 +31,52 @@ export const LogoContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  color: #fff;
-  margin-top: -40px;
+  color: #252525;
+  font-family: "Gruppo", sans-serif;
+
+
+
+
   h1 {
     text-align: center;
-    font-family: "Ruda", sans-serif;
-    font-size: 20px;
-    font-weight: bold;
+    font-size:32px;
+    font-weight: 500;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    line-height:35px;
+
+    span{
+
+      display: block;
+    }
   }
   h2 {
     text-align: center;
-    font-family: "Ruda", sans-serif;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: normal;
+    font-weight: 500;
   }
-  @media (max-width: 600px) {
-    width: 100%;
-    gap: 4px;
-    margin-top: 50px;
-    h1 {
-      font-size: 18px;
-      font-weight: bold;
-    }
-    h2 {
-      font-size: 15px;
-    }
-  }
-`;
+  `;
 export const Logo = styled.img`
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
-  @media (max-width: 600px) {
-    width: 95px;
-    height: 90px;
-  }
+  height: 85px;
+  opacity: 0.6;
+
+`;
+
+export const Footer = styled.footer`
+
+    position: absolute;
+    padding:5px 0 5px 20px;
+    left: 0;
+    bottom: 0;
+    font-family: "Ruda", sans-serif;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+    font-family: "Gruppo", sans-serif;
+    line-height: 1.4;
+
 `;
 
 export const InputsContainer = styled.div`
@@ -83,22 +85,24 @@ export const InputsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 0.2px solid #848484;
-  position: relative;
+  border-left: 0.2px solid rgba(255, 255, 255, 0.1);
+
+
   h1 {
     text-align: center;
-    font-family: "Ruda", sans-serif;
-    font-size: 30px;
+    font-family: "Gruppo", sans-serif;
+    font-size: 32px;
     font-weight: bold;
-    color: #edc8c8;
+    color: #333;
   }
   h2 {
-    text-align: center;
-    font-family: "Ruda", sans-serif;
+    text-align: flex-end;
+    font-family: "Gruppo", sans-serif;
     font-size: 12px;
     font-weight: normal;
     margin-top: 10px;
-    color: #edc8c8;
+    color: #333;
+    font-weight: 700;
     margin-bottom: 35px;
   }
   input {
@@ -111,9 +115,15 @@ export const InputsContainer = styled.div`
     outline: none;
     border: none;
     border-radius: 3px;
+    font-family: "Gruppo", sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+
     ::placeholder,
     ::-webkit-input-placeholder {
       color: #4d3535;
+      font-family: "Gruppo", sans-serif;
+
     }
   }
   button {
@@ -122,7 +132,7 @@ export const InputsContainer = styled.div`
     height: 45px;
     margin-bottom: 10px;
     margin-top: 10px;
-    background-color: #a32320;
+    background-color: #3b8fe7;
     outline: none;
     border: none;
     cursor: pointer;
@@ -132,56 +142,21 @@ export const InputsContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: "Gruppo", sans-serif;
+    letter-spacing: 4px
+
   }
   span {
-    font-size: 10px;
-    color: #edc8c8;
+    font-size: 13px;
+    font-weight: bold;
+    color: #252525;
     display: flex;
     width: 80%;
     justify-content: flex-end;
     cursor: pointer;
+    font-family: "Gruppo", sans-serif;
+
   }
-  footer {
-    position: absolute;
-    bottom: 5px;
-    font-family: "Ruda", sans-serif;
-    color: #ccc;
-    font-size: 8px;
-    width: 100%;
-    text-align: center;
-    line-height: 1.4;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
-    margin-top: 120px;
-    h1 {
-      font-size: 20px;
-    }
-    h2 {
-      margin-top: 5px;
-      margin-bottom: 80px;
-    }
-    input {
-      width: 90%;
-    }
-    button {
-      width: 90%;
-    }
-    span {
-      display: flex;
-      width: 90%;
-      justify-content: flex-end;
-      text-align: right;
-    }
-    footer {
-      position: fixed;
-      bottom: 5px;
-      font-family: "Ruda", sans-serif;
-      color: #ccc;
-      font-size: 8px;
-      width: 90%;
-      text-align: center;
-      line-height: 1.4;
-    }
-  }
+
+
 `;

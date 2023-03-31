@@ -3,6 +3,8 @@ import { Container, ContentContainer, Header, LogoImg, Title, FormContainer, Tex
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
+import { useParams } from 'react-router-dom';
+
 import logo from '../../../src/assets/logo.png';
 
 
@@ -18,6 +20,10 @@ const customStyles = {
 };
 
 export function Home() {
+
+  const { email } = useParams();
+  const emailName = email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José';
+  console.log(emailName + 'aqui');
 
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
@@ -73,7 +79,11 @@ export function Home() {
           <LogoImg src={logo} />
           <Title>
             Sorteador de Jurados
+            {emailName}
+
           </Title>
+
+
         </Header>
         <ContentContainer>
           {

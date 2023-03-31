@@ -47,7 +47,6 @@ export const Title = styled.h1`
   font-family: 'Gruppo', cursive;
   letter-spacing:.8rem ;
 
-
 `;
 
 export const FormContainer = styled.form`
