@@ -158,7 +158,7 @@ export function Home() {
         </ContentContainer>
 
         <span>Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA.</span>
-        <span>@AdailtonMesquita</span>
+        <span>@AdailtonMesquita!</span>
 
       </Container>
     </>
