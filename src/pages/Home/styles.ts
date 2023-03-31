@@ -4,48 +4,41 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  background-color:  rgba(59,143,231, 0.15);;
+  background-color:  rgba(59,143,231, 0.15);
   min-height: 100vh;
   height: 100%;
   padding-bottom: 10rem;
-`;
-
-export const ContentContainer = styled.main`
-
-
-  width: 90% ;
-  height: 100%;
-  margin-top: 3rem;
-
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
 `;
 
 export const Header = styled.header`
+  display:flex;
+  background-color: rgba(59,143,231, 0.2);
   width: 100% ;
   height: fit-content;
-
   padding:1.6rem 4rem;
-
-  display:flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(59,143,231, 0.2);
-  border-bottom: .4rem solid rgba(0,0,0,0.01);
+  box-shadow: 0rem 0rem 1.6rem rgba(0,0,0,0.2);
 `;
 
 export const LogoImg = styled.img`
   height: 7rem;
-
 `;
 
 export const Title = styled.h1`
-  text-align: center;
-  font-size: 3.6rem;
-  color: #252525;
+  font-size: 3.2rem;
+  color: #333;
   text-transform: uppercase ;
-  font-family: 'Gruppo', cursive;
-  letter-spacing:.8rem ;
+  font-family: 'Gruppo', sans-serif;
+  letter-spacing:.7rem ;
+`;
+
+export const ContentContainer = styled.main`
+  width: 96% ;
+  height: 100%;
 
 `;
 
@@ -53,34 +46,41 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  padding-top: 10rem;
+
+
 `;
 
 export const TextAreaJurors = styled.textarea`
   display: flex;
   line-height:3rem;
-  min-height: 20rem;
+  min-height: 40rem;
   max-height: 40rem;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   background-color: rgba(255, 255, 255, 0.4);
   width: 100%;
-  max-width: 60rem;
-  min-width: 60rem;
+  max-width: 65rem;
+  min-width: 65rem;
   border: none;
   outline: none;
-  font-weight: bold;
-  font-size: 1.8rem;
+  font-weight: medium;
+  font-size: 2rem;
   border-radius: .4rem;
+  box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
+
+
   `;
 
-export const AddButton = styled.button`
-  width: 60rem;
+export const AddListButton = styled.button`
+  width: 65rem;
   padding: 1.2rem;
   border-radius: .4rem;
   border: none;
   outline: none;
   margin-top: 1.2rem;
-  background-color: green;
+  background-color: rgba(59,143,231, 01);
   font-size: 2rem;
   text-transform: uppercase;
   color:#fff;
@@ -113,5 +113,12 @@ export const ShowsResult = styled.div`
   }
 `;
 
-export const SortButton = styled(AddButton)``;
+export const SortButton = styled(AddListButton)``;
+
+export const Footer = styled.footer`
+  position: absolute;
+  bottom: .5rem;
+  left: 4rem;
+  font-size: 1.2rem
+`;
 

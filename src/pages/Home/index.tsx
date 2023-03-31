@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, ContentContainer, Header, LogoImg, Title, FormContainer, TextAreaJurors, AddButton, ShowsResult, SortButton } from './styles';
+import { Container, ContentContainer, Header, LogoImg, Title, FormContainer, TextAreaJurors, AddListButton, ShowsResult, SortButton, Footer } from './styles';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
@@ -30,6 +30,7 @@ export function Home() {
   const [showAllName, setShowAllName] = useState(false);
   const [formShow, setFormShow] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [sortButtonState, setSortButtonState] = useState(false);
 
   const jurorsNotDrawnConst = listAllJurors.filter(nome => !jurorsDrawn.includes(nome));
   //const [jurorsNotDrawn, setJurorsNotDrawn] = useState<string[]>([]);
@@ -52,9 +53,7 @@ export function Home() {
 
 
 
-  function AddJurors(e: any) {
-    e.preventDefault();
-  }
+
 
   function handleShowAllName() {
     setShowAllName(true);
@@ -90,14 +89,20 @@ export function Home() {
           {
             formShow &&
 
-            <FormContainer onSubmit={AddJurors} >
+            <FormContainer onSubmit={e => e.preventDefault()} >
 
               <TextAreaJurors className='lista-jurados' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
 
-              <AddButton onClick={handleShowAllName}>
+              <AddListButton onClick={handleShowAllName}>
                 Adicionar Lista
-              </AddButton>
+              </AddListButton>
 
+
+              {
+                sortButtonState && <SortButton onClick={handleSort} >
+                  Sortear
+                </SortButton>
+              }
 
             </FormContainer>
           }
@@ -120,9 +125,7 @@ export function Home() {
 
           }
 
-          <SortButton onClick={handleSort} >
-            Sortear
-          </SortButton>
+
 
 
           <div>
@@ -157,8 +160,10 @@ export function Home() {
           </div>
         </ContentContainer>
 
-        <span>Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA.</span>
-        <span>@AdailtonMesquita!</span>
+        <Footer>
+          <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA.</span>
+          <strong> @AdailtonMesquita</strong>
+        </Footer>
 
       </Container>
     </>
