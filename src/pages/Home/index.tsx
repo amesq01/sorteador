@@ -79,19 +79,20 @@ export function Home() {
           <LogoImg src={logo} />
           <Title>
             Sorteador de Jurados
-            {emailName}
+
 
           </Title>
 
 
         </Header>
+
         <ContentContainer>
           {
             formShow &&
 
             <FormContainer onSubmit={AddJurors} >
 
-              <TextAreaJurors className='lista-jurados' value='teste' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
+              <TextAreaJurors className='lista-jurados' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
 
               <AddButton onClick={handleShowAllName}>
                 Adicionar Lista
@@ -125,7 +126,6 @@ export function Home() {
 
 
           <div>
-            <button onClick={openModal}>Open Modal</button>
             <Modal
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}

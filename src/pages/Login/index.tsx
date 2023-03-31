@@ -1,18 +1,12 @@
 import { useState } from 'react';
 
 import * as C from './styles';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import logoIMG from '../../assets/logo.png';
-
 import { auth } from '../../utils/firebase';
 
-
-
-
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
-
 
 export const Login = () => {
 
@@ -22,21 +16,23 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function enter() {
-    alert(email);
+  function Login() {
     signInWithEmailAndPassword(auth, email, password)
-      .then((teste) => {
-        const user = teste.user;
+      .then((userCredential) => {
+        const user = userCredential.user;
         const email = user.email;
-        console.log(user.email);
-        navigate(`/home/${email}`,);
-      })
-      .catch(error => alert(error));
+        navigate('./home');
+      }).catch((err) => {
+        setError(err);
+        setEmail('');
+        setPassword('');
+      }
+      );
 
   }
 
   return (
-    <C.Container bg={bac} >
+    <C.Container  >
       <C.Content>
         <C.LogoContainer>
           <C.Logo src={logoIMG} />
@@ -44,9 +40,10 @@ export const Login = () => {
           <h2>São Luís Gonzaga do Maranhão</h2>
 
         </C.LogoContainer>
-        <C.InputsContainer>
+        <C.InputsContainer onSubmit={e => e.preventDefault()}>
           <h1>SORTEADOR DE JURADOS</h1>
           <h2>Faça Login para acessar o Sistema</h2>
+
           <input
             type="email"
             placeholder="E-mail"
@@ -61,26 +58,17 @@ export const Login = () => {
             value={password}
           />
           {error && (
-            <div
-              style={{
-                display: 'flex',
-                width: '80%',
-                justifyContent: 'center',
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: 10,
-                  color: '#f6f6f6',
-                  fontWeight: '300',
-                }}
-              >
-                Email ou senha invalidos
-              </h1>
-            </div>
+            <C.Error>
+
+
+
+
+              Email ou senha invalidos
+
+            </C.Error>
           )}
 
-          <button type="submit" onClick={enter}>
+          <button type="submit" onClick={Login}>
             LOGIN
           </button>
           {/* <Link to="/home" className="button" >

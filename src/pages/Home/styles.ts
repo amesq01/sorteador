@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background-color: #fff;
+  background-color:  rgba(59,143,231, 0.15);;
   min-height: 100vh;
   height: 100%;
   padding-bottom: 10rem;
@@ -30,7 +30,7 @@ export const Header = styled.header`
   display:flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ghostwhite;
+  background-color: rgba(59,143,231, 0.2);
   border-bottom: .4rem solid rgba(0,0,0,0.01);
 `;
 
@@ -54,10 +54,6 @@ export const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
-
-
-
-
 `;
 
 export const TextAreaJurors = styled.textarea`
@@ -66,13 +62,12 @@ export const TextAreaJurors = styled.textarea`
   min-height: 20rem;
   max-height: 40rem;
   padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.4);
   width: 100%;
   max-width: 60rem;
   min-width: 60rem;
   border: none;
   outline: none;
-
   font-weight: bold;
   font-size: 1.8rem;
   border-radius: .4rem;
@@ -91,16 +86,13 @@ export const AddButton = styled.button`
   color:#fff;
   font-weight: bold;
   letter-spacing: 0.1rem;
-
-
 `;
 
 
 export const ShowsResult = styled.div`
-
   color:#fff;
   margin-top: 1rem;
-  background-color: #333;
+  background-color: rgba(255, 255, 255, 0.4);
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -108,13 +100,12 @@ export const ShowsResult = styled.div`
   grid-column-gap: 2rem;
   width: 100%;
 
-
   ul {
     list-style-type: none ;
   }
 
   .divShow {
-    background-color: rgba(255, 255, 255, .1);
+    background-color: rgba(0,0,0, 0.3);
     padding: 1rem;
     margin-top: 1rem ;
     width: fit-content;
