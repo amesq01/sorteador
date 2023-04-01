@@ -18,7 +18,7 @@ export const Header = styled.header`
   background-color: rgba(59,143,231, 0.2);
   width: 100% ;
   height: fit-content;
-  padding:1.6rem 4rem;
+  padding:1.6rem 3rem;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0rem 0rem 1.6rem rgba(0,0,0,0.2);
@@ -87,7 +87,7 @@ export const AddListButton = styled.button`
 `;
 
 
-export const ShowsResult = styled.div`
+export const ShowsAllNamesContainer = styled.div`
   color:#252525;
   margin-top: 1rem;
   background-color:  rgba(59,143,231, 0.1);
@@ -118,7 +118,8 @@ export const SortButton = styled(AddListButton)`
 
 `;
 
-export const ShowAcceptedDrawnJuros = styled.div``;
+export const ShowAcceptedDrawnJurors = styled.div``;
+export const ShowListMotivedDispenseJurorsJudge = styled.div``;
 
 export const Footer = styled.footer`
   position: absolute;
