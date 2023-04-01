@@ -173,116 +173,120 @@ export function Home() {
             }
 
           </FormContainer>
+          {
+            jurorsDrawn.length > 0 &&
 
-          <div style={{
-            display: 'flex',
-            gap: '10%',
-            marginTop: '2rem',
-            listStyleType: 'none',
+  <div style={{
+    display: 'flex',
+    gap: '10%',
+    marginTop: '2rem',
+    listStyleType: 'none',
 
-          }}  >
+  }}  >
 
 
-            <ShowAcceptedDrawnJurors style={{
-              backgroundColor: 'white',
-              padding: '2.5rem',
-              borderRadius: '.8rem'
-            }}>
-              <h2>Selecionados</h2>
-              {jurorsDrawn.map((item, index) => {
-                if (jurorsDrawn.length != 0) {
-                  return (
-                    <div className="divShow" key={item}>
-                      <ul >
-                        <li>{item}</li>
-                      </ul>
-                    </div>
-                  );
-                }
-              })}
-            </ShowAcceptedDrawnJurors>
-
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2.5rem',
-              borderRadius: '.8rem',
-              height: 'fit-content',
-
-            }}>
-              <h2>Dispensados com motivo pelo juízo </h2>
-              {listMotivedDispenseJurorsJudge.map((item, index) => {
-                if (listMotivedDispenseJurorsJudge.length != 0) {
-                  return (
-                    <div className="divShow" key={item}>
-                      <ul >
-                        <li>{item}</li>
-                      </ul>
-                    </div>
-                  );
-                }
-              })}
+    <ShowAcceptedDrawnJurors style={{
+      backgroundColor: 'white',
+      padding: '2.5rem',
+      borderRadius: '.8rem'
+    }}>
+      <h2>Selecionados</h2>
+      {jurorsDrawn.map((item, index) => {
+        if (jurorsDrawn.length != 0) {
+          return (
+            <div className="divShow" key={item}>
+              <ul >
+                <li>{item}</li>
+              </ul>
             </div>
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2.5rem',
-              borderRadius: '.8rem',
-              height: 'fit-content',
-            }}>
-              <h2>Dispensados sem motivo pelo juízo </h2>
-              {listUnMotivedDispenseJurorsJudge.map((item, index) => {
-                if (listUnMotivedDispenseJurorsJudge.length != 0) {
-                  return (
-                    <div className="divShow" key={item}>
-                      <ul >
-                        <li>{item}</li>
-                      </ul>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2.5rem',
-              borderRadius: '.8rem',
-              height: 'fit-content',
+          );
+        }
+      })}
+    </ShowAcceptedDrawnJurors>
 
-            }}>
-              <h2>Dispensados pelo Ministério Público </h2>
-              {listDispenseJurorsMP.map((item, index) => {
-                if (listDispenseJurorsMP.length != 0) {
-                  return (
-                    <div className="divShow" key={item}>
-                      <ul >
-                        <li>{item}</li>
-                      </ul>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-            <div style={{
-              backgroundColor: 'white',
-              padding: '2.5rem',
-              borderRadius: '.8rem',
-              height: 'fit-content',
+    <div style={{
+      backgroundColor: 'white',
+      padding: '2.5rem',
+      borderRadius: '.8rem',
+      height: 'fit-content',
 
-            }}>
-              <h2 style={{ display: 'flex', marginBottom: '2rem' }}>Dispensados pelo advogado </h2>
-              {listDispenseJurorsAdv.map((item, index) => {
-                if (listDispenseJurorsAdv.length != 0) {
-                  return (
-                    <div className="divShow" key={item}>
-                      <ul style={{ listStyleType: 'none' }}>
-                        <li>{item}</li>
-                      </ul>
-                    </div>
-                  );
-                }
-              })}
+    }}>
+      <h2>Dispensados com motivo pelo juízo </h2>
+      {listMotivedDispenseJurorsJudge.map((item, index) => {
+        if (listMotivedDispenseJurorsJudge.length != 0) {
+          return (
+            <div className="divShow" key={item}>
+              <ul >
+                <li>{item}</li>
+              </ul>
             </div>
+          );
+        }
+      })}
+    </div>
+    <div style={{
+      backgroundColor: 'white',
+      padding: '2.5rem',
+      borderRadius: '.8rem',
+      height: 'fit-content',
+    }}>
+      <h2>Dispensados sem motivo pelo juízo </h2>
+      {listUnMotivedDispenseJurorsJudge.map((item, index) => {
+        if (listUnMotivedDispenseJurorsJudge.length != 0) {
+          return (
+            <div className="divShow" key={item}>
+              <ul >
+                <li>{item}</li>
+              </ul>
+            </div>
+          );
+        }
+      })}
+    </div>
+    <div style={{
+      backgroundColor: 'white',
+      padding: '2.5rem',
+      borderRadius: '.8rem',
+      height: 'fit-content',
 
-          </div>
+    }}>
+      <h2>Dispensados pelo Ministério Público </h2>
+      {listDispenseJurorsMP.map((item, index) => {
+        if (listDispenseJurorsMP.length != 0) {
+          return (
+            <div className="divShow" key={item}>
+              <ul >
+                <li>{item}</li>
+              </ul>
+            </div>
+          );
+        }
+      })}
+    </div>
+    <div style={{
+      backgroundColor: 'white',
+      padding: '2.5rem',
+      borderRadius: '.8rem',
+      height: 'fit-content',
+
+    }}>
+      <h2 style={{ display: 'flex', marginBottom: '2rem' }}>Dispensados pelo advogado </h2>
+      {listDispenseJurorsAdv.map((item, index) => {
+        if (listDispenseJurorsAdv.length != 0) {
+          return (
+            <div className="divShow" key={item}>
+              <ul style={{ listStyleType: 'none' }}>
+                <li>{item}</li>
+              </ul>
+            </div>
+          );
+        }
+      })}
+    </div>
+
+  </div>
+          }
+
 
 
 
@@ -330,11 +334,12 @@ export function Home() {
           </div>
         </ContentContainer >
 
-        <Footer>
-          <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA.</span>
-          <strong> @AdailtonMesquita</strong>
-        </Footer>
 
+
+        <Footer>
+          <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
+          <strong style={{marginLeft: '.5rem'}}>@AdailtonMesquita</strong>
+        </Footer>
       </Container >
     </>
   );

@@ -5,12 +5,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color:  rgba(59,143,231, 0.15);
+  //height: 100%;
   min-height: 100vh;
-  height: 100%;
-  padding-bottom: 10rem;
   align-items: center;
+  justify-content: space-between;
   font-family: 'Open Sans', sans-serif;
   color: #333;
+  max-width: 100vw;
+
+
 `;
 
 export const Header = styled.header`
@@ -25,7 +28,7 @@ export const Header = styled.header`
 `;
 
 export const LogoImg = styled.img`
-  height: 7rem;
+  height: 6.5rem;
 `;
 
 export const Title = styled.h1`
@@ -48,8 +51,6 @@ export const FormContainer = styled.form`
   align-items: center;
   justify-content: center;
   width: 100%;
-
-
 `;
 
 export const TextAreaJurors = styled.textarea`
@@ -68,7 +69,7 @@ export const TextAreaJurors = styled.textarea`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-  margin-top: 10rem;
+
   `;
 
 export const AddListButton = styled.button`
@@ -89,7 +90,6 @@ export const AddListButton = styled.button`
 
 export const ShowsAllNamesContainer = styled.div`
   color:#252525;
-  margin-top: 1rem;
   background-color:  rgba(59,143,231, 0.1);
   padding: 2rem;
   display: grid;
@@ -122,9 +122,14 @@ export const ShowAcceptedDrawnJurors = styled.div``;
 export const ShowListMotivedDispenseJurorsJudge = styled.div``;
 
 export const Footer = styled.footer`
-  position: absolute;
-  bottom: .5rem;
-  left: 4rem;
-  font-size: 1.2rem
+
+display: flex;
+padding-left: 2%;
+padding-bottom:1.2rem;
+
+
+font-size: 1.2rem;
+
+
 `;
 
