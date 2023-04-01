@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import bgImg from '../../assets/bg.jpg';
-import bgImg2c from '../../assets/bg2ccc.png';
-import bgImg3 from '../../assets/bg3.jpg';
-import bgImg10 from '../../assets/bg10.png';
-import bgImg20 from '../../assets/bg20.png';
+
 import bgImg15 from '../../assets/bg15.png';
 
 

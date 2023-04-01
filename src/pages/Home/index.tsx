@@ -1,12 +1,25 @@
 import { useState } from 'react';
-import { Container, ContentContainer, Header, LogoImg, Title, FormContainer, TextAreaJurors, AddListButton, ShowsResult, SortButton, Footer } from './styles';
+
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
-import { useParams } from 'react-router-dom';
-
 import logo from '../../../src/assets/logo.png';
+import { Loading } from '../../components/Loading';
 
+import {
+  Container,
+  ContentContainer,
+  Header,
+  LogoImg,
+  Title,
+  FormContainer,
+  TextAreaJurors,
+  AddListButton,
+  ShowsResult,
+  SortButton,
+  ShowAcceptedDrawnJuros,
+  Footer,
+} from './styles';
 
 const customStyles = {
   content: {
@@ -21,20 +34,20 @@ const customStyles = {
 
 export function Home() {
 
-  const { email } = useParams();
-  const emailName = email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José';
-  console.log(emailName + 'aqui');
-
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
-  const [showAllName, setShowAllName] = useState(false);
+  const [listMotivedDispenseJurorsJudge, setListMotivedDispenseJurorsJudge]=useState(['']);
+
+  const [showAllNames, setShowAllNames] = useState(false);
   const [formShow, setFormShow] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [sortButtonState, setSortButtonState] = useState(false);
-
-  const jurorsNotDrawnConst = listAllJurors.filter(nome => !jurorsDrawn.includes(nome));
   //const [jurorsNotDrawn, setJurorsNotDrawn] = useState<string[]>([]);
 
+  const jurorsNotDrawnConst:(string)[] = listAllJurors.filter(nome => !jurorsDrawn.includes(nome) && !listMotivedDispenseJurorsJudge.includes(nome));
+
+
+  //Início configuração MODAL
   let subtitle: any;
 
 
@@ -51,16 +64,16 @@ export function Home() {
     setIsOpen(false);
   }
 
+  //fim configuração MODAL
 
-
-
-
-  function handleShowAllName() {
-    setShowAllName(true);
+  function handleShowAllNames() {
+    setShowAllNames(true);
     setFormShow(false);
+    setSortButtonState(true);
+
   }
 
-  function handleSort() {
+  function handleSortJurors() {
     const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
     setJurorsDrawn(prev => [...prev, jurorDrawn]);
 
@@ -68,6 +81,30 @@ export function Home() {
       alert('chegou ao fim da lista');
     }
     openModal();
+
+
+  }
+
+  function handleMotivedDispenseJurorsJudge(){
+
+    console.log(jurorsDrawn + 'ok');
+    const getLastItemSorted= jurorsDrawn.pop();
+    console.log(getLastItemSorted);
+    console.log(jurorsDrawn + 'ok');
+    setListMotivedDispenseJurorsJudge(prev =>[...prev, 'oi']);
+
+    const novoArray = jurorsDrawn;
+
+    console.log(listMotivedDispenseJurorsJudge);
+
+
+    setIsOpen(false);
+
+  }
+  function handleUnMotivedDispenseJurorsJudge(){
+    console.log(listMotivedDispenseJurorsJudge);
+    setIsOpen(false);
+
   }
 
   return (
@@ -85,31 +122,30 @@ export function Home() {
 
         </Header>
 
+
         <ContentContainer>
-          {
-            formShow &&
 
-            <FormContainer onSubmit={e => e.preventDefault()} >
+          <Loading />
 
-              <TextAreaJurors className='lista-jurados' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
-
-              <AddListButton onClick={handleShowAllName}>
-                Adicionar Lista
-              </AddListButton>
+          <FormContainer onSubmit={e => e.preventDefault()} >
 
 
-              {
-                sortButtonState && <SortButton onClick={handleSort} >
-                  Sortear
-                </SortButton>
-              }
+            {
 
-            </FormContainer>
-          }
-          {
-            showAllName &&
+              formShow &&
+        <>
+          <TextAreaJurors className='lista-jurados' onChange={(e) => setListAllJurors(e.target.value.split('\n'))} />
+
+          <AddListButton onClick={handleShowAllNames}>
+            Adicionar Lista
+          </AddListButton>
+        </>
+
+            }
+            {
+              showAllNames &&
             <ShowsResult>
-              {jurorsNotDrawnConst.sort().map((item, index) => {
+              {jurorsNotDrawnConst.map((item, index) => {
                 if (jurorsNotDrawnConst.length != 0) {
 
                   return (
@@ -123,7 +159,31 @@ export function Home() {
               }).sort()}
             </ShowsResult>
 
-          }
+            }
+
+
+            {
+              sortButtonState && <SortButton onClick={handleSortJurors} >
+                  Sortear
+              </SortButton>
+            }
+
+          </FormContainer>
+
+          <ShowAcceptedDrawnJuros>
+            {jurorsDrawn.sort().map((item, index) => {
+              if (jurorsDrawn.length != 0) {
+                return (
+                  <div className="divShow" key={item}>
+                    <ul >
+                      <li>{item}</li>
+                    </ul>
+                  </div>
+                );
+              }
+            }).sort()}
+          </ShowAcceptedDrawnJuros>
+
 
 
 
@@ -142,9 +202,9 @@ export function Home() {
                 }
                 <div className="buttons">
                   <button
-                    onClick={closeModal}
+                    onClick={handleMotivedDispenseJurorsJudge}
                   >Aceito</button>
-                  <button>
+                  <button onClick={handleUnMotivedDispenseJurorsJudge}>
                     Dispensa MM
                   </button>
                   <button>

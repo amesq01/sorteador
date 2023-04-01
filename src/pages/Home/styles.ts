@@ -38,7 +38,7 @@ export const Title = styled.h1`
 
 export const ContentContainer = styled.main`
   width: 96% ;
-  height: 100%;
+
 
 `;
 
@@ -48,7 +48,6 @@ export const FormContainer = styled.form`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding-top: 10rem;
 
 
 `;
@@ -59,29 +58,28 @@ export const TextAreaJurors = styled.textarea`
   min-height: 40rem;
   max-height: 40rem;
   padding: 2rem 2rem;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
   width: 100%;
-  max-width: 65rem;
-  min-width: 65rem;
+  max-width: 75rem;
+  min-width: 75rem;
   border: none;
   outline: none;
   font-weight: medium;
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-
-
+  margin-top: 10rem;
   `;
 
 export const AddListButton = styled.button`
-  width: 65rem;
+  width: 75rem;
   padding: 1.2rem;
   border-radius: .4rem;
   border: none;
   outline: none;
   margin-top: 1.2rem;
   background-color: rgba(59,143,231, 01);
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
   color:#fff;
   font-weight: bold;
@@ -90,22 +88,23 @@ export const AddListButton = styled.button`
 
 
 export const ShowsResult = styled.div`
-  color:#fff;
+  color:#252525;
   margin-top: 1rem;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color:  rgba(59,143,231, 0.1);
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: .8rem ;
   grid-column-gap: 2rem;
   width: 100%;
+  font-weight:500;
 
   ul {
     list-style-type: none ;
   }
 
   .divShow {
-    background-color: rgba(0,0,0, 0.3);
+    background-color: rgba(0,0,0, 0.03);
     padding: 1rem;
     margin-top: 1rem ;
     width: fit-content;
@@ -113,7 +112,13 @@ export const ShowsResult = styled.div`
   }
 `;
 
-export const SortButton = styled(AddListButton)``;
+export const SortButton = styled(AddListButton)`
+  align-self: start;
+  width: 25rem;
+
+`;
+
+export const ShowAcceptedDrawnJuros = styled.div``;
 
 export const Footer = styled.footer`
   position: absolute;
