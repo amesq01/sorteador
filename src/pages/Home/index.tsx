@@ -4,6 +4,9 @@ import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 import logo from '../../../src/assets/logo.png';
+import absentJustifyImg from '../../../src/assets/absent_justify.svg';
+import absentUnjustifyImg from '../../../src/assets/absent_unjustify.svg';
+
 import { Loading } from '../../components/Loading';
 
 import {
@@ -38,24 +41,28 @@ const customStyles = {
 
 export function Home() {
 
+
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
-  //const [listAcceptedJurors, setListAcceptedJurors] = useState<string[]>([]);
-  const [listMotivedDispenseJurorsJudge, setListMotivedDispenseJurorsJudge] = useState<string[]>([]);
-  const [listUnMotivedDispenseJurorsJudge, setListUnMotivedDispenseJurorsJudge] = useState<string[]>([]);
-  const [listDispenseJurorsMP, setListDispenseJurorsMP] = useState<string[]>([]);
-  const [listDispenseJurorsAdv, setListDispenseJurorsAdv] = useState<string[]>([]);
+  const [listMotivedDispenseJurorsJudge] = useState<string[]>([]);
+  const [listUnMotivedDispenseJurorsJudge] = useState<string[]>([]);
+  const [listDispenseJurorsMP] = useState<string[]>([]);
+  const [listDispenseJurorsAdv] = useState<string[]>([]);
+  const [listAbsentWithJustification] = useState<string[]>([]);
+  const [listAbsentWithoutJustification] = useState<string[]>([]);
 
   const [showAllNames, setShowAllNames] = useState(false);
+  const [namebsentJuror, setNameAbsentJuror] = useState('');
   const [formShow, setFormShow] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalAbsentJurorIsOpen, setAbsentJurorIsOpen] = useState(false);
   const [sortButtonState, setSortButtonState] = useState(false);
 
 
-  const jurorsNotDrawnConst: (string)[] = listAllJurors.filter(nome => !jurorsDrawn.includes(nome) && !listMotivedDispenseJurorsJudge.includes(nome) && !listUnMotivedDispenseJurorsJudge.includes(nome) && !listDispenseJurorsMP.includes(nome) && !listDispenseJurorsAdv.includes(nome));
+  const jurorsNotDrawnConst: (string)[] = listAllJurors.filter(nome => !jurorsDrawn.includes(nome) && !listMotivedDispenseJurorsJudge.includes(nome) && !listUnMotivedDispenseJurorsJudge.includes(nome) && !listDispenseJurorsMP.includes(nome) && !listDispenseJurorsAdv.includes(nome) && !listAbsentWithJustification.includes(nome) && !listAbsentWithoutJustification.includes(nome));
 
 
-  //Início configuração MODAL
+  //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
 
   function openModal() {
@@ -72,7 +79,27 @@ export function Home() {
 
     setIsOpen(false);
   }
-  //fim configuração MODAL
+  //fim configuração MODAL NOME SORTEADO
+
+  //Início configuração MODAL JURADO AUSENTE
+
+  function openModalAbsentJuror(index:any) {
+    console.log(index);
+    setAbsentJurorIsOpen(true);
+    setNameAbsentJuror(index);
+  }
+
+  function afterOpenModalAbsentJuror() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModalAbsentJuror() {
+
+
+    setAbsentJurorIsOpen(false);
+  }
+  //fim configuração MODAL JURADO AUSENTE
 
   function handleShowAllNames() {
     setShowAllNames(true);
@@ -90,32 +117,26 @@ export function Home() {
   }
 
   function handleDrawnsAcceptedsJurors() {
-    // const addNewDrawn: any = jurorsDrawn.pop();
-    // listAcceptedJurors.push(addNewDrawn);
-    // console.log(jurorsDrawn);
     setIsOpen(false);
-
   }
 
   function handleMotivedDispenseJurorsJudge() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listMotivedDispenseJurorsJudge.push(addNewDrawn);
     setIsOpen(false);
-    console.log(jurorsDrawn);
-
   }
+
   function handleUnMotivedDispenseJurorsJudge() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listUnMotivedDispenseJurorsJudge.push(addNewDrawn);
     setIsOpen(false);
-    console.log(jurorsDrawn);
   }
 
   function handleDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listDispenseJurorsMP.push(addNewDrawn);
     setIsOpen(false);
-    console.log(jurorsDrawn);
+
   }
 
   function handleDispenseJurorsAdv() {
@@ -124,7 +145,6 @@ export function Home() {
     setIsOpen(false);
     console.log(jurorsDrawn);
   }
-
 
   return (
     <>
@@ -152,13 +172,11 @@ export function Home() {
             {
               showAllNames &&
               <ShowsAllNamesContainer>
-                {jurorsNotDrawnConst.map((item, index) => {
+                {jurorsNotDrawnConst.map((item, id) => {
                   if (jurorsNotDrawnConst.length != 0) {
                     return (
-                      <div className="divShow" key={item}>
-                        <ul >
-                          <li>{item}</li>
-                        </ul>
+                      <div className="divShow" key={item}  >
+                        <span onClick={()=>openModalAbsentJuror(item)}>{item}</span>
                       </div>
                     );
                   }
@@ -173,14 +191,18 @@ export function Home() {
             }
 
           </FormContainer>
+
           {
-            jurorsDrawn.length > 0 &&
+
+            listAllJurors.length!== jurorsNotDrawnConst.length &&
 
   <div style={{
-    display: 'flex',
-    gap: '10%',
+    display: 'grid',
+    gridTemplateColumns:'1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+    columnGap:'1.2rem',
     marginTop: '2rem',
     listStyleType: 'none',
+
 
   }}  >
 
@@ -209,6 +231,7 @@ export function Home() {
       padding: '2.5rem',
       borderRadius: '.8rem',
       height: 'fit-content',
+
 
     }}>
       <h2>Dispensados com motivo pelo juízo </h2>
@@ -284,54 +307,129 @@ export function Home() {
       })}
     </div>
 
+    <div style={{
+      backgroundColor: 'white',
+      padding: '2.5rem',
+      borderRadius: '.8rem',
+      height: 'fit-content',
+
+    }}>
+      <h2 style={{ display: 'flex', marginBottom: '2rem' }}>Dispensados pelo advogado </h2>
+      {listAbsentWithJustification.map((item, index) => {
+        if (listAbsentWithJustification.length != 0) {
+          return (
+            <div className="divShow" key={item}>
+              <ul style={{ listStyleType: 'none' }}>
+                <li>{item}</li>
+              </ul>
+            </div>
+          );
+        }
+      })}
+
+    </div>
+
   </div>
           }
 
+          {/* INÍCIO TODOS MODAIS */}
+
+          {/* INÍCIO MODAL JURADO SORTEADO */}
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
 
 
-
-
-
-          <div>
-            <Modal
-              isOpen={modalIsOpen}
-              onAfterOpen={afterOpenModal}
-              onRequestClose={closeModal}
-              style={customStyles}
-              contentLabel="Example Modal"
-            >
-
-
-              <div className='modalName' style={{
-                width: '80rem',
-                padding: '2rem',
-                textAlign: 'center'
+            <div className='modalName' style={{
+              width: '80rem',
+              padding: '2rem',
+              textAlign: 'center'
+            }}>
+              <h1 style={{
+                padding: '2rem 4rem'
               }}>
-                <h1 style={{
-                  padding: '2rem 4rem'
-                }}>
 
-                  {
-                    jurorsDrawn[(jurorsDrawn.length - 1)]
-                  }
-                </h1>
-                <div className="buttons" style={{ display: 'flex', padding: '2rem', gap: '1.2rem' }}>
-                  <button style={{ padding: '1.2rem' }} onClick={handleDrawnsAcceptedsJurors}> Aceito</button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleMotivedDispenseJurorsJudge}>Juizo - dispensa motivada</button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleUnMotivedDispenseJurorsJudge}>
+                {
+                  jurorsDrawn[(jurorsDrawn.length - 1)]
+                }
+              </h1>
+              <div className="buttons" style={{ display: 'flex', padding: '2rem', gap: '1.2rem' }}>
+                <button style={{ padding: '1.2rem' }} onClick={handleDrawnsAcceptedsJurors}> Aceito</button>
+                <button style={{ padding: '1.2rem' }} onClick={handleMotivedDispenseJurorsJudge}>Juizo - dispensa motivada</button>
+                <button style={{ padding: '1.2rem' }} onClick={handleUnMotivedDispenseJurorsJudge}>
                     Juizo - dispensa não motivada
-                  </button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleDispenseJurorsMP}>
+                </button>
+                <button style={{ padding: '1.2rem' }} onClick={handleDispenseJurorsMP}>
                     Dispensa MP
-                  </button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleDispenseJurorsAdv}>
+                </button>
+                <button style={{ padding: '1.2rem' }} onClick={handleDispenseJurorsAdv}>
                     Dispensa ADV
-                  </button>
+                </button>
 
-                </div>
               </div>
-            </Modal>
-          </div>
+            </div>
+          </Modal>
+          {/* FIM MODAL JURADO SORTEADO */}
+
+
+          {/* INÍCIO MODAL JURADO AUSENTE */}
+          <Modal
+            isOpen={modalAbsentJurorIsOpen}
+            onAfterOpen={afterOpenModalAbsentJuror}
+            onRequestClose={closeModalAbsentJuror}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+            <div className="span-absent-juror" style={{
+              display:'flex',
+              justifyContent:'center',
+              alignItems: 'center',
+
+              fontSize: '3.6rem'
+            }}>
+
+              <span >{namebsentJuror}</span>
+            </div>
+
+
+            <div className="absents" style={{
+              display:'flex',
+              gap:'5rem',
+              marginTop: '3rem',
+
+
+            }}>
+              <span className="justify" style={{
+                display:'flex',
+                padding:'2rem',
+                justifyContent:'center',
+                alignItems: 'center',
+                background: 'green',
+                borderRadius: '.8rem',
+                color:'white'
+              }} onClick={()=>{
+                listAbsentWithJustification.push(namebsentJuror);
+                setAbsentJurorIsOpen(false);
+                alert([listAbsentWithJustification]);
+              }}>Ausente Justificado</span>
+              <span className="unjustify" style={{
+                display:'flex',
+                padding:'2rem',
+                justifyContent:'center',
+                alignItems: 'center',
+                background: 'red',
+                borderRadius: '.8rem'
+              }}>Ausente Injustificado</span>
+            </div>
+          </Modal>
+          {/* FIM MODAL JURADO SORTEADO */}
+
+          {/* FIM TODOS MODAIS */}
+
         </ContentContainer >
 
 

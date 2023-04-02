@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: space-between;
   font-family: 'Open Sans', sans-serif;
   color: #333;
-  max-width: 100vw;
+  max-width: 100%;
 
 
 `;
@@ -109,6 +109,9 @@ export const ShowsAllNamesContainer = styled.div`
     margin-top: 1rem ;
     width: fit-content;
     border-radius: .8rem;
+    display: flex;
+    gap: .8rem;
+    align-items: center;
   }
 `;
 
@@ -125,7 +128,10 @@ export const Footer = styled.footer`
 
 display: flex;
 padding-left: 2%;
+padding-top: 2rem;
 padding-bottom:1.2rem;
+
+width: 100%;
 
 
 font-size: 1.2rem;
