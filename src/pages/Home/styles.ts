@@ -41,8 +41,6 @@ export const Title = styled.h1`
 
 export const ContentContainer = styled.main`
   width: 96% ;
-
-
 `;
 
 export const FormContainer = styled.form`
@@ -99,6 +97,7 @@ export const ShowsAllNamesContainer = styled.div`
   width: 100%;
   font-weight:500;
 
+
   ul {
     list-style-type: none ;
   }
@@ -112,6 +111,7 @@ export const ShowsAllNamesContainer = styled.div`
     display: flex;
     gap: .8rem;
     align-items: center;
+    cursor:pointer;
   }
 `;
 
