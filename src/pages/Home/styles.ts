@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const teste = keyframes`
+ 0%{
+  height: 22rem
+ }
+
+ 100%{
+  height: 6.5rem;
+ }
+
+`;
 
 
 export const Container = styled.div`
@@ -7,8 +18,7 @@ export const Container = styled.div`
   background-color:  rgba(59,143,231, 0.15);
   //height: 100%;
   min-height: 100vh;
-  align-items: center;
-  justify-content: space-between;
+
   font-family: 'Open Sans', sans-serif;
   color: #333;
   max-width: 100%;
@@ -21,7 +31,7 @@ export const Header = styled.header`
   background-color: rgba(59,143,231, 0.2);
   width: 100% ;
   height: fit-content;
-  padding:1.6rem 3rem;
+  padding:2rem 2%;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0rem 0rem 1.6rem rgba(0,0,0,0.2);
@@ -29,6 +39,7 @@ export const Header = styled.header`
 
 export const LogoImg = styled.img`
   height: 6.5rem;
+
 `;
 
 export const Title = styled.h1`
@@ -39,8 +50,29 @@ export const Title = styled.h1`
   letter-spacing:.7rem ;
 `;
 
+export const ProcessInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: 2%;
+  margin-top: 2rem;
+  border: .1rem dashed #c6c6c6;
+  padding: 2rem
+
+`;
+
 export const ContentContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  margin: 0 auto;
   width: 96% ;
+  justify-content: space-between;
+`;
+export const Content = styled.div`
+  display:flex;
+  flex-direction: column;
+
 `;
 
 export const FormContainer = styled.form`
