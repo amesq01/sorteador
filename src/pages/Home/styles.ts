@@ -149,11 +149,11 @@ export const SortButton = styled(AddListButton)`
 `;
 
 export const ContainerShowDrawnJurors = styled.div`
-  display:grid;
-  grid-auto-flow: column;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 2rem;
   max-width: 100%;
-  gap: 1.2rem;
-  margin-top: 1.2rem;
+  margin-top:1.2rem;
 
 `;
 

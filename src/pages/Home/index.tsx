@@ -61,12 +61,12 @@ export function Home() {
 
   const jurorsNotDrawnConst: (string)[] = listAllJurors
     .filter(nome => !jurorsDrawn.includes(nome) &&
-    !listMotivedDispenseJurorsJudge.includes(nome) &&
-    !listUnMotivedDispenseJurorsJudge.includes(nome) &&
-    !listDispenseJurorsMP.includes(nome) &&
-    !listDispenseJurorsAdv.includes(nome) &&
-    !listAbsentWithJustification.includes(nome) &&
-    !listAbsentWithoutJustification.includes(nome));
+      !listMotivedDispenseJurorsJudge.includes(nome) &&
+      !listUnMotivedDispenseJurorsJudge.includes(nome) &&
+      !listDispenseJurorsMP.includes(nome) &&
+      !listDispenseJurorsAdv.includes(nome) &&
+      !listAbsentWithJustification.includes(nome) &&
+      !listAbsentWithoutJustification.includes(nome));
 
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
@@ -88,8 +88,8 @@ export function Home() {
   //Início configuração MODAL JURADO AUSENTE
 
   function openModalAbsentJuror(index: any) {
-    setAbsentJurorIsOpen(true);
     setNameAbsentJuror(index);
+    setAbsentJurorIsOpen(true);
   }
 
   function afterOpenModalAbsentJuror() {
@@ -210,19 +210,39 @@ export function Home() {
 
               <ContainerShowDrawnJurors>
 
-                <ShowListJurors data={jurorsDrawn} label='Selecionados'/>
+                {
+                  jurorsDrawn.length > 0 &&
+                  <ShowListJurors data={jurorsDrawn} label='Selecionados' />
+                }
 
-                <ShowListJurors data={listUnMotivedDispenseJurorsJudge} label='Dispensados com motivo pelo juízo '/>
+                {
+                  listUnMotivedDispenseJurorsJudge.length > 0 &&
+                  <ShowListJurors data={listUnMotivedDispenseJurorsJudge} label='Dispensados com motivo pelo juízo ' />
+                }
 
-                <ShowListJurors data={listMotivedDispenseJurorsJudge} label='Dispensados sem motivo pelo juízo'/>
+                {
+                  listMotivedDispenseJurorsJudge.length > 0 &&
+                  <ShowListJurors data={listMotivedDispenseJurorsJudge} label='Dispensados sem motivo pelo juízo' />
+                }
 
-                <ShowListJurors data={listDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público'/>
+                {
+                  listDispenseJurorsMP.length > 0 &&
+                  <ShowListJurors data={listDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público' />
+                }
+                {
+                  listDispenseJurorsAdv.length > 0 &&
+                  <ShowListJurors data={listDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado' />
+                }
 
-                <ShowListJurors data={listDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado'/>
+                {
+                  listAbsentWithJustification.length > 0 &&
+                  <ShowListJurors data={listAbsentWithJustification} label='Ausentes com Justificativa' />
+                }
 
-                <ShowListJurors data={listAbsentWithJustification} label='Ausentes com Justificativa'/>
-
-                <ShowListJurors data={listAbsentWithoutJustification} label='Ausentes sem Justificativa'/>
+                {
+                  listAbsentWithoutJustification.length > 0 &&
+                  <ShowListJurors data={listAbsentWithoutJustification} label='Ausentes sem Justificativa' />
+                }
 
               </ContainerShowDrawnJurors>
             }
@@ -233,7 +253,6 @@ export function Home() {
             <Modal
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}
-              onRequestClose={closeModal}
               style={customStyles}
               contentLabel="Example Modal"
             >
@@ -277,7 +296,6 @@ export function Home() {
               onAfterOpen={afterOpenModalAbsentJuror}
               onRequestClose={closeModalAbsentJuror}
               style={customStyles}
-              contentLabel="Example Modal"
             >
               <div className="span-absent-juror" style={{
                 display: 'flex',

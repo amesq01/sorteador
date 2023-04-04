@@ -11,19 +11,23 @@ export const Container = styled.div`
   height: fit-content;
 
 
+
 `;
 
 
 export const Label = styled.div`
   display:flex;
   align-items:center;
+  justify-content: center;
   height:8rem;
   background-color:#bedaf7;
-  font-size:2.4rem;
-  font-weight:bold;
+  font-weight:600;
   padding: .4rem 1.2rem;
-  font-size: 1.6rem;
+  font-size: 2rem;
   text-align:center;
+  width: 100%;
+  text-transform:uppercase;
+
 
 `;
 export const ItemsContainer = styled.div`
@@ -34,6 +38,6 @@ export const ItemsContainer = styled.div`
 
 `;
 
-export const Item= styled.span`
+export const Item = styled.span`
 
 `;
