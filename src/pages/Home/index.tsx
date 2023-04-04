@@ -210,39 +210,19 @@ export function Home() {
 
               <ContainerShowDrawnJurors>
 
-                {
-                  jurorsDrawn.length > 0 &&
-                  <ShowListJurors data={jurorsDrawn} label='Selecionados' />
-                }
+                <ShowListJurors data={jurorsDrawn} label='Selecionados' />
 
-                {
-                  listUnMotivedDispenseJurorsJudge.length > 0 &&
-                  <ShowListJurors data={listUnMotivedDispenseJurorsJudge} label='Dispensados com motivo pelo juízo ' />
-                }
+                <ShowListJurors data={listUnMotivedDispenseJurorsJudge} label='Dispensados com motivo pelo juízo ' />
 
-                {
-                  listMotivedDispenseJurorsJudge.length > 0 &&
-                  <ShowListJurors data={listMotivedDispenseJurorsJudge} label='Dispensados sem motivo pelo juízo' />
-                }
+                <ShowListJurors data={listMotivedDispenseJurorsJudge} label='Dispensados sem motivo pelo juízo' />
 
-                {
-                  listDispenseJurorsMP.length > 0 &&
-                  <ShowListJurors data={listDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público' />
-                }
-                {
-                  listDispenseJurorsAdv.length > 0 &&
-                  <ShowListJurors data={listDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado' />
-                }
+                <ShowListJurors data={listDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público' />
 
-                {
-                  listAbsentWithJustification.length > 0 &&
-                  <ShowListJurors data={listAbsentWithJustification} label='Ausentes com Justificativa' />
-                }
+                <ShowListJurors data={listDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado' />
 
-                {
-                  listAbsentWithoutJustification.length > 0 &&
-                  <ShowListJurors data={listAbsentWithoutJustification} label='Ausentes sem Justificativa' />
-                }
+                <ShowListJurors data={listAbsentWithJustification} label='Ausentes com Justificativa' />
+
+                <ShowListJurors data={listAbsentWithoutJustification} label='Ausentes sem Justificativa' />
 
               </ContainerShowDrawnJurors>
             }

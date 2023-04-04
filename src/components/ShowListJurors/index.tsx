@@ -7,31 +7,35 @@ import {
 
 type TestProps = {
   data: Array<string>,
-  label:string
+  label: string
 }
 
-export function ShowListJurors({ label,data}:TestProps){
-  return(
+export function ShowListJurors({ label, data }: TestProps) {
+  return (
+    <>
+      {
+        data.length > 0 &&
+        <Container>
 
-    <Container>
+          <Label>
+            {label}
+          </Label>
 
-      <Label>
-        {label}
-      </Label>
+          <ItemsContainer>
+            {
+              data.map((item) =>
 
-      <ItemsContainer>
-        {
-          data.map((item)=>
+                <Item key={item}>
+                  {item}
+                </Item>
 
-            <Item key={item}>
-              {item}
-            </Item>
+              )
+            }
+          </ItemsContainer>
 
-          )
-        }
-      </ItemsContainer>
-
-    </Container>
+        </Container>
+      }
+    </>
   );
 }
 
