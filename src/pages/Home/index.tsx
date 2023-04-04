@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
 import Marquee from 'react-fast-marquee';
-
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
 import logo from '../../../src/assets/logo.png';
 
-
+import { ShowListJurors } from '../../components/ShowListJurors';
 import { Loading } from '../../components/Loading';
 
 import {
@@ -23,13 +22,13 @@ import {
   AddListButton,
   ShowsAllNamesContainer,
   SortButton,
-  ShowAcceptedDrawnJurors,
+  ContainerShowDrawnJurors,
   Footer,
 } from './styles';
 
 const customStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, .9)'
+    backgroundColor: 'rgba(0, 0, 0, .95)'
   },
   content: {
     top: '50%',
@@ -44,7 +43,6 @@ const customStyles = {
 
 export function Home() {
 
-
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
   const [listMotivedDispenseJurorsJudge] = useState<string[]>([]);
@@ -55,15 +53,20 @@ export function Home() {
   const [listAbsentWithoutJustification] = useState<string[]>([]);
 
   const [showAllNames, setShowAllNames] = useState(false);
-  const [namebsentJuror, setNameAbsentJuror] = useState('');
+  const [nameAbsentJuror, setNameAbsentJuror] = useState('');
   const [formShow, setFormShow] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalAbsentJurorIsOpen, setAbsentJurorIsOpen] = useState(false);
   const [sortButtonState, setSortButtonState] = useState(false);
 
-
-  const jurorsNotDrawnConst: (string)[] = listAllJurors.filter(nome => !jurorsDrawn.includes(nome) && !listMotivedDispenseJurorsJudge.includes(nome) && !listUnMotivedDispenseJurorsJudge.includes(nome) && !listDispenseJurorsMP.includes(nome) && !listDispenseJurorsAdv.includes(nome) && !listAbsentWithJustification.includes(nome) && !listAbsentWithoutJustification.includes(nome));
-
+  const jurorsNotDrawnConst: (string)[] = listAllJurors
+    .filter(nome => !jurorsDrawn.includes(nome) &&
+    !listMotivedDispenseJurorsJudge.includes(nome) &&
+    !listUnMotivedDispenseJurorsJudge.includes(nome) &&
+    !listDispenseJurorsMP.includes(nome) &&
+    !listDispenseJurorsAdv.includes(nome) &&
+    !listAbsentWithJustification.includes(nome) &&
+    !listAbsentWithoutJustification.includes(nome));
 
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
@@ -78,8 +81,6 @@ export function Home() {
   }
 
   function closeModal() {
-
-
     setIsOpen(false);
   }
   //fim configuração MODAL NOME SORTEADO
@@ -87,7 +88,6 @@ export function Home() {
   //Início configuração MODAL JURADO AUSENTE
 
   function openModalAbsentJuror(index: any) {
-    console.log(index);
     setAbsentJurorIsOpen(true);
     setNameAbsentJuror(index);
   }
@@ -98,8 +98,6 @@ export function Home() {
   }
 
   function closeModalAbsentJuror() {
-
-
     setAbsentJurorIsOpen(false);
   }
   //fim configuração MODAL JURADO AUSENTE
@@ -171,7 +169,6 @@ export function Home() {
 
         <ContentContainer>
           <Content>
-            <Loading />
             <FormContainer onSubmit={e => e.preventDefault()} >
               {
                 formShow &&
@@ -187,7 +184,7 @@ export function Home() {
               {
                 showAllNames &&
                 <ShowsAllNamesContainer>
-                  {jurorsNotDrawnConst.map((item, id) => {
+                  {jurorsNotDrawnConst.map((item) => {
                     if (jurorsNotDrawnConst.length != 0) {
                       return (
                         <div className="divShow" key={item}  >
@@ -211,154 +208,23 @@ export function Home() {
 
               listAllJurors.length !== jurorsNotDrawnConst.length &&
 
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',
-                columnGap: '1.2rem',
-                marginTop: '2rem',
-                listStyleType: 'none',
-              }}  >
+              <ContainerShowDrawnJurors>
 
+                <ShowListJurors data={jurorsDrawn} label='Selecionados'/>
 
-                <ShowAcceptedDrawnJurors style={{
-                  backgroundColor: 'white',
-                  border: '.2rem dashed ##00923F',
-                  borderRadius: '.8rem',
-                  overflow: 'hidden'
-                }}>
-                  <div className='topName' style={{
-                    display: 'flex',
-                    height: '10rem',
-                    background: '#D1E5F9',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: '#333',
-                    fontWeight: '400'
-                  }}><h2>Selecionados</h2></div>
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1.2rem',
-                    padding: '2rem',
+                <ShowListJurors data={listUnMotivedDispenseJurorsJudge} label='Dispensados com motivo pelo juízo '/>
 
-                  }}>
-                    {jurorsDrawn.map((item, index) => {
-                      if (jurorsDrawn.length != 0) {
-                        return (
-                          <div className="divShow" key={item}>
-                            <span>{item}</span>
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
+                <ShowListJurors data={listMotivedDispenseJurorsJudge} label='Dispensados sem motivo pelo juízo'/>
 
-                </ShowAcceptedDrawnJurors>
+                <ShowListJurors data={listDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público'/>
 
-                <div style={{
-                  backgroundColor: 'white',
-                  padding: '2.5rem',
-                  borderRadius: '.8rem',
-                  height: 'fit-content',
+                <ShowListJurors data={listDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado'/>
 
+                <ShowListJurors data={listAbsentWithJustification} label='Ausentes com Justificativa'/>
 
-                }}>
-                  <h2>Dispensados com motivo pelo juízo </h2>
-                  {listMotivedDispenseJurorsJudge.map((item, index) => {
-                    if (listMotivedDispenseJurorsJudge.length != 0) {
-                      return (
-                        <div className="divShow" key={item}>
-                          <ul >
-                            <li>{item}</li>
-                          </ul>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-                <div style={{
-                  backgroundColor: 'white',
-                  padding: '2.5rem',
-                  borderRadius: '.8rem',
-                  height: 'fit-content',
-                }}>
-                  <h2>Dispensados sem motivo pelo juízo </h2>
-                  {listUnMotivedDispenseJurorsJudge.map((item, index) => {
-                    if (listUnMotivedDispenseJurorsJudge.length != 0) {
-                      return (
-                        <div className="divShow" key={item}>
-                          <ul >
-                            <li>{item}</li>
-                          </ul>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-                <div style={{
-                  backgroundColor: 'white',
-                  padding: '2.5rem',
-                  borderRadius: '.8rem',
-                  height: 'fit-content',
+                <ShowListJurors data={listAbsentWithoutJustification} label='Ausentes sem Justificativa'/>
 
-                }}>
-                  <h2>Dispensados pelo Ministério Público </h2>
-                  {listDispenseJurorsMP.map((item, index) => {
-                    if (listDispenseJurorsMP.length != 0) {
-                      return (
-                        <div className="divShow" key={item}>
-                          <ul >
-                            <li>{item}</li>
-                          </ul>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-                <div style={{
-                  backgroundColor: 'white',
-                  padding: '2.5rem',
-                  borderRadius: '.8rem',
-                  height: 'fit-content',
-
-                }}>
-                  <h2 style={{ display: 'flex', marginBottom: '2rem' }}>Dispensados pelo advogado </h2>
-                  {listDispenseJurorsAdv.map((item, index) => {
-                    if (listDispenseJurorsAdv.length != 0) {
-                      return (
-                        <div className="divShow" key={item}>
-                          <ul style={{ listStyleType: 'none' }}>
-                            <li>{item}</li>
-                          </ul>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-
-                <div style={{
-                  backgroundColor: 'white',
-                  padding: '2.5rem',
-                  borderRadius: '.8rem',
-                  height: 'fit-content',
-
-                }}>
-                  <h2 style={{ display: 'flex', marginBottom: '2rem' }}>Dispensados pelo advogado </h2>
-                  {listAbsentWithJustification.map((item, index) => {
-                    if (listAbsentWithJustification.length != 0) {
-                      return (
-                        <div className="divShow" key={item}>
-                          <ul style={{ listStyleType: 'none' }}>
-                            <li>{item}</li>
-                          </ul>
-                        </div>
-                      );
-                    }
-                  })}
-
-                </div>
-
-              </div>
+              </ContainerShowDrawnJurors>
             }
 
             {/* INÍCIO TODOS MODAIS */}
@@ -421,7 +287,7 @@ export function Home() {
                 fontSize: '3.6rem'
               }}>
 
-                <span >{namebsentJuror}</span>
+                <span >{nameAbsentJuror}</span>
               </div>
 
 
@@ -441,7 +307,7 @@ export function Home() {
                   borderRadius: '.8rem',
                   color: 'white'
                 }} onClick={() => {
-                  listAbsentWithJustification.push(namebsentJuror);
+                  listAbsentWithJustification.push(nameAbsentJuror);
                   setAbsentJurorIsOpen(false);
                 }}>Ausente Justificado</span>
                 <span className="unjustify" style={{
@@ -459,18 +325,15 @@ export function Home() {
             {/* FIM TODOS MODAIS */}
 
           </Content>
+
           <Footer>
             <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
-
               <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
               <strong style={{ marginLeft: '.5rem' }}>@AdailtonMesquita</strong>
-
             </Marquee>
           </Footer>
+
         </ContentContainer >
-
-
-
 
       </Container >
 

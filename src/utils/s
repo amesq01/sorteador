@@ -11,8 +11,8 @@ JOSELMA AGUIAR DE SOUZA
 KELLY DAYANA PINHO SILVA
 LEILA CRISTINA MOURA COSTA
 RONILSON MARINHO VIEIRA
-KESIA MARINS DE OLIVEIRA
-JAQUELLYNE DA SILVA SOUSA
+KESIA MARINS DE
+OLIVEIRA JAQUELLYNE DA SILVA SOUSA
 FAELMA RODRIGUES DE SOUZA
 MARIA LEUDIMAR FEITOSA ARAUJO
 RAILMA DE ARAUJO SOUSA DA COSTA
@@ -23,3 +23,17 @@ RAQUEL SILVA DANTAS
 ANTONIA FABIANA CARNEIRO SILVA
 RUTH CORDEIRO DE MATOS
 ISAILMA VIEIRA LISBOA
+
+<ContainerShowDrawnJurors>
+  <ShowAcceptedDrawnJurors>
+    <span>Selecionados</span>
+    <div>
+      {jurorsDrawn.map((item, index) => { if (jurorsDrawn.length != 0) { return
+      (
+      <div className="divShow" key="{item}">
+        <span>{item}</span>
+      </div>
+      ); } })}
+    </div>
+  </ShowAcceptedDrawnJurors>
+</ContainerShowDrawnJurors>
