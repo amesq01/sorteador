@@ -8,6 +8,9 @@ import logo from '../../../src/assets/logo.png';
 
 import { ShowListJurors } from '../../components/ShowListJurors';
 import { Loading } from '../../components/Loading';
+import { Button } from '../../components/Button';
+
+import { customStyles } from '../../utils/constants';
 
 import {
   Container,
@@ -27,25 +30,6 @@ import {
   Buttons,
   Footer,
 } from './styles';
-import { Button } from '../../components/Button';
-
-const customStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, .95)'
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    background: '#a2cae8',
-    padding: '2rem 5rem',
-    border:'none',
-
-  },
-};
 
 export function Home() {
 
@@ -240,17 +224,16 @@ export function Home() {
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}
               style={customStyles}
-
             >
-
-
               <ModalShowDrawnJuror>
                 <Loading/>
+
                 {
                   jurorsDrawn[(jurorsDrawn.length - 1)]
                 }
 
                 <Buttons>
+
                   <Button  fnc={handleDrawnsAcceptedsJurors} title='Aceito'/>
                   <Button  fnc={handleMotivedDispenseJurorsJudge} title='Juízo - Dispensa Motivada'/>
                   <Button  fnc={handleUnMotivedDispenseJurorsJudge} title='Juizo - dispensa não motivada'/>
@@ -258,6 +241,7 @@ export function Home() {
                   <Button  fnc={handleDispenseJurorsAdv} title='Dispensa ADV'/>
 
                 </Buttons>
+
               </ModalShowDrawnJuror>
             </Modal>
             {/* FIM MODAL JURADO SORTEADO */}
@@ -275,7 +259,7 @@ export function Home() {
                 justifyContent: 'center',
                 alignItems: 'center',
 
-                fontSize: '3.6rem'
+                fontSize: '3.6rem',
               }}>
 
                 <span >{nameAbsentJuror}</span>
