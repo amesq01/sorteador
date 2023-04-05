@@ -23,8 +23,11 @@ import {
   ShowsAllNamesContainer,
   SortButton,
   ContainerShowDrawnJurors,
+  ModalShowDrawnJuror,
+  Buttons,
   Footer,
 } from './styles';
+import { Button } from '../../components/Button';
 
 const customStyles = {
   overlay: {
@@ -37,7 +40,10 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    background: 'rgba(59,143,231, 1)'
+    background: '#a2cae8',
+    padding: '2rem 5rem',
+    border:'none',
+
   },
 };
 
@@ -234,38 +240,25 @@ export function Home() {
               isOpen={modalIsOpen}
               onAfterOpen={afterOpenModal}
               style={customStyles}
-              contentLabel="Example Modal"
+
             >
 
 
-              <div className='modalName' style={{
-                width: '80rem',
-                padding: '2rem',
-                textAlign: 'center'
-              }}>
-                <h1 style={{
-                  padding: '2rem 4rem'
-                }}>
+              <ModalShowDrawnJuror>
+                <Loading/>
+                {
+                  jurorsDrawn[(jurorsDrawn.length - 1)]
+                }
 
-                  {
-                    jurorsDrawn[(jurorsDrawn.length - 1)]
-                  }
-                </h1>
-                <div className="buttons" style={{ display: 'flex', padding: '2rem', gap: '1.2rem' }}>
-                  <button style={{ padding: '1.2rem' }} onClick={handleDrawnsAcceptedsJurors}> Aceito</button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleMotivedDispenseJurorsJudge}>Juizo - dispensa motivada</button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleUnMotivedDispenseJurorsJudge}>
-                    Juizo - dispensa não motivada
-                  </button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleDispenseJurorsMP}>
-                    Dispensa MP
-                  </button>
-                  <button style={{ padding: '1.2rem' }} onClick={handleDispenseJurorsAdv}>
-                    Dispensa ADV
-                  </button>
+                <Buttons>
+                  <Button  fnc={handleDrawnsAcceptedsJurors} title='Aceito'/>
+                  <Button  fnc={handleMotivedDispenseJurorsJudge} title='Juízo - Dispensa Motivada'/>
+                  <Button  fnc={handleUnMotivedDispenseJurorsJudge} title='Juizo - dispensa não motivada'/>
+                  <Button  fnc={handleDispenseJurorsMP} title='Dispensa MP'/>
+                  <Button  fnc={handleDispenseJurorsAdv} title='Dispensa ADV'/>
 
-                </div>
-              </div>
+                </Buttons>
+              </ModalShowDrawnJuror>
             </Modal>
             {/* FIM MODAL JURADO SORTEADO */}
 

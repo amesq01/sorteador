@@ -2,11 +2,11 @@ import styled, { keyframes } from 'styled-components';
 
 const teste = keyframes`
  0%{
-  height: 22rem
+  opacity: 0
  }
 
  100%{
-  height: 6.5rem;
+  opacity:1
  }
 
 `;
@@ -159,6 +159,29 @@ export const ContainerShowDrawnJurors = styled.div`
 
 export const ShowAcceptedDrawnJurors = styled.div``;
 export const ShowListMotivedDispenseJurorsJudge = styled.div``;
+
+export const ModalShowDrawnJuror = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #252525;
+  font-size: 2.5rem;
+  padding: 2rem 6rem;
+  animation: ${teste} 5s;
+
+
+`;
+
+export const Buttons = styled.div`
+  display:flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  justify-content: space-around;
+  width: 100%;
+
+  padding: 2rem;
+`;
 
 export const Footer = styled.footer`
 

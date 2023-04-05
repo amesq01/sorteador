@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction:column;
   background-color:#fff;
   border-radius: .8rem;
+  width: 25rem;
   max-width: 35rem;
   overflow:hidden;
   height: fit-content;
@@ -22,8 +23,8 @@ export const Label = styled.div`
   height:8rem;
   background-color:#bedaf7;
   font-weight:600;
-  padding: .4rem 1.2rem;
-  font-size: 2rem;
+  padding: .8rem 1.6rem;
+  font-size: 1.6rem;
   text-align:center;
   width: 100%;
   text-transform:uppercase;
