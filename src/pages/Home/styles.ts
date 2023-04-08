@@ -68,6 +68,8 @@ export const Content = styled.div`
   display:flex;
   flex-direction: column;
 
+  flex:1;
+  position: relative;
 `;
 
 export const FormContainer = styled.form`
@@ -84,7 +86,7 @@ export const TextAreaJurors = styled.textarea`
   min-height: 40rem;
   max-height: 40rem;
   padding: 2rem 2rem;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #f3f9ff;
   width: 100%;
   max-width: 75rem;
   min-width: 75rem;
@@ -179,22 +181,26 @@ export const Buttons = styled.div`
   margin-top: 2rem;
   justify-content: space-around;
   width: 100%;
-
   padding: 2rem;
+
+
+
+`;
+
+export const AbsentsButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 3.2rem;
+  align-items:center;
 `;
 
 export const Footer = styled.footer`
-
 display: flex;
 padding-left: 2%;
 padding-top: 2rem;
 padding-bottom:1.2rem;
-
 width: 100%;
-
-
 font-size: 1.2rem;
-
-
 `;
 

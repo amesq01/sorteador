@@ -28,8 +28,10 @@ import {
   ContainerShowDrawnJurors,
   ModalShowDrawnJuror,
   Buttons,
+  AbsentsButtonsContainer,
   Footer,
 } from './styles';
+import { AbsentButton } from '../../components/AbsentButton';
 
 export function Home() {
 
@@ -58,8 +60,11 @@ export function Home() {
       !listAbsentWithJustification.includes(nome) &&
       !listAbsentWithoutJustification.includes(nome));
 
+  const processInfo:Array<string> = [];
+
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
+
 
   function openModal() {
     setIsOpen(true);
@@ -92,8 +97,8 @@ export function Home() {
   }
   //fim configuração MODAL JURADO AUSENTE
 
-  function handleAddAllJurors(e: any) {
-    const newJuror = e.target.value.split('\n');
+  function handleAddAllJurors(e:any){
+    const newJuror = (e.target.value.split('\n'));
     const filterJuror = newJuror.filter((juror: string) => juror !== '');
     setListAllJurors(filterJuror);
   }
@@ -143,6 +148,17 @@ export function Home() {
     console.log(jurorsDrawn);
   }
 
+  function handleAbsentJurorWithJustification(nameAbsentJuror:any){
+    listAbsentWithJustification.push(nameAbsentJuror);
+    setAbsentJurorIsOpen(false);
+
+  }
+  function handleAbsentJurorWithoutJustification(nameAbsentJuror:any){
+    listAbsentWithoutJustification.push(nameAbsentJuror);
+    setAbsentJurorIsOpen(false);
+
+  }
+
   return (
     <>
       <Container>
@@ -151,14 +167,22 @@ export function Home() {
           <LogoImg src={logo} />
           <Title>Sorteador de Jurados</Title>
         </Header>
-        <ProcessInfos>
-          <span>Número: 0000227-47.2000.8.10.0127</span>
-          <span>Classe: AÇÃO PENAL DE COMPETÊNCIA DO JÚRI</span>
-          <span>Órgão julgador: Vara Única de São Luís Gonzaga do Maranhão</span>
-        </ProcessInfos>
+
+        {
+          processInfo.length >=1 &&
+          <ProcessInfos>
+            <span>Número: 0000227-47.2000.8.10.0127</span>
+            <span>Classe: AÇÃO PENAL DE COMPETÊNCIA DO JÚRI</span>
+            <span>Órgão julgador: Vara Única de São Luís Gonzaga do Maranhão</span>
+          </ProcessInfos>
+        }
+
 
         <ContentContainer>
           <Content>
+            {/* <button style={{width: '20%', alignSelf:'center', position:'absolute', top: '30%', left:'50%', transform:'translate(-50%, -50%)', border:'none', backgroundColor:'#BEDAF6', padding: '2rem', fontSize: '2.5rem', fontWeight:'bold', color:'#333', borderRadius:'3rem', cursor:'pointer'}}>
+Novo sorteio
+            </button> */}
             <FormContainer onSubmit={e => e.preventDefault()} >
               {
                 formShow &&
@@ -254,46 +278,17 @@ export function Home() {
               onRequestClose={closeModalAbsentJuror}
               style={customStyles}
             >
-              <div className="span-absent-juror" style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
 
-                fontSize: '3.6rem',
-              }}>
+              <span >{nameAbsentJuror}</span>
 
-                <span >{nameAbsentJuror}</span>
-              </div>
+              <AbsentsButtonsContainer>
 
+                <AbsentButton bgcolor='#E66F5A' fncButton={()=>handleAbsentJurorWithJustification(nameAbsentJuror)} buttonTitle='Ausente com Justificativa'/>
 
-              <div className="absents" style={{
-                display: 'flex',
-                gap: '5rem',
-                marginTop: '3rem',
+                <AbsentButton bgcolor='#509876' fncButton={()=>handleAbsentJurorWithoutJustification(nameAbsentJuror)} buttonTitle='Ausente sem Justificativa'/>
 
+              </AbsentsButtonsContainer>
 
-              }}>
-                <span className="justify" style={{
-                  display: 'flex',
-                  padding: '2rem',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  background: 'green',
-                  borderRadius: '.8rem',
-                  color: 'white'
-                }} onClick={() => {
-                  listAbsentWithJustification.push(nameAbsentJuror);
-                  setAbsentJurorIsOpen(false);
-                }}>Ausente Justificado</span>
-                <span className="unjustify" style={{
-                  display: 'flex',
-                  padding: '2rem',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  background: 'red',
-                  borderRadius: '.8rem'
-                }}>Ausente Injustificado</span>
-              </div>
             </Modal>
             {/* FIM MODAL JURADO SORTEADO */}
 
