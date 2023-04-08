@@ -4,7 +4,7 @@ export const customStyles = {
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
   content: {
-
+    width:'80%',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -12,9 +12,10 @@ export const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     background: '#a2cae8',
-    padding: '2.4rem 9rem',
+    padding: '1.2rem',
     border:'none',
     alignText: 'center',
     fontSize:'5rem',
+
   },
 };

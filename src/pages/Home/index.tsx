@@ -9,6 +9,7 @@ import logo from '../../../src/assets/logo.png';
 import { ShowListJurors } from '../../components/ShowListJurors';
 import { Loading } from '../../components/Loading';
 import { Button } from '../../components/Button';
+import { AbsentButton } from '../../components/AbsentButton';
 
 import { customStyles } from '../../utils/constants';
 
@@ -27,11 +28,13 @@ import {
   SortButton,
   ContainerShowDrawnJurors,
   ModalShowDrawnJuror,
+  ModalJurorTitle,
   Buttons,
   AbsentsButtonsContainer,
   Footer,
 } from './styles';
-import { AbsentButton } from '../../components/AbsentButton';
+import { Spin } from '../../components/Spin';
+
 
 export function Home() {
 
@@ -153,6 +156,7 @@ export function Home() {
     setAbsentJurorIsOpen(false);
 
   }
+
   function handleAbsentJurorWithoutJustification(nameAbsentJuror:any){
     listAbsentWithoutJustification.push(nameAbsentJuror);
     setAbsentJurorIsOpen(false);
@@ -170,6 +174,7 @@ export function Home() {
 
         {
           processInfo.length >=1 &&
+
           <ProcessInfos>
             <span>Número: 0000227-47.2000.8.10.0127</span>
             <span>Classe: AÇÃO PENAL DE COMPETÊNCIA DO JÚRI</span>
@@ -250,11 +255,12 @@ Novo sorteio
               style={customStyles}
             >
               <ModalShowDrawnJuror>
-                <Loading/>
 
-                {
-                  jurorsDrawn[(jurorsDrawn.length - 1)]
-                }
+                <Spin />
+
+                <ModalJurorTitle>
+                  {jurorsDrawn[(jurorsDrawn.length - 1)]}
+                </ModalJurorTitle>
 
                 <Buttons>
 

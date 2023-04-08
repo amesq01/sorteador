@@ -2,6 +2,21 @@ import styled, { keyframes } from 'styled-components';
 
 const teste = keyframes`
  0%{
+  opacity: 0;
+  display: none
+ }
+
+ 100%{
+  opacity:1;
+  display: flex;
+ }
+
+`;
+const teste2 = keyframes`
+ 0%{
+  opacity: 0
+ }
+ 50%{
   opacity: 0
  }
 
@@ -10,7 +25,6 @@ const teste = keyframes`
  }
 
 `;
-
 
 export const Container = styled.div`
   display: flex;
@@ -64,11 +78,11 @@ export const ContentContainer = styled.main`
   width: 96% ;
   justify-content: space-between;
 `;
+
 export const Content = styled.div`
   display:flex;
-  flex-direction: column;
-
   flex:1;
+  flex-direction: column;
   position: relative;
 `;
 
@@ -96,7 +110,6 @@ export const TextAreaJurors = styled.textarea`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-
   `;
 
 export const AddListButton = styled.button`
@@ -114,10 +127,9 @@ export const AddListButton = styled.button`
   letter-spacing: 0.1rem;
 `;
 
-
 export const ShowsAllNamesContainer = styled.div`
   color:#252525;
-  background-color:  rgba(59,143,231, 0.1);
+  background-color: rgba(59,143,231, 0.1);
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -125,7 +137,6 @@ export const ShowsAllNamesContainer = styled.div`
   grid-column-gap: 2rem;
   width: 100%;
   font-weight:500;
-
 
   ul {
     list-style-type: none ;
@@ -147,7 +158,6 @@ export const ShowsAllNamesContainer = styled.div`
 export const SortButton = styled(AddListButton)`
   align-self: start;
   width: 25rem;
-
 `;
 
 export const ContainerShowDrawnJurors = styled.div`
@@ -159,9 +169,6 @@ export const ContainerShowDrawnJurors = styled.div`
 
 `;
 
-export const ShowAcceptedDrawnJurors = styled.div``;
-export const ShowListMotivedDispenseJurorsJudge = styled.div``;
-
 export const ModalShowDrawnJuror = styled.div`
   display: flex;
   flex-direction: column;
@@ -170,9 +177,14 @@ export const ModalShowDrawnJuror = styled.div`
   color: #252525;
   font-size: 2.5rem;
   padding: 2rem 6rem;
-  animation: ${teste} 5s;
+  animation: ${teste} 2s forwards;
+  position: relative;
+`;
 
-
+export const ModalJurorTitle = styled.strong`
+  font-size: 4.8rem;
+  animation: ${teste2} 4s;
+  text-align: center ;
 `;
 
 export const Buttons = styled.div`
@@ -182,8 +194,7 @@ export const Buttons = styled.div`
   justify-content: space-around;
   width: 100%;
   padding: 2rem;
-
-
+  animation: ${teste2} 5s;
 
 `;
 
@@ -197,10 +208,9 @@ export const AbsentsButtonsContainer = styled.div`
 
 export const Footer = styled.footer`
 display: flex;
-padding-left: 2%;
 padding-top: 2rem;
 padding-bottom:1.2rem;
-width: 100%;
+width: 50%;
 font-size: 1.2rem;
 `;
 

@@ -1,0 +1,28 @@
+import styled, { keyframes } from 'styled-components';
+
+const rotate = keyframes`
+from{
+  transform: rotate(0deg) ;
+
+}
+  to {
+    transform: rotate(360deg);
+    opacity:0 ;
+    display:none;
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto;
+  border: 1.2rem dotted rgba(198,125,0,0.8);
+  border-radius: 50%;
+  animation: ${rotate} 1.9s linear forwards ;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -3rem;
+`;
