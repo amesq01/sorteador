@@ -14,7 +14,7 @@ export const customStyles = {
     background: '#a2cae8',
     padding: '2.4rem 9rem',
     border:'none',
-    textAlign: 'center',
+    alignText: 'center',
     fontSize:'5rem',
   },
 };
