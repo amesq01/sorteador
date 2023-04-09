@@ -1,5 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 
+type mtProps = {
+  mt: boolean;
+}
+
 const teste = keyframes`
  0%{
   opacity: 0;
@@ -79,11 +83,12 @@ export const ContentContainer = styled.main`
   justify-content: space-between;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<mtProps>`
   display:flex;
   flex:1;
   flex-direction: column;
   position: relative;
+  margin-top: ${({ mt }) => mt === true ? '1rem' : '0rem'};
 `;
 
 export const FormContainer = styled.form`
@@ -94,7 +99,7 @@ export const FormContainer = styled.form`
   width: 100%;
 `;
 
-export const TextAreaJurors = styled.textarea`
+export const TextAreaJurors = styled.textarea<mtProps>`
   display: flex;
   line-height:3rem;
   min-height: 40rem;
@@ -110,6 +115,7 @@ export const TextAreaJurors = styled.textarea`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
+  margin-top: ${({ mt }) => mt === true ? '0rem' : '10rem'};
   `;
 
 export const AddListButton = styled.button`
@@ -185,16 +191,28 @@ export const ModalJurorTitle = styled.strong`
   font-size: 4.8rem;
   animation: ${teste2} 4s;
   text-align: center ;
+  color: #333;
 `;
 
 export const Buttons = styled.div`
   display:flex;
-  gap: 2.5rem;
+  gap: 2rem;
   margin-top: 2rem;
   justify-content: space-around;
-  width: 100%;
   padding: 2rem;
   animation: ${teste2} 5s;
+`;
+
+export const ModalShowAbsentJuror = styled(ModalShowDrawnJuror)`
+  width: 100%;
+`;
+
+export const ModalAbsentJurorTitle = styled(ModalJurorTitle)`
+  animation: none;
+  display: flex;
+  justify-content: center;
+  margin: 0 20rem;
+  width: 100%;
 
 `;
 

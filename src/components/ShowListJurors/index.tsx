@@ -7,15 +7,16 @@ import {
 
 type TestProps = {
   data: Array<string>,
-  label: string
+  label: string,
+  borderColor?: boolean,
 }
 
-export function ShowListJurors({ label, data }: TestProps) {
+export function ShowListJurors({ label, data, borderColor }: TestProps) {
   return (
     <>
       {
         data.length > 0 &&
-        <Container>
+        <Container border={borderColor}>
 
           <Label>
             {label}

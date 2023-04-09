@@ -30,6 +30,8 @@ import {
   ModalShowDrawnJuror,
   ModalJurorTitle,
   Buttons,
+  ModalShowAbsentJuror,
+  ModalAbsentJurorTitle,
   AbsentsButtonsContainer,
   Footer,
 } from './styles';
@@ -40,10 +42,11 @@ export function Home() {
 
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
-  const [listMotivedDispenseJurorsJudge] = useState<string[]>([]);
-  const [listUnMotivedDispenseJurorsJudge] = useState<string[]>([]);
-  const [listDispenseJurorsMP] = useState<string[]>([]);
-  const [listDispenseJurorsAdv] = useState<string[]>([]);
+  const [listDispenseJurorsJudge] = useState<string[]>([]);
+  const [listMotivatedDispenseJurorsMP] = useState<string[]>([]);
+  const [listUnMotivatedDispenseJurorsMP] = useState<string[]>([]);
+  const [listMotivatedDispenseJurorsAdv] = useState<string[]>([]);
+  const [listUnMotivatedDispenseJurorsAdv] = useState<string[]>([]);
   const [listAbsentWithJustification] = useState<string[]>([]);
   const [listAbsentWithoutJustification] = useState<string[]>([]);
 
@@ -56,14 +59,15 @@ export function Home() {
 
   const jurorsNotDrawnConst: (string)[] = listAllJurors
     .filter(nome => !jurorsDrawn.includes(nome) &&
-      !listMotivedDispenseJurorsJudge.includes(nome) &&
-      !listUnMotivedDispenseJurorsJudge.includes(nome) &&
-      !listDispenseJurorsMP.includes(nome) &&
-      !listDispenseJurorsAdv.includes(nome) &&
+      !listDispenseJurorsJudge.includes(nome) &&
+      !listMotivatedDispenseJurorsMP.includes(nome) &&
+      !listUnMotivatedDispenseJurorsMP.includes(nome) &&
+      !listMotivatedDispenseJurorsAdv.includes(nome) &&
+      !listUnMotivatedDispenseJurorsAdv.includes(nome) &&
       !listAbsentWithJustification.includes(nome) &&
       !listAbsentWithoutJustification.includes(nome));
 
-  const processInfo:Array<string> = [];
+  const processInfo: Array<string> = [];
 
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
@@ -100,7 +104,7 @@ export function Home() {
   }
   //fim configuração MODAL JURADO AUSENTE
 
-  function handleAddAllJurors(e:any){
+  function handleAddAllJurors(e: any) {
     const newJuror = (e.target.value.split('\n'));
     const filterJuror = newJuror.filter((juror: string) => juror !== '');
     setListAllJurors(filterJuror);
@@ -122,45 +126,47 @@ export function Home() {
   }
 
   function handleDrawnsAcceptedsJurors() {
-    setIsOpen(false);
+    closeModal();
   }
 
-  function handleMotivedDispenseJurorsJudge() {
+  function handleDispenseJurorsJudge() {
     const addNewDrawn: any = jurorsDrawn.pop();
-    listMotivedDispenseJurorsJudge.push(addNewDrawn);
-    setIsOpen(false);
+    listDispenseJurorsJudge.push(addNewDrawn);
+    closeModal();
   }
 
-  function handleUnMotivedDispenseJurorsJudge() {
+  function handleMotivatedDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
-    listUnMotivedDispenseJurorsJudge.push(addNewDrawn);
-    setIsOpen(false);
+    listMotivatedDispenseJurorsMP.push(addNewDrawn);
+    closeModal();
   }
 
-  function handleDispenseJurorsMP() {
+  function handleUnMotivatedDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
-    listDispenseJurorsMP.push(addNewDrawn);
-    setIsOpen(false);
-
+    listUnMotivatedDispenseJurorsMP.push(addNewDrawn);
+    closeModal();
   }
 
-  function handleDispenseJurorsAdv() {
+  function handleMotivatedDispenseJurorsAdv() {
     const addNewDrawn: any = jurorsDrawn.pop();
-    listDispenseJurorsAdv.push(addNewDrawn);
-    setIsOpen(false);
-    console.log(jurorsDrawn);
+    listMotivatedDispenseJurorsAdv.push(addNewDrawn);
+    closeModal();
+
+  }
+  function handleUnMotivatedDispenseJurorsAdv() {
+    const addNewDrawn: any = jurorsDrawn.pop();
+    listUnMotivatedDispenseJurorsAdv.push(addNewDrawn);
+    closeModal();
   }
 
-  function handleAbsentJurorWithJustification(nameAbsentJuror:any){
+  function handleAbsentJurorWithJustification(nameAbsentJuror: any) {
     listAbsentWithJustification.push(nameAbsentJuror);
-    setAbsentJurorIsOpen(false);
-
+    closeModalAbsentJuror();
   }
 
-  function handleAbsentJurorWithoutJustification(nameAbsentJuror:any){
+  function handleAbsentJurorWithoutJustification(nameAbsentJuror: any) {
     listAbsentWithoutJustification.push(nameAbsentJuror);
-    setAbsentJurorIsOpen(false);
-
+    closeModalAbsentJuror();
   }
 
   return (
@@ -173,7 +179,7 @@ export function Home() {
         </Header>
 
         {
-          processInfo.length >=1 &&
+          processInfo.length >= 1 &&
 
           <ProcessInfos>
             <span>Número: 0000227-47.2000.8.10.0127</span>
@@ -184,7 +190,7 @@ export function Home() {
 
 
         <ContentContainer>
-          <Content>
+          <Content mt={showAllNames}>
             {/* <button style={{width: '20%', alignSelf:'center', position:'absolute', top: '30%', left:'50%', transform:'translate(-50%, -50%)', border:'none', backgroundColor:'#BEDAF6', padding: '2rem', fontSize: '2.5rem', fontWeight:'bold', color:'#333', borderRadius:'3rem', cursor:'pointer'}}>
 Novo sorteio
             </button> */}
@@ -192,7 +198,7 @@ Novo sorteio
               {
                 formShow &&
                 <>
-                  <TextAreaJurors className='lista-jurados' onChange={(e) => handleAddAllJurors(e)} />
+                  <TextAreaJurors className='lista-jurados' onChange={(e) => handleAddAllJurors(e)} mt={showAllNames} />
 
                   <AddListButton onClick={handleShowAllNames}>
                     Adicionar Lista
@@ -201,7 +207,7 @@ Novo sorteio
               }
 
               {
-                showAllNames &&
+                showAllNames && jurorsNotDrawnConst.length > 0 &&
                 <ShowsAllNamesContainer>
                   {jurorsNotDrawnConst.map((item) => {
                     if (jurorsNotDrawnConst.length != 0) {
@@ -216,7 +222,7 @@ Novo sorteio
               }
 
               {
-                sortButtonState && <SortButton onClick={handleSortJurors} >
+                sortButtonState && jurorsNotDrawnConst.length > 0 && <SortButton onClick={handleSortJurors} >
                   Sortear
                 </SortButton>
               }
@@ -229,15 +235,18 @@ Novo sorteio
 
               <ContainerShowDrawnJurors>
 
-                <ShowListJurors data={jurorsDrawn} label='Selecionados' />
+                <ShowListJurors data={jurorsDrawn} label='Selecionados' borderColor />
 
-                <ShowListJurors data={listUnMotivedDispenseJurorsJudge} label='Dispensados com motivo pelo juízo ' />
+                <ShowListJurors data={listDispenseJurorsJudge} label='Dispensados pelo juízo' />
 
-                <ShowListJurors data={listMotivedDispenseJurorsJudge} label='Dispensados sem motivo pelo juízo' />
+                <ShowListJurors data={listMotivatedDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público' />
 
-                <ShowListJurors data={listDispenseJurorsMP} label='Dispensados com motivo pelo Ministério Público' />
+                <ShowListJurors data={listUnMotivatedDispenseJurorsMP} label='Dispensados sem motivo pelo Ministério Público' />
 
-                <ShowListJurors data={listDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado' />
+
+                <ShowListJurors data={listMotivatedDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado' />
+
+                <ShowListJurors data={listUnMotivatedDispenseJurorsAdv} label='Dispensados sem motivo pelo Advogado' />
 
                 <ShowListJurors data={listAbsentWithJustification} label='Ausentes com Justificativa' />
 
@@ -264,11 +273,17 @@ Novo sorteio
 
                 <Buttons>
 
-                  <Button  fnc={handleDrawnsAcceptedsJurors} title='Aceito'/>
-                  <Button  fnc={handleMotivedDispenseJurorsJudge} title='Juízo - Dispensa Motivada'/>
-                  <Button  fnc={handleUnMotivedDispenseJurorsJudge} title='Juizo - dispensa não motivada'/>
-                  <Button  fnc={handleDispenseJurorsMP} title='Dispensa MP'/>
-                  <Button  fnc={handleDispenseJurorsAdv} title='Dispensa ADV'/>
+                  <Button fnc={handleDrawnsAcceptedsJurors} title='Aceito' />
+
+                  <Button fnc={handleDispenseJurorsJudge} title='Juízo - Dispensa' />
+
+                  <Button fnc={handleMotivatedDispenseJurorsMP} title='Ministério Público - dispensa motivada' />
+
+                  <Button fnc={handleUnMotivatedDispenseJurorsMP} title='Ministério Público - dispensa não motivada' />
+
+                  <Button fnc={handleMotivatedDispenseJurorsAdv} title='Advogado(a) - dispensa motivada' />
+
+                  <Button fnc={handleUnMotivatedDispenseJurorsAdv} title='Advogado(a) - dispensa não motivada' />
 
                 </Buttons>
 
@@ -284,16 +299,20 @@ Novo sorteio
               onRequestClose={closeModalAbsentJuror}
               style={customStyles}
             >
+              <ModalShowAbsentJuror>
 
-              <span >{nameAbsentJuror}</span>
+                <ModalAbsentJurorTitle>
+                  {nameAbsentJuror}
+                </ModalAbsentJurorTitle>
 
-              <AbsentsButtonsContainer>
+                <AbsentsButtonsContainer>
 
-                <AbsentButton bgcolor='#E66F5A' fncButton={()=>handleAbsentJurorWithJustification(nameAbsentJuror)} buttonTitle='Ausente com Justificativa'/>
+                  <AbsentButton bgcolor='#509876' fncButton={() => handleAbsentJurorWithJustification(nameAbsentJuror)} buttonTitle='Ausente com Justificativa' />
 
-                <AbsentButton bgcolor='#509876' fncButton={()=>handleAbsentJurorWithoutJustification(nameAbsentJuror)} buttonTitle='Ausente sem Justificativa'/>
+                  <AbsentButton bgcolor='#E66F5A' fncButton={() => handleAbsentJurorWithoutJustification(nameAbsentJuror)} buttonTitle='Ausente sem Justificativa' />
 
-              </AbsentsButtonsContainer>
+                </AbsentsButtonsContainer>
+              </ModalShowAbsentJuror>
 
             </Modal>
             {/* FIM MODAL JURADO SORTEADO */}
@@ -305,7 +324,7 @@ Novo sorteio
           <Footer>
             <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
               <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
-              <strong style={{ marginLeft: '.5rem' }}>@AdailtonMesquita</strong>
+              <strong style={{ marginLeft: '.5rem', marginRight: '.5rem' }}>@AdailtonMesquita </strong> <span style={{ marginRight: '2rem' }}> - Projeto desenvolvido com o apoio do servidor do TJMA @FranciscoBogea</span>
             </Marquee>
           </Footer>
 

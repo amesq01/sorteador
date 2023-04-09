@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-export function Spin(){
+export function Spin() {
   return (
     <Container />
   );

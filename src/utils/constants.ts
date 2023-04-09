@@ -4,7 +4,8 @@ export const customStyles = {
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
   content: {
-    width:'80%',
+    width: 'fit-content',
+    maxWidth: '70%',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -13,9 +14,9 @@ export const customStyles = {
     transform: 'translate(-50%, -50%)',
     background: '#a2cae8',
     padding: '1.2rem',
-    border:'none',
+    border: 'none',
     alignText: 'center',
-    fontSize:'5rem',
+    fontSize: '5rem',
 
   },
 };

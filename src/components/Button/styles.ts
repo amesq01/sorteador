@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Container = styled.button`
   display: flex;
   padding: 1.2rem;
@@ -13,9 +12,11 @@ export const Container = styled.button`
 
   :hover{
     background-color: rgba(255, 255, 255, 1);
-    scale: 1.1 ;
     font-weight: medium;
     color: #295872;
+    font-weight: bold;
+    padding: 1.2rem 1.6rem;
+
 
 
   }

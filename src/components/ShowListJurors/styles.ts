@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+type borderProps = {
+  border?: boolean;
+}
 
-export const Container = styled.div`
+
+export const Container = styled.div<borderProps>`
   display:flex;
   flex-direction:column;
   background-color:#fff;
@@ -10,6 +14,7 @@ export const Container = styled.div`
   max-width: 35rem;
   overflow:hidden;
   height: fit-content;
+  border: ${({ border }) => border === true ? '.15rem dashed green' : 'none'};
 
 
 
@@ -23,7 +28,8 @@ export const Label = styled.div`
   height:8rem;
   background-color:#bedaf7;
   font-weight:600;
-  padding: .8rem 1.6rem;
+  padding: .8rem 1.2rem;
+  font-weight:bold;
   font-size: 1.6rem;
   text-align:center;
   width: 100%;
