@@ -18,14 +18,20 @@ const teste = keyframes`
 `;
 const teste2 = keyframes`
  0%{
-  opacity: 0
- }
- 50%{
-  opacity: 0
+  opacity: 0;
+  pointer-events: none
  }
 
+ 50%{
+  opacity: 0;
+  pointer-events: none;
+ }
+
+
+
  100%{
-  opacity:1
+  opacity:1;
+  pointer-events: none;
  }
 
 `;
