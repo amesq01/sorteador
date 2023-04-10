@@ -27,13 +27,10 @@ const teste2 = keyframes`
   pointer-events: none;
  }
 
-
-
  100%{
   opacity:1;
   pointer-events: none;
  }
-
 `;
 
 export const Container = styled.div`
@@ -146,7 +143,7 @@ export const ShowsAllNamesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: .8rem ;
-  grid-column-gap: 2rem;
+  grid-row-gap: .8rem ;
   width: 100%;
   font-weight:500;
 
@@ -155,15 +152,15 @@ export const ShowsAllNamesContainer = styled.div`
   }
 
   .divShow {
-    background-color: rgba(0,0,0, 0.03);
+    background-color: rgba(0,0,0, 0.035);
     padding: 1rem;
-    margin-top: 1rem ;
     width: fit-content;
     border-radius: .8rem;
     display: flex;
-    gap: .8rem;
     align-items: center;
+    font-size: 2rem;
     cursor:pointer;
+
   }
 `;
 

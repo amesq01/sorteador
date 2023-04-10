@@ -212,8 +212,8 @@ Novo sorteio
                   {jurorsNotDrawnConst.map((item) => {
                     if (jurorsNotDrawnConst.length != 0) {
                       return (
-                        <div className="divShow" key={item}  >
-                          <span onClick={() => openModalAbsentJuror(item)}>{item}</span>
+                        <div className="divShow" key={item}  onClick={() => openModalAbsentJuror(item)}>
+                          <span >{item}</span>
                         </div>
                       );
                     }
