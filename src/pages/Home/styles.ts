@@ -121,7 +121,7 @@ export const TextAreaJurors = styled.textarea<mtProps>`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-  margin-top: ${({ mt }) => mt === true ? '0rem' : '10rem'};
+  margin-top: ${({ mt }) => mt === true ? '0rem' : '2rem'};
   `;
 
 export const AddListButton = styled.button`
@@ -188,7 +188,7 @@ export const ModalShowDrawnJuror = styled.div`
   justify-content: center;
   color: #252525;
   font-size: 2.5rem;
-  padding: 2rem 6rem;
+  padding: 2rem 0rem;
   animation: ${teste} 2s forwards;
   position: relative;
 `;
@@ -202,10 +202,10 @@ export const ModalJurorTitle = styled.strong`
 
 export const Buttons = styled.div`
   display:flex;
-  gap: 2rem;
+  gap: 1.2rem;
   margin-top: 2rem;
-  justify-content: space-around;
-  padding: 2rem;
+  justify-content: center;
+  padding: 1.2rem 2rem;
   animation: ${teste2} 5s;
 `;
 

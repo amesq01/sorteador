@@ -40,11 +40,15 @@ export const Label = styled.div`
 export const ItemsContainer = styled.div`
   display: flex;
   flex-direction:column;
-  padding:1.2rem;
+  padding:.8rem;
   gap: 1.2rem
 
 `;
 
 export const Item = styled.span`
+  display: flex;
+  align-items: center;
+
+
 
 `;

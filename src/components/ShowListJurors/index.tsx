@@ -24,7 +24,7 @@ export function ShowListJurors({ label, data, borderColor }: TestProps) {
 
           <ItemsContainer>
             {
-              data.map((item) =>
+              data.map((item, index) =>
 
                 <Item key={item}>
                   {item}

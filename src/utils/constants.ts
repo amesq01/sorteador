@@ -5,7 +5,7 @@ export const customStyles = {
   },
   content: {
     width: 'fit-content',
-    maxWidth: '70%',
+    maxWidth: '95%',
     top: '50%',
     left: '50%',
     right: 'auto',

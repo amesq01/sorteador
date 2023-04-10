@@ -9,6 +9,7 @@ export const Container = styled.button`
   background-color: rgba(255, 255,255, 0.5);
   align-items: center;
   justify-content: center;
+  color:#333;
 
   :hover{
     background-color: rgba(255, 255, 255, 1);
@@ -25,5 +26,6 @@ export const Container = styled.button`
 export const DrawnJuror = styled.span`
   font-size: 1.6rem;
   text-transform: uppercase;
+
 
 `;
