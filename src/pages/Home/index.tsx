@@ -4,12 +4,12 @@ import Marquee from 'react-fast-marquee';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
-import logo from '../../../src/assets/logo.png';
-
 import { ShowListJurors } from '../../components/ShowListJurors';
-import { Loading } from '../../components/Loading';
 import { Button } from '../../components/Button';
 import { AbsentButton } from '../../components/AbsentButton';
+import { Spin } from '../../components/Spin';
+
+import logo from '../../../src/assets/logo.png';
 
 import { customStyles } from '../../utils/constants';
 
@@ -35,8 +35,6 @@ import {
   AbsentsButtonsContainer,
   Footer,
 } from './styles';
-import { Spin } from '../../components/Spin';
-
 
 export function Home() {
 
@@ -51,6 +49,8 @@ export function Home() {
   const [listAbsentWithoutJustification] = useState<string[]>([]);
 
   const [showAllNames, setShowAllNames] = useState(false);
+  const [showDispenseOptionsMP, setShowDispenseOptionsMP] = useState(false);
+  const [showDispenseOptionsAdv, setShowDispenseOptionsAdv] = useState(false);
   const [nameAbsentJuror, setNameAbsentJuror] = useState('');
   const [formShow, setFormShow] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -135,27 +135,40 @@ export function Home() {
     closeModal();
   }
 
+  function handleShowOptionDispenseMP(){
+    setShowDispenseOptionsMP(!showDispenseOptionsMP);
+  }
+
+  function handleShowOptionDispenseAdv(){
+    setShowDispenseOptionsAdv(!showDispenseOptionsAdv);
+  }
+
   function handleMotivatedDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listMotivatedDispenseJurorsMP.push(addNewDrawn);
+    handleShowOptionDispenseMP();
     closeModal();
   }
 
   function handleUnMotivatedDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listUnMotivatedDispenseJurorsMP.push(addNewDrawn);
+    handleShowOptionDispenseMP();
     closeModal();
   }
 
   function handleMotivatedDispenseJurorsAdv() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listMotivatedDispenseJurorsAdv.push(addNewDrawn);
+    handleShowOptionDispenseAdv();
     closeModal();
 
   }
+
   function handleUnMotivatedDispenseJurorsAdv() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listUnMotivatedDispenseJurorsAdv.push(addNewDrawn);
+    handleShowOptionDispenseAdv();
     closeModal();
   }
 
@@ -243,7 +256,6 @@ Novo sorteio
 
                 <ShowListJurors data={listUnMotivatedDispenseJurorsMP} label='Dispensados sem motivo pelo Ministério Público' />
 
-
                 <ShowListJurors data={listMotivatedDispenseJurorsAdv} label='Dispensados com motivo pelo Advogado' />
 
                 <ShowListJurors data={listUnMotivatedDispenseJurorsAdv} label='Dispensados sem motivo pelo Advogado' />
@@ -277,13 +289,35 @@ Novo sorteio
 
                   <Button fnc={handleDispenseJurorsJudge} title='Juízo - Dispensa' />
 
-                  <Button fnc={handleMotivatedDispenseJurorsMP} title='Ministério Público - dispensa motivada' />
+                  <div style={{position: 'relative'}}>
+                    <Button  fnc={handleShowOptionDispenseMP} title='MINISTÉRIO PÚBLICO - DISPENSA'/>
 
-                  <Button fnc={handleUnMotivatedDispenseJurorsMP} title='Ministério Público - dispensa não motivada' />
+                    {
+                      showDispenseOptionsMP &&
 
-                  <Button fnc={handleMotivatedDispenseJurorsAdv} title='Advogado(a) - dispensa motivada' />
+                    <div style={{position: 'absolute', zIndex:'1000', display: 'flex', gap: '2rem', width: '100%', marginTop: '.4rem', justifyContent:'center', alignItems: 'center'}}>
+                      <Button font paddingHorizontal fnc={handleMotivatedDispenseJurorsMP} title='COM MOTIVO' />
 
-                  <Button fnc={handleUnMotivatedDispenseJurorsAdv} title='Advogado(a) - dispensa não motivada' />
+                      <Button paddingHorizontal fnc={handleUnMotivatedDispenseJurorsMP} title='SEM MOTIVO' />
+                    </div>
+                    }
+
+                  </div>
+
+                  <div style={{position: 'relative'}}>
+
+                    <Button  fnc={handleShowOptionDispenseAdv} title='ADVOGADO (A)  - DISPENSA'/>
+
+                    {
+                      showDispenseOptionsAdv &&
+
+                      <div style={{position: 'absolute', zIndex:'1000', display: 'flex', gap:'2rem', width: '100%', marginTop: '.4rem', justifyContent: 'center', alignItems: 'center'}}>
+                        <Button paddingHorizontal fnc={handleMotivatedDispenseJurorsAdv} title='Com Motivo' />
+
+                        <Button paddingHorizontal fnc={handleUnMotivatedDispenseJurorsAdv} title='Sem Motivo' />
+                      </div>
+                    }
+                  </div>
 
                 </Buttons>
 

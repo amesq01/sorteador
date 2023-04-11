@@ -143,7 +143,8 @@ export const ShowsAllNamesContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: .8rem ;
-  grid-row-gap: .8rem ;
+  grid-row-gap: 1.2rem ;
+  grid-column-gap: 2rem;
   width: 100%;
   font-weight:500;
 
@@ -158,7 +159,7 @@ export const ShowsAllNamesContainer = styled.div`
     border-radius: .8rem;
     display: flex;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.85rem;
     cursor:pointer;
 
   }
@@ -185,7 +186,7 @@ export const ModalShowDrawnJuror = styled.div`
   justify-content: center;
   color: #252525;
   font-size: 2.5rem;
-  padding: 2rem 0rem;
+  padding: 4rem 6rem;
   animation: ${teste} 2s forwards;
   position: relative;
 `;
@@ -204,6 +205,7 @@ export const Buttons = styled.div`
   justify-content: center;
   padding: 1.2rem 2rem;
   animation: ${teste2} 5s;
+
 `;
 
 export const ModalShowAbsentJuror = styled(ModalShowDrawnJuror)`
