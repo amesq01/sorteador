@@ -118,7 +118,7 @@ export const TextAreaJurors = styled.textarea<mtProps>`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-  margin-top: ${({ mt }) => mt === true ? '0rem' : '2rem'};
+  margin-top: ${({ mt }) => mt === true ? '0rem' : '25vh'};
   `;
 
 export const AddListButton = styled.button`
