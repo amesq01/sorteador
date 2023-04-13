@@ -204,7 +204,7 @@ export const Buttons = styled.div`
   margin-top: 2rem;
   justify-content: center;
   padding: 1.2rem 2rem;
-  animation: ${teste2} 5s;
+  animation: ${teste2} 4.8s;
 
 `;
 

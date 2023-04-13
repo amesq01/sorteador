@@ -1,8 +1,8 @@
 
 import './styles.css';
 
-export function Loading(){
-  return(
+export function Loading() {
+  return (
 
     <div className="balls">
       <div></div>

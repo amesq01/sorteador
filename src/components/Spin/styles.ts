@@ -15,10 +15,11 @@ from{
 
 export const Container = styled.div`
   display: flex;
-  width: 6rem;
-  height: 6rem;
-  border: 1.2rem dotted rgba(198,125,0,0.8);
-  border-radius: 3rem;
+  width: 7rem;
+  height: 7rem;
+  border: .8rem solid rgba(198,125,0,0.8);
+  border-top-color: transparent;
+  border-radius: 4rem;
   animation: ${rotate} 1.9s linear forwards ;
   position: absolute;
   top: 50% - 3rem;

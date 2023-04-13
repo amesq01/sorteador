@@ -122,6 +122,7 @@ export function Home() {
     if (jurorsNotDrawnConst.length === 0) {
       alert('chegou ao fim da lista');
     }
+    handleResetShowOptionsDispenseMPorAdv();
     openModal();
   }
 
@@ -135,32 +136,35 @@ export function Home() {
     closeModal();
   }
 
-  function handleShowOptionDispenseMP(){
+  function handleResetShowOptionsDispenseMPorAdv() {
+    setShowDispenseOptionsMP(false);
+    setShowDispenseOptionsAdv(false);
+
+  }
+
+  function handleShowOptionDispenseMP() {
     setShowDispenseOptionsMP(!showDispenseOptionsMP);
   }
 
-  function handleShowOptionDispenseAdv(){
+  function handleShowOptionDispenseAdv() {
     setShowDispenseOptionsAdv(!showDispenseOptionsAdv);
   }
 
   function handleMotivatedDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listMotivatedDispenseJurorsMP.push(addNewDrawn);
-    handleShowOptionDispenseMP();
     closeModal();
   }
 
   function handleUnMotivatedDispenseJurorsMP() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listUnMotivatedDispenseJurorsMP.push(addNewDrawn);
-    handleShowOptionDispenseMP();
     closeModal();
   }
 
   function handleMotivatedDispenseJurorsAdv() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listMotivatedDispenseJurorsAdv.push(addNewDrawn);
-    handleShowOptionDispenseAdv();
     closeModal();
 
   }
@@ -168,7 +172,6 @@ export function Home() {
   function handleUnMotivatedDispenseJurorsAdv() {
     const addNewDrawn: any = jurorsDrawn.pop();
     listUnMotivatedDispenseJurorsAdv.push(addNewDrawn);
-    handleShowOptionDispenseAdv();
     closeModal();
   }
 
@@ -225,7 +228,7 @@ Novo sorteio
                   {jurorsNotDrawnConst.map((item) => {
                     if (jurorsNotDrawnConst.length != 0) {
                       return (
-                        <div className="divShow" key={item}  onClick={() => openModalAbsentJuror(item)}>
+                        <div className="divShow" key={item} onClick={() => openModalAbsentJuror(item)}>
                           <span >{item}</span>
                         </div>
                       );
@@ -289,29 +292,29 @@ Novo sorteio
 
                   <Button fnc={handleDispenseJurorsJudge} title='Juízo - Dispensa' />
 
-                  <div style={{position: 'relative'}}>
-                    <Button  fnc={handleShowOptionDispenseMP} title='MINISTÉRIO PÚBLICO - DISPENSA'/>
+                  <div style={{ position: 'relative' }}>
+                    <Button fnc={handleShowOptionDispenseMP} title='MINISTÉRIO PÚBLICO - DISPENSA' />
 
                     {
                       showDispenseOptionsMP &&
 
-                    <div style={{position: 'absolute', zIndex:'1000', display: 'flex', gap: '2rem', width: '100%', marginTop: '.4rem', justifyContent:'center', alignItems: 'center'}}>
-                      <Button font paddingHorizontal fnc={handleMotivatedDispenseJurorsMP} title='COM MOTIVO' />
+                      <div style={{ position: 'absolute', zIndex: '1000', display: 'flex', gap: '2rem', width: '100%', marginTop: '.4rem', justifyContent: 'center', alignItems: 'center' }}>
+                        <Button font paddingHorizontal fnc={handleMotivatedDispenseJurorsMP} title='COM MOTIVO' />
 
-                      <Button paddingHorizontal fnc={handleUnMotivatedDispenseJurorsMP} title='SEM MOTIVO' />
-                    </div>
+                        <Button paddingHorizontal fnc={handleUnMotivatedDispenseJurorsMP} title='SEM MOTIVO' />
+                      </div>
                     }
 
                   </div>
 
-                  <div style={{position: 'relative'}}>
+                  <div style={{ position: 'relative' }}>
 
-                    <Button  fnc={handleShowOptionDispenseAdv} title='ADVOGADO (A)  - DISPENSA'/>
+                    <Button fnc={handleShowOptionDispenseAdv} title='ADVOGADO (A)  - DISPENSA' />
 
                     {
                       showDispenseOptionsAdv &&
 
-                      <div style={{position: 'absolute', zIndex:'1000', display: 'flex', gap:'2rem', width: '100%', marginTop: '.4rem', justifyContent: 'center', alignItems: 'center'}}>
+                      <div style={{ position: 'absolute', zIndex: '1000', display: 'flex', gap: '2rem', width: '100%', marginTop: '.4rem', justifyContent: 'center', alignItems: 'center' }}>
                         <Button paddingHorizontal fnc={handleMotivatedDispenseJurorsAdv} title='Com Motivo' />
 
                         <Button paddingHorizontal fnc={handleUnMotivatedDispenseJurorsAdv} title='Sem Motivo' />
