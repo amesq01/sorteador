@@ -22,6 +22,7 @@ import {
   LogoImg,
   Title,
   FormContainer,
+  ButtonNewDrawn,
   TextAreaJurors,
   AddListButton,
   ShowsAllNamesContainer,
@@ -117,13 +118,17 @@ export function Home() {
   }
 
   function handleSortJurors() {
-    const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
-    setJurorsDrawn(prev => [...prev, jurorDrawn]);
-    if (jurorsNotDrawnConst.length === 0) {
-      alert('chegou ao fim da lista');
+    if(jurorsDrawn.length < 7){
+      const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
+      setJurorsDrawn(prev => [...prev, jurorDrawn]);
+      if (jurorsNotDrawnConst.length === 0) {
+        alert('chegou ao fim da lista');
+      }
+      handleResetShowOptionsDispenseMPorAdv();
+      openModal();
+    } else {
+      alert('Os sete jurados já foram sorteados');
     }
-    handleResetShowOptionsDispenseMPorAdv();
-    openModal();
   }
 
   function handleDrawnsAcceptedsJurors() {
@@ -207,12 +212,12 @@ export function Home() {
 
         <ContentContainer>
           <Content mt={showAllNames}>
-            {/* <button style={{width: '20%', alignSelf:'center', position:'absolute', top: '30%', left:'50%', transform:'translate(-50%, -50%)', border:'none', backgroundColor:'#BEDAF6', padding: '2rem', fontSize: '2.5rem', fontWeight:'bold', color:'#333', borderRadius:'3rem', cursor:'pointer'}}>
-Novo sorteio
-            </button> */}
+            <ButtonNewDrawn>
+              + Novo sorteio
+            </ButtonNewDrawn>
             <FormContainer onSubmit={e => e.preventDefault()} >
               {
-                formShow &&
+                formShow && processInfo.length > 0 &&
                 <>
                   <TextAreaJurors className='lista-jurados' onChange={(e) => handleAddAllJurors(e)} mt={showAllNames} />
 

@@ -94,6 +94,28 @@ export const Content = styled.div<mtProps>`
   margin-top: ${({ mt }) => mt === true ? '1rem' : '0rem'};
 `;
 
+export const ButtonNewDrawn = styled.div`
+
+  position: absolute;
+  top: 30%;
+  transform: translate(-50%);
+  left: 50%;
+  border:.1rem dashed rgba(0, 0, 0, 0.15);
+  padding: 2rem 4rem;
+  font-size: 2.5rem;
+  font-weight:bold;
+  color:#555;
+  border-radius:3rem;
+  cursor:pointer;
+  background: rgba(255, 255, 255, 0.15);
+
+  :hover{
+    background: rgba(255, 255, 255, 0.25);
+    border:.15rem dashed  rgba(0, 0, 0, 0.25);
+
+  }
+`;
+
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -101,6 +123,8 @@ export const FormContainer = styled.form`
   justify-content: center;
   width: 100%;
 `;
+
+
 
 export const TextAreaJurors = styled.textarea<mtProps>`
   display: flex;
@@ -118,7 +142,7 @@ export const TextAreaJurors = styled.textarea<mtProps>`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-  margin-top: ${({ mt }) => mt === true ? '0rem' : '25vh'};
+  margin-top: ${({ mt }) => mt === true ? '0rem' : '15vh'};
   `;
 
 export const AddListButton = styled.button`
