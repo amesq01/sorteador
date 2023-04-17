@@ -97,22 +97,27 @@ export const Content = styled.div<mtProps>`
 export const ButtonNewDrawn = styled.div`
 
   position: absolute;
-  top: 30%;
+  top: 40%;
   transform: translate(-50%);
   left: 50%;
-  border:.1rem dashed rgba(0, 0, 0, 0.15);
-  padding: 2rem 4rem;
+  outline:.2rem dashed rgba(0, 0, 0, 0.15);
+  padding: 1.2rem 3rem;
   font-size: 2.5rem;
   font-weight:bold;
-  color:#555;
+  color:#617067;
   border-radius:3rem;
   cursor:pointer;
   background: rgba(255, 255, 255, 0.15);
+  display: flex;
+ align-items: center;
+ gap: 1rem;
+
 
   :hover{
-    background: rgba(255, 255, 255, 0.25);
-    border:.15rem dashed  rgba(0, 0, 0, 0.25);
-
+    background: rgba(255, 255, 255, 0.4);
+    outline: .2rem dashed  rgba(0, 0, 0, 0.25);
+    color: #617068;
+    scale: 1.01;
   }
 `;
 

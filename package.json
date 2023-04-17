@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.8",
     "@types/react-modal": "^3.13.1",
     "dotenv": "^16.0.3",
     "firebase": "^9.18.0",

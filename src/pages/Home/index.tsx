@@ -13,6 +13,8 @@ import logo from '../../../src/assets/logo.png';
 
 import { customStyles } from '../../utils/constants';
 
+import { PlusCircle } from '@phosphor-icons/react';
+
 import {
   Container,
   Header,
@@ -118,7 +120,7 @@ export function Home() {
   }
 
   function handleSortJurors() {
-    if(jurorsDrawn.length < 7){
+    if (jurorsDrawn.length < 7) {
       const jurorDrawn = jurorsNotDrawnConst[Math.floor(Math.random() * jurorsNotDrawnConst.length)];
       setJurorsDrawn(prev => [...prev, jurorDrawn]);
       if (jurorsNotDrawnConst.length === 0) {
@@ -213,7 +215,8 @@ export function Home() {
         <ContentContainer>
           <Content mt={showAllNames}>
             <ButtonNewDrawn>
-              + Novo sorteio
+              <PlusCircle size={40} color="#617067" weight="bold" />
+              <span>Novo sorteio</span>
             </ButtonNewDrawn>
             <FormContainer onSubmit={e => e.preventDefault()} >
               {
