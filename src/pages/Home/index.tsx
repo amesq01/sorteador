@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Marquee from 'react-fast-marquee';
 import Modal from 'react-modal';
@@ -14,6 +14,10 @@ import logo from '../../../src/assets/logo.png';
 import { customStyles } from '../../utils/constants';
 
 import { PlusCircle } from '@phosphor-icons/react';
+
+interface testeProps {
+  user: userProps
+}
 
 import {
   Container,
@@ -38,6 +42,12 @@ import {
   AbsentsButtonsContainer,
   Footer,
 } from './styles';
+
+
+
+import { authUser, userProps } from '../../contexts/userContext';
+
+
 
 export function Home() {
 
@@ -192,6 +202,13 @@ export function Home() {
     closeModalAbsentJuror();
   }
 
+  function handleAddNewDrawn() {
+    alert(' Novo Sorteio ');
+  }
+
+  const { user }: testeProps = authUser();
+  console.log(`user: ${user.age}`);
+
   return (
     <>
       <Container>
@@ -199,6 +216,7 @@ export function Home() {
         <Header>
           <LogoImg src={logo} />
           <Title>Sorteador de Jurados</Title>
+          <span>ususaeio: {user.eyesColor}</span>
         </Header>
 
         {
@@ -212,15 +230,16 @@ export function Home() {
         }
 
 
+
         <ContentContainer>
           <Content mt={showAllNames}>
-            <ButtonNewDrawn>
+            <ButtonNewDrawn onClick={handleAddNewDrawn}>
               <PlusCircle size={40} color="#617067" weight="bold" />
               <span>Novo sorteio</span>
             </ButtonNewDrawn>
             <FormContainer onSubmit={e => e.preventDefault()} >
               {
-                formShow && processInfo.length > 0 &&
+                formShow && listAllJurors.length > 0 &&
                 <>
                   <TextAreaJurors className='lista-jurados' onChange={(e) => handleAddAllJurors(e)} mt={showAllNames} />
 
