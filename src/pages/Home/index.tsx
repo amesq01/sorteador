@@ -213,7 +213,7 @@ export function Home() {
     }
   }
 
-  const { user, logout }: any = authUser();
+  const { user, logout } = authUser();
   console.log('email testando:', user);
 
   return (

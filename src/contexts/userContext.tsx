@@ -9,15 +9,14 @@ import { auth } from '../utils/firebase';
 
 
 
-type IProvider = {
-  children: ReactNode,
+type IProviderProps = {
   user: any,
-  signIn: () => void,
+  signIn: (email: string, senha: string) => void,
   logout: () => void,
 }
 
 
-const UserContext = createContext({} as any);
+const UserContext = createContext<IProviderProps>({} as any);
 
 
 export const UserContextProvider = ({ children }: any) => {
