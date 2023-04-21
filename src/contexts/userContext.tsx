@@ -21,7 +21,7 @@ const UserContext = createContext<IProviderProps>({} as any);
 
 export const UserContextProvider = ({ children }: any) => {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useLocalStorage('teste', null);
 
   function signIn(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -34,7 +34,7 @@ export const UserContextProvider = ({ children }: any) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser: any) => {
       console.log('testando unsubs', currentUser);
-      setUser(currentUser);
+      useLocalStorage('teste', currentUser);
     });
     return () => { unsubscribe(); };
   }, []);
