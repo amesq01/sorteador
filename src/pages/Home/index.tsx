@@ -15,9 +15,7 @@ import { customStyles } from '../../utils/constants';
 
 import { PlusCircle } from '@phosphor-icons/react';
 
-interface testeProps {
-  user: userProps
-}
+
 
 import {
   Container,
@@ -45,7 +43,7 @@ import {
 
 
 
-import { authUser, userProps } from '../../contexts/userContext';
+import { authUser } from '../../contexts/userContext';
 
 
 
@@ -206,8 +204,17 @@ export function Home() {
     alert(' Novo Sorteio ');
   }
 
-  const { user }: testeProps = authUser();
-  console.log(`user: ${user.age}`);
+  async function handleLogout(e) {
+    e.preventDefault();
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const { user, logout }: any = authUser();
+  console.log('email testando:', user);
 
   return (
     <>
@@ -216,7 +223,7 @@ export function Home() {
         <Header>
           <LogoImg src={logo} />
           <Title>Sorteador de Jurados</Title>
-          <span>ususaeio: {user.eyesColor}</span>
+          <span>Usuário LOGADO: {user.email} <button onClick={handleLogout}>Sair</button></span>
         </Header>
 
         {
@@ -234,7 +241,7 @@ export function Home() {
         <ContentContainer>
           <Content mt={showAllNames}>
             <ButtonNewDrawn onClick={handleAddNewDrawn}>
-              <PlusCircle size={40} color="#617067" weight="bold" />
+              <PlusCircle size={40} color="#555" weight="bold" />
               <span>Novo sorteio</span>
             </ButtonNewDrawn>
             <FormContainer onSubmit={e => e.preventDefault()} >

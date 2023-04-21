@@ -37,3 +37,16 @@ ISAILMA VIEIRA LISBOA
     </div>
   </ShowAcceptedDrawnJurors>
 </ContainerShowDrawnJurors>
+
+
+<!-- signInWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+  const user = userCredential.user;
+  const email = user.email;
+  navigate('./home');
+}).catch((err) => {
+  setError(err);
+  setEmail('');
+  setPassword('');
+} -->
+);

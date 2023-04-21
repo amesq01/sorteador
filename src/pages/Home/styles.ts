@@ -104,7 +104,7 @@ export const ButtonNewDrawn = styled.div`
   padding: 1.2rem 3rem;
   font-size: 2.5rem;
   font-weight:bold;
-  color:#617067;
+  color:#555;
   border-radius:3rem;
   cursor:pointer;
   background: rgba(255, 255, 255, 0.15);
@@ -116,7 +116,7 @@ export const ButtonNewDrawn = styled.div`
   :hover{
     background: rgba(255, 255, 255, 0.4);
     outline: .2rem dashed  rgba(0, 0, 0, 0.25);
-    color: #617068;
+    color: #444;
     scale: 1.01;
   }
 `;

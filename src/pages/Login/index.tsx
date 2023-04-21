@@ -1,35 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as C from './styles';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import logoIMG from '../../assets/logo.png';
-import { auth } from '../../utils/firebase';
 
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { authUser } from '../../contexts/userContext';
+import { Loading } from '../../components/Loading';
+
+
 
 export const Login = () => {
-
   const navigate = useNavigate();
+
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [errorLog, setErrorLog] = useState('');
 
-  function Login() {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        const email = user.email;
-        navigate('./home');
-      }).catch((err) => {
-        setError(err);
-        setEmail('');
-        setPassword('');
-      }
-      );
+  const { signIn, user }: any = authUser();
 
+  useEffect(() => {
+    if (user) {
+      navigate('/home');
+    }
+  }), [];
+
+  async function handleSubmit(e: any) {
+
+    e.preventDefault();
+
+    try {
+      await signIn(email, password);
+      navigate('/home');
+    } catch (error: any) {
+      setErrorLog(error.message);
+    }
   }
+
+
+
 
   return (
     <C.Container  >
@@ -40,7 +50,7 @@ export const Login = () => {
           <h2>São Luís Gonzaga do Maranhão</h2>
 
         </C.LogoContainer>
-        <C.InputsContainer onSubmit={e => e.preventDefault()}>
+        <C.InputsContainer onSubmit={handleSubmit}>
           <h1>SORTEADOR DE JURADOS</h1>
           <h2>Faça Login para acessar o Sistema</h2>
 
@@ -49,7 +59,7 @@ export const Login = () => {
             placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            onFocus={() => setError('')}
+            onFocus={() => setErrorLog('')}
           />
           <input
             type="password"
@@ -57,18 +67,13 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-          {error && (
+          {errorLog && (
             <C.Error>
-
-
-
-
-              Email ou senha inválidos
-
+              {errorLog}
             </C.Error>
           )}
 
-          <button type="submit" onClick={Login}>
+          <button >
             LOGIN
           </button>
           {/* <Link to="/home" className="button" >
