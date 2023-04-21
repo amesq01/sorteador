@@ -204,7 +204,7 @@ export function Home() {
     alert(' Novo Sorteio ');
   }
 
-  async function handleLogout(e) {
+  async function handleLogout(e: any) {
     e.preventDefault();
     try {
       await logout();
