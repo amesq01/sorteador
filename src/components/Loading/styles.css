@@ -1,11 +1,20 @@
-.balls {
-  width: 3.5em;
+.container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
   justify-content: space-between;
+
+
+
 }
 
+.container span {
+  font-size: 10rem;
+}
+
+
+
+/*
 .balls div {
   width: 0.8em;
   height: 0.8em;
@@ -27,7 +36,8 @@
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(100%);
   }
-}
+} */

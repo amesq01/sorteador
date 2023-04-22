@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 type mtProps = {
-  mt: boolean;
+  mt?: boolean;
 }
 
 const teste = keyframes`
@@ -198,6 +198,10 @@ export const SortButton = styled(AddListButton)`
   align-self: start;
   width: 25rem;
 `;
+export const SaveSortButton = styled(AddListButton)`
+  align-self: start;
+  width: 25rem;
+`;
 
 export const ContainerShowDrawnJurors = styled.div`
   display:flex;
@@ -253,9 +257,74 @@ export const ModalAbsentJurorTitle = styled(ModalJurorTitle)`
 export const AbsentsButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 4rem;
   gap: 3.2rem;
   align-items:center;
+
+`;
+
+
+export const ModalShowProcessInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+  color: #252525;
+  font-size: 2.5rem;
+  padding: 1.2rem 6rem;
+  animation: ${teste} 2s forwards;
+
+`;
+
+
+export const ModalShowProcessInfosTitle = styled(ModalAbsentJurorTitle)`
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  color: #444;
+`;
+
+export const TextAreaProcessInfos = styled.textarea`
+  display: flex;
+  background-color: #f3f9ff;
+  width: 100%;
+  max-width: 75rem;
+  min-width: 75rem;
+  height: 50rem;
+  min-height: fit-content;
+  border: none;
+  outline: none;
+  font-weight: medium;
+  font-size: 2rem;
+  border-radius: .4rem;
+  box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
+  margin-top: 2.4rem;
+  padding: 1.2rem;
+
+  &::placeholder {
+       color: rgba(0,0,0,0.3);
+   }
+
+`;
+
+export const SaveProcessInfosButton = styled.button`
+  padding: 1.2rem 2.4rem;
+  border-radius: .4rem;
+  border: none;
+  outline: none;
+  margin-top: 2.4rem;
+  background-color: rgba(59,143,231, .8);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color:#fff;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+
+  :hover{
+    background-color: rgba(59,143,231, 1);
+
+
+  }
 `;
 
 export const Footer = styled.footer`

@@ -6,12 +6,13 @@ import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebas
 import { useLocalStorage } from 'react-use';
 
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 
 
 type IProviderProps = {
   user: any,
-  signIn: (email: string, senha: string) => void,
+  signIn: (email: string, password: string) => void,
   logout: () => void,
 }
 
@@ -20,6 +21,8 @@ const UserContext = createContext<IProviderProps>({} as any);
 
 
 export const UserContextProvider = ({ children }: any) => {
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
 
@@ -33,10 +36,10 @@ export const UserContextProvider = ({ children }: any) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser: any) => {
-      console.log('testando unsubs', currentUser);
+      console.log('intoUserEffectContext ', currentUser);
       setUser(currentUser);
     });
-    return () => { unsubscribe(); };
+    return () => unsubscribe();
   }, []);
 
 

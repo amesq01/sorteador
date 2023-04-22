@@ -31,6 +31,7 @@ import {
   AddListButton,
   ShowsAllNamesContainer,
   SortButton,
+  SaveSortButton,
   ContainerShowDrawnJurors,
   ModalShowDrawnJuror,
   ModalJurorTitle,
@@ -38,18 +39,24 @@ import {
   ModalShowAbsentJuror,
   ModalAbsentJurorTitle,
   AbsentsButtonsContainer,
+  ModalShowProcessInfos,
+  ModalShowProcessInfosTitle,
+  TextAreaProcessInfos,
+  SaveProcessInfosButton,
   Footer,
 } from './styles';
 
 
 
 import { authUser } from '../../contexts/userContext';
+import { Navigate } from 'react-router-dom';
 
 
 
 export function Home() {
 
   const [listAllJurors, setListAllJurors] = useState<string[]>([]);
+  const [listAllProcessInfos, setListAllProcessInfos] = useState<string[]>([]);
   const [jurorsDrawn, setJurorsDrawn] = useState<string[]>([]);
   const [listDispenseJurorsJudge] = useState<string[]>([]);
   const [listMotivatedDispenseJurorsMP] = useState<string[]>([]);
@@ -66,7 +73,10 @@ export function Home() {
   const [formShow, setFormShow] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalAbsentJurorIsOpen, setAbsentJurorIsOpen] = useState(false);
+  const [modalProcessInfosIsOpen, setModalProcessInfosIsOpen] = useState(false);
   const [sortButtonState, setSortButtonState] = useState(false);
+  const [appearButtonNewDrawn, setAppearButtonNewDrawn] = useState(true);
+  const [showContent, setShowContent] = useState(false);
 
   const jurorsNotDrawnConst: (string)[] = listAllJurors
     .filter(nome => !jurorsDrawn.includes(nome) &&
@@ -115,16 +125,50 @@ export function Home() {
   }
   //fim configuração MODAL JURADO AUSENTE
 
+
+  //Início configuração MODAL INFORMAÇÕES DO PROCESSO
+
+  function openModalProcessInfos() {
+
+    setModalProcessInfosIsOpen(true);
+  }
+
+  function afterOpenModalProcessInfos() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModalProcessInfos() {
+    setModalProcessInfosIsOpen(false);
+  }
+  //fim configuração MODAL JURADO AUSENTE
+
   function handleAddAllJurors(e: any) {
     const newJuror = (e.target.value.split('\n'));
     const filterJuror = newJuror.filter((juror: string) => juror !== '');
     setListAllJurors(filterJuror);
   }
 
+  function handleAddProcessInfos(e: any) {
+    const info = (e.target.value.split('\n'));
+    const filterInfos = info.filter((info: string) => info !== '');
+    setListAllProcessInfos(filterInfos);
+    console.log(processInfo);
+
+  }
+
   function handleShowAllNames() {
     setShowAllNames(true);
     setFormShow(false);
     setSortButtonState(true);
+  }
+
+  function handleShowProcessInfos() {
+    setAppearButtonNewDrawn(false);
+    closeModalProcessInfos();
+    setShowContent(true);
+
+
   }
 
   function handleSortJurors() {
@@ -139,6 +183,10 @@ export function Home() {
     } else {
       alert('Os sete jurados já foram sorteados');
     }
+  }
+  function handleSaveSort() {
+    alert('sorteio salvo');
+    <Navigate to={'/results'} state={listAllJurors} />;
   }
 
   function handleDrawnsAcceptedsJurors() {
@@ -201,8 +249,10 @@ export function Home() {
   }
 
   function handleAddNewDrawn() {
-    alert(' Novo Sorteio ');
+    openModalProcessInfos();
   }
+
+
 
   async function handleLogout(e: any) {
     e.preventDefault();
@@ -216,6 +266,7 @@ export function Home() {
   const { user, logout } = authUser();
   console.log('email testando:', user);
 
+
   return (
     <>
       <Container>
@@ -227,57 +278,75 @@ export function Home() {
         </Header>
 
         {
-          processInfo.length >= 1 &&
+          listAllProcessInfos.length >= 1 &&
 
           <ProcessInfos>
-            <span>Número: 0000227-47.2000.8.10.0127</span>
-            <span>Classe: AÇÃO PENAL DE COMPETÊNCIA DO JÚRI</span>
-            <span>Órgão julgador: Vara Única de São Luís Gonzaga do Maranhão</span>
+            {
+              listAllProcessInfos.map(info =>
+                <span key={info}>{info}</span>)
+            }
           </ProcessInfos>
         }
 
 
 
+
         <ContentContainer>
           <Content mt={showAllNames}>
-            <ButtonNewDrawn onClick={handleAddNewDrawn}>
-              <PlusCircle size={40} color="#555" weight="bold" />
-              <span>Novo sorteio</span>
-            </ButtonNewDrawn>
-            <FormContainer onSubmit={e => e.preventDefault()} >
-              {
-                formShow && listAllJurors.length > 0 &&
-                <>
-                  <TextAreaJurors className='lista-jurados' onChange={(e) => handleAddAllJurors(e)} mt={showAllNames} />
 
-                  <AddListButton onClick={handleShowAllNames}>
-                    Adicionar Lista
-                  </AddListButton>
-                </>
-              }
+            {
+              appearButtonNewDrawn && <ButtonNewDrawn onClick={handleAddNewDrawn}>
+                <PlusCircle size={40} color="#555" weight="bold" />
+                <span>Novo sorteio</span>
+              </ButtonNewDrawn>
+            }
+            {
+              showContent &&
+              <FormContainer onSubmit={e => e.preventDefault()} >
+                {
+                  formShow && listAllProcessInfos.length > 0 &&
+                  <>
+                    <TextAreaJurors className='lista-jurados' onChange={(e) => handleAddAllJurors(e)} mt={showAllNames} />
 
-              {
-                showAllNames && jurorsNotDrawnConst.length > 0 &&
-                <ShowsAllNamesContainer>
-                  {jurorsNotDrawnConst.map((item) => {
-                    if (jurorsNotDrawnConst.length != 0) {
-                      return (
-                        <div className="divShow" key={item} onClick={() => openModalAbsentJuror(item)}>
-                          <span >{item}</span>
-                        </div>
-                      );
-                    }
-                  }).sort()}
-                </ShowsAllNamesContainer>
-              }
+                    <AddListButton onClick={handleShowAllNames}>
+                      Adicionar Lista
+                    </AddListButton>
+                  </>
+                }
 
-              {
-                sortButtonState && jurorsNotDrawnConst.length > 0 && <SortButton onClick={handleSortJurors} >
-                  Sortear
-                </SortButton>
-              }
+                {
+                  showAllNames && jurorsNotDrawnConst.length > 0 &&
+                  <ShowsAllNamesContainer>
+                    {jurorsNotDrawnConst.map((item) => {
+                      if (jurorsNotDrawnConst.length != 0) {
+                        return (
+                          <div className="divShow" key={item} onClick={() => openModalAbsentJuror(item)}>
+                            <span >{item}</span>
+                          </div>
+                        );
+                      }
+                    }).sort()}
+                  </ShowsAllNamesContainer>
+                }
 
-            </FormContainer>
+                {
+                  sortButtonState && jurorsNotDrawnConst.length > 0 && jurorsDrawn.length < 7 &&
+
+                  <SortButton onClick={handleSortJurors} >
+                    Sortear
+                  </SortButton>
+                }
+                {
+                  jurorsDrawn.length > 6 &&
+
+                  <SaveSortButton onClick={handleSaveSort} >
+                    Salvar Sorteio
+                  </SaveSortButton>
+                }
+
+              </FormContainer>
+            }
+
 
             {
 
@@ -303,6 +372,7 @@ export function Home() {
 
               </ContainerShowDrawnJurors>
             }
+
 
             {/* INÍCIO TODOS MODAIS */}
 
@@ -367,7 +437,6 @@ export function Home() {
             <Modal
               isOpen={modalAbsentJurorIsOpen}
               onAfterOpen={afterOpenModalAbsentJuror}
-              onRequestClose={closeModalAbsentJuror}
               style={customStyles}
             >
               <ModalShowAbsentJuror>
@@ -388,6 +457,42 @@ export function Home() {
             </Modal>
             {/* FIM MODAL JURADO SORTEADO */}
 
+            {/* INÍCIO MODAL JURADO AUSENTE */}
+            <Modal
+              isOpen={modalProcessInfosIsOpen}
+              onAfterOpen={afterOpenModalProcessInfos}
+              style={customStyles}
+            >
+              <ModalShowProcessInfos>
+
+                <ModalShowProcessInfosTitle>
+                  Informações do Processo
+                </ModalShowProcessInfosTitle>
+
+                <>
+                  <TextAreaProcessInfos
+
+                    placeholder='Exemplo:
+
+Processo: 00000-00.0000.0.0000
+Réu(s): Fulano de Tal...
+Advogado(s): Fulano de Tal...
+Tipicidade Penal: Art. 121 cpb...'
+                    className='lista-jurados'
+                    onChange={(e) => handleAddProcessInfos(e)}
+                  />
+
+                  <SaveProcessInfosButton onClick={handleShowProcessInfos}>
+                    Salvar Informações
+                  </SaveProcessInfosButton>
+                </>
+
+
+              </ModalShowProcessInfos>
+
+            </Modal>
+            {/* FIM MODAL JURADO SORTEADO */}
+
             {/* FIM TODOS MODAIS */}
 
           </Content>
@@ -400,6 +505,9 @@ export function Home() {
           </Footer>
 
         </ContentContainer >
+
+
+
 
       </Container >
 

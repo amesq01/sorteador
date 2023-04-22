@@ -11,20 +11,32 @@ import { Loading } from '../../components/Loading';
 
 
 export const Login = () => {
+
   const navigate = useNavigate();
+  const { signIn, user }: any = authUser();
 
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorLog, setErrorLog] = useState('');
+  const [logged, setLogged] = useState(false);
 
-  const { signIn, user }: any = authUser();
+
+
+
+
 
   useEffect(() => {
+
+
     if (user) {
+      setLogged(true);
       navigate('/home');
+      console.log('usuario DENTRO userEffect', user);
+
     }
-  }), [];
+  }, [user]);
+  console.log('depois aquiusereffect', user);
 
   async function handleSubmit(e: any) {
 
@@ -34,60 +46,64 @@ export const Login = () => {
       await signIn(email, password);
       navigate('/home');
     } catch (error: any) {
+
       setErrorLog(error.message);
     }
   }
 
-
-
-
   return (
-    <C.Container  >
-      <C.Content>
-        <C.LogoContainer>
-          <C.Logo src={logoIMG} />
-          <h1>Fórum Desembargador <span> Raimundo Ewerton De Paiva</span></h1>
-          <h2>São Luís Gonzaga do Maranhão</h2>
+    <>
 
-        </C.LogoContainer>
-        <C.InputsContainer onSubmit={handleSubmit}>
-          <h1>SORTEADOR DE JURADOS</h1>
-          <h2>Faça Login para acessar o Sistema</h2>
+      <C.Container  >
+        <C.Content>
+          <C.LogoContainer>
+            <C.Logo src={logoIMG} />
+            <h1>Fórum Desembargador <span> Raimundo Ewerton De Paiva</span></h1>
+            <h2>São Luís Gonzaga do Maranhão</h2>
 
-          <input
-            type="email"
-            placeholder="E-mail"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            onFocus={() => setErrorLog('')}
-          />
-          <input
-            type="password"
-            placeholder="Digite sua senha"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          {errorLog && (
-            <C.Error>
-              {errorLog}
-            </C.Error>
-          )}
+          </C.LogoContainer>
+          <C.InputsContainer onSubmit={handleSubmit}>
+            <h1>SORTEADOR DE JURADOS</h1>
+            <h2>Faça Login para acessar o Sistema</h2>
 
-          <button >
-            LOGIN
-          </button>
-          {/* <Link to="/home" className="button" >
+            <input
+              type="email"
+              placeholder="E-mail"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              onFocus={() => setErrorLog('')}
+            />
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            {errorLog && (
+              <C.Error>
+                {errorLog}
+              </C.Error>
+            )}
+
+            <button >
+              LOGIN
+            </button>
+            {/* <Link to="/home" className="button" >
             LOGIN
           </Link>*/}
-          <span onClick={() => alert('acesso solicitado')}>
-            Solicitar acesso
-          </span>
+            <span onClick={() => alert('acesso solicitado')}>
+              Solicitar acesso
+            </span>
 
-        </C.InputsContainer>
-        <C.Footer>
-          2023 - © Licenciado gratuitamente por Adailton Mesquita.
-        </C.Footer>
-      </C.Content>
-    </C.Container>
+          </C.InputsContainer>
+          <C.Footer>
+            2023 - © Licenciado gratuitamente por Adailton Mesquita.
+          </C.Footer>
+        </C.Content>
+      </C.Container>
+
+    </>
   );
 };
+
+
