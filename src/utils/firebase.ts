@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app';
 import * as firebaseAuth from 'firebase/auth';
+import * as firestoreAuth from 'firebase/firestore';
 
 import { browserSessionPersistence } from 'firebase/auth';
 
@@ -18,3 +19,5 @@ const app = firebase.initializeApp(firebaseConfig);
 export const auth = firebaseAuth.initializeAuth(app, {
   persistence: browserSessionPersistence
 });
+
+export const db = firestoreAuth.getFirestore(app);

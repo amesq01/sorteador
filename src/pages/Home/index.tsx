@@ -50,6 +50,8 @@ import {
 
 import { authUser } from '../../contexts/userContext';
 import { Navigate } from 'react-router-dom';
+import { db } from '../../utils/firebase';
+import { addDoc, collection } from 'firebase/firestore';
 
 
 
@@ -184,9 +186,12 @@ export function Home() {
       alert('Os sete jurados já foram sorteados');
     }
   }
-  function handleSaveSort() {
+
+  async function handleSaveSort(e) {
     alert('sorteio salvo');
-    <Navigate to={'/results'} state={listAllJurors} />;
+    e.preventDefault();
+    await addDoc(collection(db, 'teste2'), { jurorsDrawn, listAbsentWithJustification });
+
   }
 
   function handleDrawnsAcceptedsJurors() {
