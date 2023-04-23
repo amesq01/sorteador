@@ -74,6 +74,7 @@ export function Results() {
       const data = await getDocs(collection(db, 'teste2'));
       const results = data.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       const resultsLast:any = results[(results.length -1)];
+      console.log(resultsLast);
       const createdAt = new Date (resultsLast.createdAt.seconds*1000).toLocaleDateString('pt-BR');
       const listAllJurors = resultsLast.listAllJurors;
       const listDrawnJurors = resultsLast.jurorsDrawn;
@@ -103,7 +104,7 @@ export function Results() {
 
     getDrawns();
 
-  }, []);
+  }, [data]);
 
   return (
     <>
