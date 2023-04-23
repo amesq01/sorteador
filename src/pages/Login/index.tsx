@@ -30,7 +30,6 @@ export const Login = () => {
 
 
     if (user) {
-      setLogged(true);
       navigate('/home');
       console.log('usuario DENTRO userEffect', user);
 

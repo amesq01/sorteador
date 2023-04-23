@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 import Marquee from 'react-fast-marquee';
 import Modal from 'react-modal';
@@ -49,7 +49,7 @@ import {
 
 
 import { authUser } from '../../contexts/userContext';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../utils/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 
@@ -165,12 +165,12 @@ export function Home() {
     setSortButtonState(true);
   }
 
+
+
   function handleShowProcessInfos() {
     setAppearButtonNewDrawn(false);
     closeModalProcessInfos();
     setShowContent(true);
-
-
   }
 
   function handleSortJurors() {
@@ -190,7 +190,24 @@ export function Home() {
   async function handleSaveSort(e) {
     alert('sorteio salvo');
     e.preventDefault();
-    await addDoc(collection(db, 'teste2'), { jurorsDrawn, listAbsentWithJustification });
+    await addDoc(collection(db, 'teste2'), {
+      listAllJurors,
+      jurorsDrawn,
+      jurorsNotDrawnConst,
+      listDispenseJurorsJudge,
+      listMotivatedDispenseJurorsMP,
+      listUnMotivatedDispenseJurorsMP,
+      listMotivatedDispenseJurorsAdv,
+      listUnMotivatedDispenseJurorsAdv,
+      listAbsentWithJustification,
+      listAbsentWithoutJustification,
+      listAllProcessInfos
+
+    });
+
+    setTimeout(() => {
+      navigate('/results');
+    }, 500);
 
   }
 
@@ -268,6 +285,8 @@ export function Home() {
     }
   }
 
+  const navigate = useNavigate()
+    ;
   const { user, logout } = authUser();
   console.log('email testando:', user);
 
@@ -442,6 +461,7 @@ export function Home() {
             <Modal
               isOpen={modalAbsentJurorIsOpen}
               onAfterOpen={afterOpenModalAbsentJuror}
+              onRequestClose={closeModalAbsentJuror}
               style={customStyles}
             >
               <ModalShowAbsentJuror>
@@ -462,10 +482,11 @@ export function Home() {
             </Modal>
             {/* FIM MODAL JURADO SORTEADO */}
 
-            {/* INÍCIO MODAL JURADO AUSENTE */}
+            {/* INÍCIO MODAL Process INFOS */}
             <Modal
               isOpen={modalProcessInfosIsOpen}
               onAfterOpen={afterOpenModalProcessInfos}
+
               style={customStyles}
             >
               <ModalShowProcessInfos>
@@ -496,7 +517,7 @@ Tipicidade Penal: Art. 121 cpb...'
               </ModalShowProcessInfos>
 
             </Modal>
-            {/* FIM MODAL JURADO SORTEADO */}
+            {/* FIM MODAL PROCESS INFOS */}
 
             {/* FIM TODOS MODAIS */}
 
