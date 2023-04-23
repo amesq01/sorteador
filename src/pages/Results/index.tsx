@@ -104,7 +104,11 @@ export function Results() {
 
     getDrawns();
 
-  }, [data]);
+    setTimeout(()=>{
+      alert('UserEffect');
+    }, 1000);
+
+  }, []);
 
   return (
     <>
