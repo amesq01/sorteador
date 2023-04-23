@@ -145,21 +145,7 @@ export function Results() {
               <ResultItem data={  listUnMotivatedDispenseJurorsMP  } label='Lista de Todos os Jurados dispensados sem motivo pelo Ministério Público'  />
             </div>
 
-            <div>
-              {
-                listDrawnJurors.map(item => {
-                  return(
-                    <div key={item}>
-                      <ul>
-                        <li>
-                          {item}
-                        </li>
-                      </ul>
-                    </div>
-                  );
-                } )
-              }
-            </div>
+
           </Content >
 
           <Footer>
