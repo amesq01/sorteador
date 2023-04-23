@@ -22,9 +22,9 @@ const UserContext = createContext<IProviderProps>({} as any);
 
 export const UserContextProvider = ({ children }: any) => {
 
-  const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+
+  const [user, setUser] = useLocalStorage('teste', null as any);
 
   function signIn(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -39,7 +39,7 @@ export const UserContextProvider = ({ children }: any) => {
       console.log('intoUserEffectContext ', currentUser);
       setUser(currentUser);
     });
-    return () => unsubscribe();
+    return ()=> unsubscribe();
   }, []);
 
 

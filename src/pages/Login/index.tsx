@@ -34,7 +34,7 @@ export const Login = () => {
       console.log('usuario DENTRO userEffect', user);
 
     }
-  }, [user]);
+  }, []);
   console.log('depois aquiusereffect', user);
 
   async function handleSubmit(e: any) {

@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app';
 import * as firebaseAuth from 'firebase/auth';
 import * as firestoreAuth from 'firebase/firestore';
 
-import { browserSessionPersistence } from 'firebase/auth';
+import { browserLocalPersistence } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 
 export const auth = firebaseAuth.initializeAuth(app, {
-  persistence: browserSessionPersistence
+  persistence:browserLocalPersistence
 });
 
 export const db = firestoreAuth.getFirestore(app);

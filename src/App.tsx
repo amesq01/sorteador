@@ -18,15 +18,15 @@ export default function App() {
   return (
 
 
-    <Router>
-      <UserContextProvider >
+    <UserContextProvider >
+      <Router>
         <Routes>
 
           <Route path="/" element={<Login />} />
           <Route path='/home' element={<Private> <Home /></Private>} />
           <Route path='/results' element={<Private> <Results /></Private>} />
         </Routes>
-      </UserContextProvider>
-    </Router>
+      </Router>
+    </UserContextProvider>
   );
 }

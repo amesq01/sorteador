@@ -188,9 +188,9 @@ export function Home() {
   }
 
   async function handleSaveSort(e) {
-    alert('sorteio salvo');
     e.preventDefault();
-    await addDoc(collection(db, 'teste2'), {
+    const collectionRef = collection(db, 'teste2');
+    await addDoc(collectionRef, {
       listAllJurors,
       jurorsDrawn,
       jurorsNotDrawnConst,
@@ -202,11 +202,11 @@ export function Home() {
       listAbsentWithJustification,
       listAbsentWithoutJustification,
       listAllProcessInfos
-
     });
 
     setTimeout(() => {
       navigate('/results');
+      alert('sorteio salvo');
     }, 500);
 
   }
