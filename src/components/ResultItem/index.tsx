@@ -12,6 +12,9 @@ type TestProps = {
 }
 
 export function ResultItem({ label, data, borderColor }: TestProps) {
+
+  console.log(data);
+
   return (
     <>
       {
