@@ -189,7 +189,7 @@ export function Home() {
 
   async function handleSaveSort(e:any) {
     e.preventDefault();
-    const collectionRef = collection(db, 'teste2');
+    const collectionRef = collection(db, 'teste2','sorteio2');
     await addDoc(collectionRef, {
       listAllJurors,
       jurorsDrawn,
