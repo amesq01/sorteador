@@ -7,6 +7,7 @@ import logoIMG from '../../assets/logo.png';
 
 import { authUser } from '../../contexts/userContext';
 import { Loading } from '../../components/Loading';
+import Marquee from 'react-fast-marquee';
 
 
 
@@ -96,7 +97,10 @@ export const Login = () => {
 
           </C.InputsContainer>
           <C.Footer>
-            2023 - © Licenciado gratuitamente por Adailton Mesquita.
+            <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
+              <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
+              <strong style={{ marginLeft: '.5rem', marginRight: '.5rem' }}>@AdailtonMesquita </strong> <span style={{ marginRight: '2rem' }}> - Projeto desenvolvido com o apoio do servidor do TJMA @FranciscoBogea</span>
+            </Marquee>
           </C.Footer>
         </C.Content>
       </C.Container>

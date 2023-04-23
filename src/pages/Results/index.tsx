@@ -10,6 +10,9 @@ import {
   Header,
   LogoImg,
   Title,
+  SubHeader,
+  ProcessInfos,
+  UserInfo,
   ContentContainer,
   Content,
   Footer,
@@ -22,6 +25,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { db } from '../../utils/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { DrawnJuror } from '../../components/Button/styles';
+import { ResultItem } from '../../components/ResultItem';
 
 
 
@@ -43,25 +47,63 @@ export function Results() {
   }
 
   const navigate = useNavigate();
+
   const { user, logout } = authUser();
-  const [drawns, setDrawns] = useState([] as any);
+
+  const [createdAt, setCreatedAt] = useState<string>();
+  const [listAllJurors, setListAllJurors] = useState([] as any);
+  const [listDrawnJurors, setListDrawnJurors] = useState([] as any);
+  const [listJurorsNotDrawnConst, setListJurorsNotDrawnConst] = useState([] as any);
+  const [listDispenseJurorsJudge, setListDispenseJurorsJudge] = useState([] as any);
+  const [listAbsentWithJustification, setListAbsentWithJustification] = useState([] as any);
+  const [listAbsentWithoutJustification, setListAbsentWithoutJustification] = useState([] as any);
+  const [listAllProcessInfos, setListAllProcessInfos] = useState([] as any);
+  const [listMotivatedDispenseJurorsAdv, setListMotivatedDispenseJurorsAdv] = useState([] as any);
+  const [listUnMotivatedDispenseJurorsAdv, setListUnMotivatedDispenseJurorsAdv] = useState([] as any);
+  const [listMotivatedDispenseJurorsMP, setListMotivatedDispenseJurorsMP] = useState([] as any);
+  const [listUnMotivatedDispenseJurorsMP, setListUnMotivatedDispenseJurorsMP] = useState([] as any);
+
+  //const [drawns, setDrawns] = useState([] as any);
 
 
   useEffect(() => {
+
+
+
     const getDrawns = async () => {
       const data = await getDocs(collection(db, 'teste2'));
       const results = data.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      const a = results[0];
-      console.log(a);
+      const resultsLast:any = results[(results.length -1)];
+      const createdAt = new Date (resultsLast.createdAt.seconds*1000).toLocaleDateString('pt-BR');
+      const listAllJurors = resultsLast.listAllJurors;
+      const listDrawnJurors = resultsLast.jurorsDrawn;
+      const listJurorsNotDrawnConst = resultsLast.jurorsNotDrawnConst;
+      const listDispenseJurorsJudge = resultsLast.listDispenseJurorsJudge;
+      const listAbsentWithJustification = resultsLast.listAbsentWithJustification;
+      const listAbsentWithoutJustification = resultsLast.listAbsentWithoutJustification;
+      const listAllProcessInfos = resultsLast.listAllProcessInfos;
+      const listMotivatedDispenseJurorsAdv = resultsLast.listMotivatedDispenseJurorsAdv;
+      const listUnMotivatedDispenseJurorsAdv = resultsLast.listUnMotivatedDispenseJurorsAdv;
+      const listMotivatedDispenseJurorsMP = resultsLast.listMotivatedDispenseJurorsMP;
+      const listUnMotivatedDispenseJurorsMP = resultsLast.listUnMotivatedDispenseJurorsMP;
 
-      setDrawns(a);
-      console.log('lista', drawns);
-
-
+      setCreatedAt(createdAt);
+      setListAllJurors(listAllJurors);
+      setListDrawnJurors(listDrawnJurors);
+      setListJurorsNotDrawnConst(listJurorsNotDrawnConst);
+      setListDispenseJurorsJudge(listDispenseJurorsJudge);
+      setListAbsentWithJustification(listAbsentWithJustification);
+      setListAbsentWithoutJustification(listAbsentWithoutJustification);
+      setListAllProcessInfos(listAllProcessInfos);
+      setListMotivatedDispenseJurorsAdv(listMotivatedDispenseJurorsAdv);
+      setListUnMotivatedDispenseJurorsAdv(listUnMotivatedDispenseJurorsAdv);
+      setListMotivatedDispenseJurorsMP(listMotivatedDispenseJurorsMP);
+      setListUnMotivatedDispenseJurorsMP(listUnMotivatedDispenseJurorsMP);
     };
-    getDrawns();
-  }, []);
 
+    getDrawns();
+
+  }, []);
 
   return (
     <>
@@ -70,18 +112,39 @@ export function Results() {
         <Header>
           <LogoImg src={logo} />
           <Title>Sorteador de Jurados</Title>
-          <span>Usuário LOGADO: {user.email} <button onClick={handleLogout}>Sair</button></span>
+
         </Header>
 
+        <SubHeader>
+          <ProcessInfos>
+            {listAllProcessInfos.map((item:any)=> <span key={item}>{item}</span> )}
+          </ProcessInfos>
+          <UserInfo>
+            <span>Usuário Logado:</span>
+            <span>{user.email}</span>
+            <button onClick={handleLogout} >Sair</button>
+          </UserInfo>
+        </SubHeader>
 
 
         <ContentContainer>
           <Content>
-            <h1>ok
+            <h2>Sorteio realizado em: <span>{createdAt}</span></h2>
 
-            </h1>
+            <div style={{display:'flex', gap:'1.2rem', marginTop:'1.2rem'}}>
+
+              <ResultItem data={listAllJurors} label='Lista de Todos os Jurados' />
+              <ResultItem data={listDrawnJurors} label='Lista de Todos os Jurados Aceitos' borderColor />
+              <ResultItem data={listJurorsNotDrawnConst} label='Lista de Todos os Jurados não sorteados'  />
+              <ResultItem data={ listDispenseJurorsJudge   } label='Lista de Todos os Jurados Dispensados pelo Juízo'  />
+              <ResultItem data={listAbsentWithJustification} label='Lista de Todos os Jurados ausentes com justificativa'  />
+              <ResultItem data={   listAbsentWithoutJustification } label='Lista de Todos os Jurados ausentes sem justificativa'  />
+              <ResultItem data={  listMotivatedDispenseJurorsAdv  } label='Lista de Todos os Jurados dispensados com motivo pelo Advogado(a)'  />
+              <ResultItem data={  listUnMotivatedDispenseJurorsAdv  } label='Lista de Todos os Jurados dispensados sem motivo pelo Advogado(a)'  />
+              <ResultItem data={  listMotivatedDispenseJurorsMP  } label='Lista de Todos os Jurados dispensados com motivo pelo Ministério Público'  />
+              <ResultItem data={  listUnMotivatedDispenseJurorsMP  } label='Lista de Todos os Jurados dispensados sem motivo pelo Ministério Público'  />
+            </div>
           </Content >
-
 
           <Footer>
             <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>

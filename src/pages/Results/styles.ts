@@ -35,6 +35,10 @@ export const Title = styled.h1`
   letter-spacing:.7rem ;
 `;
 
+export const SubHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const ProcessInfos = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,6 +49,25 @@ export const ProcessInfos = styled.div`
   padding: 2rem
 `;
 
+export const UserInfo = styled.div`
+  padding: 2rem;
+  padding-right: 2% ;
+  display: flex;
+  flex-direction:column;
+  align-items: flex-end;
+
+  button {
+    display: flex;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+
+`;
 export const ContentContainer = styled.main`
   display: flex;
   flex-direction: column;

@@ -20,11 +20,13 @@ import { PlusCircle } from '@phosphor-icons/react';
 import {
   Container,
   Header,
-  ProcessInfos,
-  ContentContainer,
-  Content,
   LogoImg,
   Title,
+  SubHeader,
+  ProcessInfos,
+  UserInfo,
+  ContentContainer,
+  Content,
   FormContainer,
   ButtonNewDrawn,
   TextAreaJurors,
@@ -91,6 +93,9 @@ export function Home() {
       !listAbsentWithoutJustification.includes(nome));
 
   const processInfo: Array<string> = [];
+
+  const createdAt = new Date();
+  console.log('const Data',createdAt);
 
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
@@ -189,7 +194,7 @@ export function Home() {
 
   async function handleSaveSort(e:any) {
     e.preventDefault();
-    const collectionRef = collection(db, 'teste2','sorteio2');
+    const collectionRef = collection(db, 'teste2');
     await addDoc(collectionRef, {
       listAllJurors,
       jurorsDrawn,
@@ -201,7 +206,8 @@ export function Home() {
       listUnMotivatedDispenseJurorsAdv,
       listAbsentWithJustification,
       listAbsentWithoutJustification,
-      listAllProcessInfos
+      listAllProcessInfos,
+      createdAt,
     });
 
     setTimeout(() => {
@@ -298,11 +304,15 @@ export function Home() {
         <Header>
           <LogoImg src={logo} />
           <Title>Sorteador de Jurados</Title>
-          <span>Usuário LOGADO: {user.email} <button onClick={handleLogout}>Sair</button></span>
         </Header>
 
-        {
-          listAllProcessInfos.length >= 1 &&
+
+        <SubHeader>
+
+          {
+
+
+            listAllProcessInfos.length >= 1 &&
 
           <ProcessInfos>
             {
@@ -310,7 +320,14 @@ export function Home() {
                 <span key={info}>{info}</span>)
             }
           </ProcessInfos>
-        }
+          }
+          <UserInfo>
+            <span>Usuário Logado:</span>
+            <span>{user.email}</span>
+            <button onClick={handleLogout} >Sair</button>
+          </UserInfo>
+        </SubHeader>
+
 
 
 

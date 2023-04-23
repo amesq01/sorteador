@@ -106,7 +106,7 @@ export const Footer = styled.footer`
     color: #333;
     font-size: 12px;
     font-weight: bold;
-    width: 100%;
+    width: 50%;
     font-family: "Gruppo", sans-serif;
     line-height: 1.4;
 

@@ -67,6 +67,12 @@ export const Title = styled.h1`
   letter-spacing:.7rem ;
 `;
 
+export const SubHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100% ;
+
+`;
 export const ProcessInfos = styled.div`
   display: flex;
   flex-direction: column;
@@ -77,6 +83,24 @@ export const ProcessInfos = styled.div`
   padding: 2rem
 `;
 
+export const UserInfo = styled.div`
+  padding: 2rem;
+  padding-right: 2% ;
+  display: flex;
+  flex-direction:column;
+  align-items: flex-end;
+  flex:1;
+
+  button {
+    display: flex;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+`;
 export const ContentContainer = styled.main`
   display: flex;
   flex-direction: column;
@@ -147,7 +171,7 @@ export const TextAreaJurors = styled.textarea<mtProps>`
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-  margin-top: ${({ mt }) => mt === true ? '0rem' : '15vh'};
+  margin-top: ${({ mt }) => mt === true ? '0rem' : '2%'};
   `;
 
 export const AddListButton = styled.button`
