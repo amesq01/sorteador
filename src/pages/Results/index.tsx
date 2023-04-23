@@ -23,7 +23,7 @@ import {
 import { authUser } from '../../contexts/userContext';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { db } from '../../utils/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query,  } from 'firebase/firestore';
 import { DrawnJuror } from '../../components/Button/styles';
 import { ResultItem } from '../../components/ResultItem';
 
@@ -71,7 +71,9 @@ export function Results() {
 
 
     const getDrawns = async () => {
-      const data = await getDocs(collection(db, 'teste2'));
+      const ref = collection(db, 'teste2');
+      const orderby = query(ref, orderBy('createdAt', 'asc'));
+      const data = await getDocs(orderby);
       const results = data.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       const resultsLast:any = results[(results.length -1)];
       console.log(resultsLast);
@@ -104,9 +106,6 @@ export function Results() {
 
     getDrawns();
 
-    setTimeout(()=>{
-      alert('UserEffect');
-    }, 1000);
 
   }, []);
 
