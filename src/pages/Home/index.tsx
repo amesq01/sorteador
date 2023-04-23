@@ -9,7 +9,7 @@ import { Button } from '../../components/Button';
 import { AbsentButton } from '../../components/AbsentButton';
 import { Spin } from '../../components/Spin';
 
-import logo from '../../../src/assets/logo.png';
+import logo from '../../../src/assets/logoNew.png';
 
 import { customStyles } from '../../utils/constants';
 

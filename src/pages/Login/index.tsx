@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import * as C from './styles';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import logoIMG from '../../assets/logo.png';
+import logoIMG from '../../assets/logoNew.png';
 
 import { authUser } from '../../contexts/userContext';
 import { Loading } from '../../components/Loading';

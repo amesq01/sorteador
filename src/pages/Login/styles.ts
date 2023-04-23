@@ -85,7 +85,7 @@ export const LogoContainer = styled.div`
   `;
 export const Logo = styled.img`
   height: 85px;
-  opacity: 0.6;
+  opacity: 1;
 
   @media (max-width:850px){
     height: 65px;
