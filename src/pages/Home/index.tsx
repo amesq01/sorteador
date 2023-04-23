@@ -187,7 +187,7 @@ export function Home() {
     }
   }
 
-  async function handleSaveSort(e) {
+  async function handleSaveSort(e:any) {
     e.preventDefault();
     const collectionRef = collection(db, 'teste2');
     await addDoc(collectionRef, {
