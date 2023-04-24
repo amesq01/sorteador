@@ -29,7 +29,6 @@ import { OverlayLoading } from '../../components/OverlayLoading';
 
 export function Results() {
 
-  const [load, setLoad] = useState(false);
 
   async function handleLogout(e: any) {
     e.preventDefault();
@@ -41,6 +40,9 @@ export function Results() {
   }
 
   const { user, logout } = authUser();
+
+
+  const [dataBase, setDataBase] = useState([] as any);
 
   const [createdAt, setCreatedAt] = useState<string>();
   const [listAllJurors, setListAllJurors] = useState([] as any);
@@ -58,7 +60,7 @@ export function Results() {
   useEffect(() => {
 
     const getDrawns = async () => {
-      setLoad(true);
+
       const ref = collection(db, 'teste2');
       const orderby = query(ref, orderBy('createdAt', 'asc'));
       const data = await getDocs(orderby);
@@ -77,6 +79,8 @@ export function Results() {
       const listMotivatedDispenseJurorsMP = resultsLast.listMotivatedDispenseJurorsMP;
       const listUnMotivatedDispenseJurorsMP = resultsLast.listUnMotivatedDispenseJurorsMP;
 
+      setDataBase(resultsLast);
+
       setCreatedAt(createdAt);
       setListAllJurors(listAllJurors);
       setListDrawnJurors(listDrawnJurors);
@@ -92,7 +96,7 @@ export function Results() {
     };
 
     getDrawns();
-    setLoad(false);
+
 
 
 
@@ -102,6 +106,10 @@ export function Results() {
   return (
 
     <>
+
+
+
+
       <Container>
 
         <Header>
@@ -110,16 +118,27 @@ export function Results() {
 
         </Header>
 
+
+
         <SubHeader>
+
+
           <ProcessInfos>
+
             {listAllProcessInfos.map((item: any) => <span key={item}>{item}</span>)}
+
           </ProcessInfos>
+
+
+
+
           <UserInfo>
             <span>Usuário Logado:</span>
             <span>{user.email}</span>
             <button onClick={handleLogout} >Sair</button>
           </UserInfo>
         </SubHeader>
+
 
 
         <ContentContainer>
@@ -130,19 +149,20 @@ export function Results() {
 
             <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1.2rem', flexWrap: 'wrap' }}>
 
-              <ResultItem data={listAllJurors} label='Lista de Todos os Jurados' />
-              <ResultItem data={listDrawnJurors} label='Lista de Todos os Jurados Aceitos' borderColor />
-              <ResultItem data={listJurorsNotDrawnConst} label='Lista de Todos os Jurados não sorteados' />
-              <ResultItem data={listDispenseJurorsJudge} label='Lista de Todos os Jurados Dispensados pelo Juízo' />
-              <ResultItem data={listAbsentWithJustification} label='Lista de Todos os Jurados ausentes com justificativa' />
-              <ResultItem data={listAbsentWithoutJustification} label='Lista de Todos os Jurados ausentes sem justificativa' />
-              <ResultItem data={listMotivatedDispenseJurorsAdv} label='Lista de Todos os Jurados dispensados com motivo pelo Advogado(a)' />
-              <ResultItem data={listUnMotivatedDispenseJurorsAdv} label='Lista de Todos os Jurados dispensados sem motivo pelo Advogado(a)' />
-              <ResultItem data={listMotivatedDispenseJurorsMP} label='Lista de Todos os Jurados dispensados com motivo pelo Ministério Público' />
-              <ResultItem data={listUnMotivatedDispenseJurorsMP} label='Lista de Todos os Jurados dispensados sem motivo pelo Ministério Público' />
+              <ResultItem data={listAllJurors} label='Lista geral dos jurados' />
+              <ResultItem data={listDrawnJurors} label='Lista dos jurados aceitos' borderColor />
+              <ResultItem data={listJurorsNotDrawnConst} label='Lista dos jurados não sorteados' />
+              <ResultItem data={listDispenseJurorsJudge} label='Lista dos jurados dispensados pelo Juízo' />
+              <ResultItem data={listAbsentWithJustification} label='Lista dos jurados ausentes com justificativa' />
+              <ResultItem data={listAbsentWithoutJustification} label='Lista dos jurados ausentes sem justificativa' />
+              <ResultItem data={listMotivatedDispenseJurorsAdv} label='Lista dos jurados dispensados com motivo pelo Advogado(a)' />
+              <ResultItem data={listUnMotivatedDispenseJurorsAdv} label='Lista dos jurados dispensados sem motivo pelo Advogado(a)' />
+              <ResultItem data={listMotivatedDispenseJurorsMP} label='Lista dos jurados dispensados com motivo pelo Ministério Público' />
+              <ResultItem data={listUnMotivatedDispenseJurorsMP} label='Lista dos jurados dispensados sem motivo pelo Ministério Público' />
             </div>
 
           </Content >
+
 
           <Footer>
             <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
@@ -151,14 +171,18 @@ export function Results() {
             </Marquee>
           </Footer>
 
+
         </ContentContainer >
 
       </Container >
 
-      {
-        load && < OverlayLoading />
-      }
 
+
+
+      {
+        dataBase.length <= 0 && <OverlayLoading />
+
+      }
     </>
   );
 }

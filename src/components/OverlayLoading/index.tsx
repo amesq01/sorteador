@@ -6,7 +6,7 @@ export function OverlayLoading() {
 
     <Container>
       <Spinner />
-      <Title>Aguarde... teste</Title>
+      <Title>Aguarde... </Title>
     </Container>
   );
 }

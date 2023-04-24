@@ -17,7 +17,7 @@ from {
 export const Container = styled.div`
 
   position: fixed;
-  background: rgba(0, 0, 0, .4);
+  background: white;
   top: 0;
   left: 0;
   width: 100%;
