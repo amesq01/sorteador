@@ -290,10 +290,9 @@ export function Home() {
     }
   }
 
-  const navigate = useNavigate()
-    ;
+  const navigate = useNavigate();
   const { user, logout } = authUser();
-  console.log('email testando:', user);
+
 
 
   return (
@@ -322,7 +321,7 @@ export function Home() {
           }
           <UserInfo>
             <span>Usuário Logado:</span>
-            <span>{user.email}</span>
+            <span>{user.email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José'}</span>
             <button onClick={handleLogout} >Sair</button>
           </UserInfo>
         </SubHeader>
