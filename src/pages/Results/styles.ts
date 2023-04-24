@@ -33,6 +33,7 @@ export const Title = styled.h1`
   text-transform: uppercase ;
   font-family: 'Gruppo', sans-serif;
   letter-spacing:.7rem ;
+  text-align: right;
 `;
 
 export const SubHeader = styled.div`
@@ -55,6 +56,7 @@ export const UserInfo = styled.div`
   display: flex;
   flex-direction:column;
   align-items: flex-end;
+  text-align: right;
 
   button {
     display: flex;

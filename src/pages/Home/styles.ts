@@ -64,7 +64,7 @@ export const Title = styled.h1`
   color: #333;
   text-transform: uppercase ;
   font-family: 'Gruppo', sans-serif;
-  letter-spacing:.7rem ;
+  letter-spacing:.7rem;
   text-align: right;
 `;
 
