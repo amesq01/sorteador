@@ -10,6 +10,7 @@ export const Container = styled.div`
   font-family: 'Open Sans', sans-serif;
   color: #333;
   max-width: 100%;
+
 `;
 
 export const Header = styled.header`

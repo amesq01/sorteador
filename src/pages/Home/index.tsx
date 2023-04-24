@@ -93,6 +93,7 @@ export function Home() {
 
   const processInfo: Array<string> = [];
 
+  const createdAt: Date = new Date();
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
 
