@@ -91,6 +91,7 @@ export const UserInfo = styled.div`
   flex-direction:column;
   align-items: flex-end;
   flex:1;
+  text-align: right;
 
   button {
     display: flex;
