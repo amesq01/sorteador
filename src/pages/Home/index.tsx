@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Marquee from 'react-fast-marquee';
+
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
@@ -14,8 +15,6 @@ import logo from '../../../src/assets/logoNew.png';
 import { customStyles } from '../../utils/constants';
 
 import { PlusCircle } from '@phosphor-icons/react';
-
-
 
 import {
   Container,
@@ -95,7 +94,7 @@ export function Home() {
   const processInfo: Array<string> = [];
 
   const createdAt = new Date();
-  console.log('const Data',createdAt);
+  console.log('const Data', createdAt);
 
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
@@ -192,7 +191,7 @@ export function Home() {
     }
   }
 
-  async function handleSaveSort(e:any) {
+  async function handleSaveSort(e: any) {
     e.preventDefault();
     const collectionRef = collection(db, 'teste2');
     await addDoc(collectionRef, {
@@ -314,12 +313,12 @@ export function Home() {
 
             listAllProcessInfos.length >= 1 &&
 
-          <ProcessInfos>
-            {
-              listAllProcessInfos.map(info =>
-                <span key={info}>{info}</span>)
-            }
-          </ProcessInfos>
+            <ProcessInfos>
+              {
+                listAllProcessInfos.map(info =>
+                  <span key={info}>{info}</span>)
+              }
+            </ProcessInfos>
           }
           <UserInfo>
             <span>Usuário Logado:</span>

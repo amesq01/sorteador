@@ -21,21 +21,15 @@ import {
 
 
 import { authUser } from '../../contexts/userContext';
-import { Navigate, useNavigate } from 'react-router-dom';
 import { db } from '../../utils/firebase';
-import { collection, getDocs, orderBy, query,  } from 'firebase/firestore';
-import { DrawnJuror } from '../../components/Button/styles';
+import { collection, getDocs, orderBy, query, } from 'firebase/firestore';
+
 import { ResultItem } from '../../components/ResultItem';
-
-
+import { OverlayLoading } from '../../components/OverlayLoading';
 
 export function Results() {
 
-
-  // Obtém uma referência para a coleção
-
-
-
+  const [load, setLoad] = useState(false);
 
   async function handleLogout(e: any) {
     e.preventDefault();
@@ -45,8 +39,6 @@ export function Results() {
       console.log(error);
     }
   }
-
-  const navigate = useNavigate();
 
   const { user, logout } = authUser();
 
@@ -63,21 +55,16 @@ export function Results() {
   const [listMotivatedDispenseJurorsMP, setListMotivatedDispenseJurorsMP] = useState([] as any);
   const [listUnMotivatedDispenseJurorsMP, setListUnMotivatedDispenseJurorsMP] = useState([] as any);
 
-  //const [drawns, setDrawns] = useState([] as any);
-
-
   useEffect(() => {
 
-
-
     const getDrawns = async () => {
+      setLoad(true);
       const ref = collection(db, 'teste2');
       const orderby = query(ref, orderBy('createdAt', 'asc'));
       const data = await getDocs(orderby);
       const results = data.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      const resultsLast:any = results[(results.length -1)];
-      console.log(resultsLast);
-      const createdAt = new Date (resultsLast.createdAt.seconds*1000).toLocaleDateString('pt-BR');
+      const resultsLast: any = results[(results.length - 1)];
+      const createdAt = new Date(resultsLast.createdAt.seconds * 1000).toLocaleDateString('pt-BR');
       const listAllJurors = resultsLast.listAllJurors;
       const listDrawnJurors = resultsLast.jurorsDrawn;
       const listJurorsNotDrawnConst = resultsLast.jurorsNotDrawnConst;
@@ -105,11 +92,15 @@ export function Results() {
     };
 
     getDrawns();
+    setLoad(false);
+
+
 
 
   }, []);
 
   return (
+
     <>
       <Container>
 
@@ -121,7 +112,7 @@ export function Results() {
 
         <SubHeader>
           <ProcessInfos>
-            {listAllProcessInfos.map((item:any)=> <span key={item}>{item}</span> )}
+            {listAllProcessInfos.map((item: any) => <span key={item}>{item}</span>)}
           </ProcessInfos>
           <UserInfo>
             <span>Usuário Logado:</span>
@@ -132,23 +123,24 @@ export function Results() {
 
 
         <ContentContainer>
+
           <Content>
+
             <h2>Sorteio realizado em: <span>{createdAt}</span></h2>
 
-            <div style={{display:'flex', gap:'1.2rem', marginTop:'1.2rem'}}>
+            <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1.2rem', flexWrap: 'wrap' }}>
 
               <ResultItem data={listAllJurors} label='Lista de Todos os Jurados' />
               <ResultItem data={listDrawnJurors} label='Lista de Todos os Jurados Aceitos' borderColor />
-              <ResultItem data={listJurorsNotDrawnConst} label='Lista de Todos os Jurados não sorteados'  />
-              <ResultItem data={ listDispenseJurorsJudge   } label='Lista de Todos os Jurados Dispensados pelo Juízo'  />
-              <ResultItem data={listAbsentWithJustification} label='Lista de Todos os Jurados ausentes com justificativa'  />
-              <ResultItem data={   listAbsentWithoutJustification } label='Lista de Todos os Jurados ausentes sem justificativa'  />
-              <ResultItem data={  listMotivatedDispenseJurorsAdv  } label='Lista de Todos os Jurados dispensados com motivo pelo Advogado(a)'  />
-              <ResultItem data={  listUnMotivatedDispenseJurorsAdv  } label='Lista de Todos os Jurados dispensados sem motivo pelo Advogado(a)'  />
-              <ResultItem data={  listMotivatedDispenseJurorsMP  } label='Lista de Todos os Jurados dispensados com motivo pelo Ministério Público'  />
-              <ResultItem data={  listUnMotivatedDispenseJurorsMP  } label='Lista de Todos os Jurados dispensados sem motivo pelo Ministério Público'  />
+              <ResultItem data={listJurorsNotDrawnConst} label='Lista de Todos os Jurados não sorteados' />
+              <ResultItem data={listDispenseJurorsJudge} label='Lista de Todos os Jurados Dispensados pelo Juízo' />
+              <ResultItem data={listAbsentWithJustification} label='Lista de Todos os Jurados ausentes com justificativa' />
+              <ResultItem data={listAbsentWithoutJustification} label='Lista de Todos os Jurados ausentes sem justificativa' />
+              <ResultItem data={listMotivatedDispenseJurorsAdv} label='Lista de Todos os Jurados dispensados com motivo pelo Advogado(a)' />
+              <ResultItem data={listUnMotivatedDispenseJurorsAdv} label='Lista de Todos os Jurados dispensados sem motivo pelo Advogado(a)' />
+              <ResultItem data={listMotivatedDispenseJurorsMP} label='Lista de Todos os Jurados dispensados com motivo pelo Ministério Público' />
+              <ResultItem data={listUnMotivatedDispenseJurorsMP} label='Lista de Todos os Jurados dispensados sem motivo pelo Ministério Público' />
             </div>
-
 
           </Content >
 
@@ -162,6 +154,10 @@ export function Results() {
         </ContentContainer >
 
       </Container >
+
+      {
+        load && < OverlayLoading />
+      }
 
     </>
   );

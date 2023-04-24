@@ -4,24 +4,21 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { UserContextProvider, authUser } from './contexts/userContext';
 import { Private } from './pages/Private';
-import { Loading } from './components/Loading';
 import { Results } from './pages/Results';
 
-
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
 
   const { user } = authUser();
-  console.log('user APP', user);
+  console.log('user App Inicio', user);
 
   return (
-
 
     <UserContextProvider >
       <Router>
         <Routes>
-
           <Route path="/" element={<Login />} />
           <Route path='/home' element={<Private> <Home /></Private>} />
           <Route path='/results' element={<Private> <Results /></Private>} />

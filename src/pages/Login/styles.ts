@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-
 import bgImg15 from '../../assets/bg15.png';
-
 
 export const Container = styled.div`
   display: flex;
@@ -16,9 +14,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   color: #333;
-
-
 `;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -49,9 +46,6 @@ export const LogoContainer = styled.div`
     width: 100%;
   }
 
-
-
-
   h1 {
     text-align: center;
     font-size:32px;
@@ -60,29 +54,26 @@ export const LogoContainer = styled.div`
     margin-top: 50px;
     margin-bottom: 50px;
 
-
-
-
     span{
-
       display: block;
     }
+
     @media (max-width:500px){
     display: none;
-
+  }
   }
 
-  }
   h2 {
     text-align: center;
     font-size: 20px;
-
     font-weight: 400;
+
     @media (max-width:500px){
     display: none;
   }
   }
   `;
+
 export const Logo = styled.img`
   height: 85px;
   opacity: 1;
@@ -90,6 +81,7 @@ export const Logo = styled.img`
   @media (max-width:850px){
     height: 65px;
   }
+
   @media (max-width:600px){
     height: 45px;
   }
@@ -97,19 +89,16 @@ export const Logo = styled.img`
 `;
 
 export const Footer = styled.footer`
-
     position: absolute;
     padding:5px 0 5px 20px;
     left: 0;
     bottom: 0;
-
     color: #333;
     font-size: 12px;
     font-weight: bold;
     width: 50%;
     font-family: "Gruppo", sans-serif;
     line-height: 1.4;
-
 `;
 
 export const InputsContainer = styled.form`
@@ -119,6 +108,7 @@ export const InputsContainer = styled.form`
   justify-content: center;
   align-items: center;
   border-left: 0.2px solid rgba(255, 255, 255, 0.1);
+
   @media (max-width:500px){
     width: 100%;
     margin-top: 80px;
@@ -130,10 +120,12 @@ export const InputsContainer = styled.form`
     font-size: 32px;
     font-weight: bold;
     color: #333;
+
     @media (max-width:500px){
       font-size: 28px;
   }
   }
+
   h2 {
     text-align: flex-end;
     font-family: "Gruppo", sans-serif;
@@ -144,6 +136,7 @@ export const InputsContainer = styled.form`
     font-weight: 700;
     margin-bottom: 44px;
   }
+
   input {
     width: 80%;
     max-width: 600px;
@@ -157,27 +150,17 @@ export const InputsContainer = styled.form`
     font-size: 12px;
     letter-spacing: .3px;
 
-
-
-
-
     ::placeholder,
     ::-webkit-input-placeholder {
       color: #333;
-
-
     }
-
   }
-
-
 
   button {
     width: 80%;
     max-width: 600px;
     height: 45px;
     margin-bottom: 10px;
-
     background-color: #3b8fe7;
     outline: none;
     border: none;
@@ -201,10 +184,7 @@ export const InputsContainer = styled.form`
     width: 80%;
     justify-content: flex-end;
     cursor: pointer;
-
   }
-
-
 `;
 
 export const Error = styled.div`
