@@ -65,6 +65,7 @@ export const Title = styled.h1`
   text-transform: uppercase ;
   font-family: 'Gruppo', sans-serif;
   letter-spacing:.7rem ;
+  text-align: right;
 `;
 
 export const SubHeader = styled.div`

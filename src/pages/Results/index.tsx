@@ -134,7 +134,7 @@ export function Results() {
 
           <UserInfo>
             <span>Usuário Logado:</span>
-            <span>{user.email}</span>
+            <strong>{user.email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José'}</strong>
             <button onClick={handleLogout} >Sair</button>
           </UserInfo>
         </SubHeader>

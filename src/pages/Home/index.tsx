@@ -326,10 +326,6 @@ export function Home() {
           </UserInfo>
         </SubHeader>
 
-
-
-
-
         <ContentContainer>
           <Content mt={showAllNames}>
 
