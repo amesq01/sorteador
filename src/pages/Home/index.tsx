@@ -321,7 +321,7 @@ export function Home() {
           }
           <UserInfo>
             <span>Usuário Logado:</span>
-            <span>{user.email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José'}</span>
+            <strong>{user.email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José'}</strong>
             <button onClick={handleLogout} >Sair</button>
           </UserInfo>
         </SubHeader>

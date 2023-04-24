@@ -298,6 +298,15 @@ export const ModalShowProcessInfos = styled.div`
   padding: 1.2rem 6rem;
   animation: ${teste} 2s forwards;
 
+  span {
+    font-size: 1.2rem;
+  }
+
+  strong {
+    font-size: 2rem;
+  }
+
+
 `;
 
 
