@@ -97,58 +97,38 @@ export function Results() {
 
     getDrawns();
 
-
-
-
-
   }, []);
 
   return (
-
     <>
-
-
-
-
       <Container>
 
         <Header>
           <LogoImg src={logo} />
           <Title>Sorteador de Jurados</Title>
-
         </Header>
-
-
 
         <SubHeader>
 
-
           <ProcessInfos>
-
             {listAllProcessInfos.map((item: any) => <span key={item}>{item}</span>)}
-
           </ProcessInfos>
-
-
-
 
           <UserInfo>
             <span>Usuário Logado:</span>
             <strong>{user.email === 'amesq1@hotmail.com' ? 'Adailton Mesquita' : 'Francisco José'}</strong>
             <button onClick={handleLogout} >Sair</button>
           </UserInfo>
+
         </SubHeader>
-
-
 
         <ContentContainer>
 
           <Content>
 
-            <h2>Sorteio realizado em: <span>{createdAt}</span></h2>
+            <h3 style={{ marginBlock: '.8rem' }}>Sorteio realizado em: <span>{createdAt}</span></h3>
 
-            <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1.2rem', flexWrap: 'wrap' }}>
-
+            <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1.2rem', flexDirection: 'column' }}>
               <ResultItem data={listAllJurors} label='Lista geral dos jurados' />
               <ResultItem data={listDrawnJurors} label='Lista dos jurados aceitos' borderColor />
               <ResultItem data={listJurorsNotDrawnConst} label='Lista dos jurados não sorteados' />
@@ -163,7 +143,6 @@ export function Results() {
 
           </Content >
 
-
           <Footer>
             <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
               <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
@@ -171,19 +150,15 @@ export function Results() {
             </Marquee>
           </Footer>
 
-
         </ContentContainer >
 
       </Container >
 
-
-
-
       {
         dataBase.length <= 0 && <OverlayLoading />
-
       }
     </>
+
   );
 }
 

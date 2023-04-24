@@ -55,7 +55,7 @@ export function ResultItem({ label, data, borderColor }: TestProps) {
           <Label >
             {label}
             <div>
-              <ClipboardText size={24} onClick={handleClipBoard} style={{ cursor: 'pointer' }} />
+              <ClipboardText size={20} onClick={handleClipBoard} style={{ cursor: 'pointer' }} />
             </div>
           </Label>
 

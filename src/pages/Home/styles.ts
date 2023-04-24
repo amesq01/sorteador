@@ -49,7 +49,7 @@ export const Header = styled.header`
   background-color: rgba(59,143,231, 0.2);
   width: 100% ;
   height: fit-content;
-  padding:2rem 2%;
+  padding:1.2rem 2%;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0rem 0rem 1.6rem rgba(0,0,0,0.2);
@@ -79,19 +79,22 @@ export const ProcessInfos = styled.div`
   flex-direction: column;
   width: fit-content;
   margin-left: 2%;
-  margin-block: 2rem;
+  margin-block: 1.2rem;
   border: .1rem dashed #c6c6c6;
-  padding: 2rem
+  padding: .4rem .8rem;
+  font-size: 1.4rem;
+
 `;
 
 export const UserInfo = styled.div`
-  padding: 2rem;
+  padding: .8rem;
   padding-right: 2% ;
   display: flex;
   flex-direction:column;
   align-items: flex-end;
   flex:1;
   text-align: right;
+  font-size: 1.4rem;
 
   button {
     display: flex;
@@ -123,7 +126,7 @@ export const Content = styled.div<mtProps>`
 export const ButtonNewDrawn = styled.div`
 
   position: absolute;
-  top: 40%;
+  top: 35%;
   transform: translate(-50%);
   left: 50%;
   outline:.2rem dashed rgba(0, 0, 0, 0.15);
@@ -160,24 +163,24 @@ export const FormContainer = styled.form`
 export const TextAreaJurors = styled.textarea<mtProps>`
   display: flex;
   line-height:3rem;
-  min-height: 40rem;
-  max-height: 40rem;
+  min-height: 30rem;
+  max-height: 30rem;
   padding: 2rem 2rem;
   background-color: #f3f9ff;
   width: 100%;
-  max-width: 75rem;
-  min-width: 75rem;
+  max-width: 70rem;
+  min-width: 70rem;
   border: none;
   outline: none;
   font-weight: medium;
   font-size: 2rem;
   border-radius: .4rem;
   box-shadow: 0rem 0rem .4rem rgba(0,0,0,0.1);
-  margin-top: ${({ mt }) => mt === true ? '0rem' : '2%'};
+  margin-top: ${({ mt }) => mt === true ? '0rem' : '1.2rem'};
   `;
 
 export const AddListButton = styled.button`
-  width: 75rem;
+  width: 70rem;
   padding: 1.2rem;
   border-radius: .4rem;
   border: none;
@@ -194,14 +197,14 @@ export const AddListButton = styled.button`
 export const ShowsAllNamesContainer = styled.div`
   color:#252525;
   background-color: rgba(59,143,231, 0.1);
-  padding: 2rem;
+  padding: .8rem 1.2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-radius: .8rem ;
-  grid-row-gap: 1.2rem ;
+  grid-row-gap: .8rem ;
   grid-column-gap: 2rem;
   width: 100%;
-  font-weight:500;
+  font-weight:600;
 
   ul {
     list-style-type: none ;
@@ -209,12 +212,12 @@ export const ShowsAllNamesContainer = styled.div`
 
   .divShow {
     background-color: rgba(0,0,0, 0.035);
-    padding: 1rem;
+    padding: .8rem;
     width: fit-content;
     border-radius: .8rem;
     display: flex;
     align-items: center;
-    font-size: 1.85rem;
+    font-size: 1.7rem;
     cursor:pointer;
 
   }
@@ -324,8 +327,8 @@ export const TextAreaProcessInfos = styled.textarea`
   width: 100%;
   max-width: 75rem;
   min-width: 75rem;
-  height: 50rem;
-  min-height: fit-content;
+  height: 30rem;
+  min-height: 30rem;
   border: none;
   outline: none;
   font-weight: medium;

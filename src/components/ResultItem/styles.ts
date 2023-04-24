@@ -10,10 +10,10 @@ export const Container = styled.div<borderProps>`
   flex-direction:column;
   background-color:#fff;
   border-radius: .8rem;
-  max-width: 35rem;
+  max-width: 100%;
   overflow:hidden;
   height: fit-content;
-  border: ${({ border }) => border === true ? '.15rem dashed green' : 'none'};
+  border: ${({ border }) => border === true ? '.2rem dashed green' : 'none'};
 
 `;
 
@@ -22,27 +22,31 @@ export const Label = styled.div`
   display:flex;
   align-items: center;
   justify-content: space-between;
-  height:8rem;
+  border-bottom-right-radius:1.2rem;
   background-color:#bedaf7;
   gap: 1.2rem;
   font-weight:600;
-  padding: .8rem 1.2rem;
+  padding: .4rem 1.2rem;
   font-weight:bold;
   font-size: 1.4rem;
   text-align: center;
   text-transform:uppercase;
+  max-width: fit-content;
 
 
 `;
 export const ItemsContainer = styled.div`
-  display: flex;
-  flex-direction:column;
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr  ;
+
   padding:.8rem;
-  gap: 1.2rem;
+  gap: .8rem;
 `;
 
 export const Item = styled.span`
   display: flex;
   align-items: center;
+  width: fit-content;
+  font-weight: 500;
 
 `;

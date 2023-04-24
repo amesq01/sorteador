@@ -330,7 +330,9 @@ export function Home() {
           <Content mt={showAllNames}>
 
             {
-              appearButtonNewDrawn && <ButtonNewDrawn onClick={handleAddNewDrawn}>
+              appearButtonNewDrawn &&
+
+              <ButtonNewDrawn onClick={handleAddNewDrawn}>
                 <PlusCircle size={40} color="#555" weight="bold" />
                 <span>Novo sorteio</span>
               </ButtonNewDrawn>

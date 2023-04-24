@@ -17,7 +17,7 @@ export const Header = styled.header`
   background-color: rgba(59,143,231, 0.2);
   width: 100% ;
   height: fit-content;
-  padding:2rem 2%;
+  padding:1.2rem 2%;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0rem 0rem 1.6rem rgba(0,0,0,0.2);
@@ -45,18 +45,21 @@ export const ProcessInfos = styled.div`
   flex-direction: column;
   width: fit-content;
   margin-left: 2%;
-  margin-block: 2rem;
+  margin-block: 1.2rem;
   border: .1rem dashed #c6c6c6;
-  padding: 2rem
+  padding: .4rem .8rem;
+  font-size: 1.4rem;
 `;
 
 export const UserInfo = styled.div`
-  padding: 2rem;
+  padding: .8rem;
   padding-right: 2% ;
   display: flex;
   flex-direction:column;
   align-items: flex-end;
+  flex:1;
   text-align: right;
+  font-size: 1.4rem;
 
   button {
     display: flex;
@@ -84,6 +87,11 @@ export const Content = styled.div`
   flex:1;
   flex-direction: column;
   position: relative;
+
+  span {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
 
 `;
 
