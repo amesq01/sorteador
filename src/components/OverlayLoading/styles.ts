@@ -17,6 +17,7 @@ from {
 export const Container = styled.div`
 
   position: fixed;
+  z-index: 1000;
   background: white;
   top: 0;
   left: 0;
@@ -26,17 +27,13 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
 `;
 
 export const Title = styled.h2`
 display:block-inline;
 margin-top: 2rem;
 `;
-
-
-
-
-
 
 export const Spinner = styled.div`
   display: flex;

@@ -93,9 +93,6 @@ export function Home() {
 
   const processInfo: Array<string> = [];
 
-  const createdAt = new Date();
-  console.log('const Data', createdAt);
-
   //Início configuração MODAL NOME SORTEADO
   let subtitle: any;
 
@@ -159,7 +156,6 @@ export function Home() {
     const info = (e.target.value.split('\n'));
     const filterInfos = info.filter((info: string) => info !== '');
     setListAllProcessInfos(filterInfos);
-    console.log(processInfo);
 
   }
 

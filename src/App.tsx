@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
 
   const { user } = authUser();
-  console.log('user App Inicio', user);
 
   return (
 

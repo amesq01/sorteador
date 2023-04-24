@@ -33,7 +33,6 @@ export function ResultItem({ label, data, borderColor }: TestProps) {
 
   }
 
-  console.log(data);
 
   function handleClipBoard() {
     if (data.length > 0) {
