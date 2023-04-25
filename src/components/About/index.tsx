@@ -5,7 +5,7 @@ export function About() {
   return (
     <Container>
       <p>
-        O presente projeto foi desenvolvido pelo servidor do <a href="https://www.mpma.mp.br/" target='_blank' rel="noreferrer">@mpma</a> <strong>Adailton Mesquita</strong> em parceria com o servidor do <a href="https://www.tjma.jus.br/" target='_blank' rel="noreferrer">@tjma</a> <strong>Francisco José</strong>, que forneceu todas as informações necessárias acerca de um sorteio para composição de um tribunal do júri.
+        O presente projeto foi desenvolvido pelos servidores <strong>Adailton Mesquita</strong> e <strong>Francisco José</strong>  do <a href="https://www.mpma.mp.br/" target='_blank' rel="noreferrer">@mpma</a> e   <a href="https://www.tjma.jus.br/" target='_blank' rel="noreferrer">@tjma</a>, respectivamente, para sorteio da composição do Conselho de Sentença do Tribunal do Júri.
       </p>
     </Container>
   );

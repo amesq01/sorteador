@@ -130,7 +130,7 @@ export function Results() {
 
             <div style={{ display: 'flex', gap: '1.2rem', marginTop: '1.2rem', flexDirection: 'column' }}>
               <ResultItem data={listAllJurors} label='Lista geral dos jurados' />
-              <ResultItem data={listDrawnJurors} label='Lista dos jurados aceitos' borderColor />
+              <ResultItem data={listDrawnJurors} label='Lista dos jurados que formam o CONSELHO DE SENTENÇA' borderColor />
               <ResultItem data={listJurorsNotDrawnConst} label='Lista dos jurados não sorteados' />
               <ResultItem data={listDispenseJurorsJudge} label='Lista dos jurados dispensados pelo Juízo' />
               <ResultItem data={listAbsentWithJustification} label='Lista dos jurados ausentes com justificativa' />

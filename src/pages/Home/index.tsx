@@ -534,9 +534,8 @@ Tipicidade Penal: Art. 121 cpb...'
           </Content>
 
           <Footer>
-            <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
-              <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
-              <strong style={{ marginLeft: '.5rem', marginRight: '.5rem' }}>@AdailtonMesquita </strong> <span style={{ marginRight: '2rem' }}> - Projeto desenvolvido com o apoio do servidor do TJMA @FranciscoBogea</span>
+            <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]} play={false}>
+              <span>© 2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA </span>
             </Marquee>
           </Footer>
 
