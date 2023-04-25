@@ -4,7 +4,7 @@ export const Container = styled.div`
 
   display: flex;
   position: absolute;
-  width: 100%;
+  width: 40rem;
   max-width: 75rem;
   padding: 1.2rem;
   border-radius: 0.8rem;
@@ -16,6 +16,8 @@ export const Container = styled.div`
   font-weight: normal;
   font-size: 1.2rem;
   color: #333;
+  z-index: 1000;
+
 
 `;
 

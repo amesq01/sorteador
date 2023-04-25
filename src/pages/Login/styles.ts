@@ -88,18 +88,6 @@ export const Logo = styled.img`
 
 `;
 
-export const Footer = styled.footer`
-    position: absolute;
-    padding:5px 0 5px 20px;
-    left: 0;
-    bottom: 0;
-    color: #333;
-    font-size: 12px;
-    font-weight: bold;
-    width: 50%;
-    font-family: "Gruppo", sans-serif;
-    line-height: 1.4;
-`;
 
 export const InputsContainer = styled.form`
   width: 50%;
@@ -194,5 +182,34 @@ export const Error = styled.div`
   font-size: 12px;
   text-align: flex-start;
   width: 80%;
+`;
+
+export const About = styled.div`
+  position: relative; cursor: pointer;
+  width: fit-content;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgba(255,255,255, 0.6);
+  font-size: 1.4rem ;
+
+
+strong:hover{
+  color: white;
+}
+
+
+`;
+
+export const Footer = styled.footer`
+    position: absolute;
+    padding:5px 0 5px 20px;
+    left: 0;
+    bottom: 0;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    width: 50%;
+    font-family: "Gruppo", sans-serif;
+    line-height: 1.4;
 `;
 
