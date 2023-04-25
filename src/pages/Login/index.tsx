@@ -7,6 +7,7 @@ import logoIMG from '../../assets/logoNew.png';
 
 import { authUser } from '../../contexts/userContext';
 import Marquee from 'react-fast-marquee';
+import { About } from '../../components/About';
 
 
 
@@ -19,6 +20,7 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorLog, setErrorLog] = useState('');
+  const [aboutFocus, setAboutFocus] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -37,6 +39,10 @@ export const Login = () => {
     catch (error: any) {
       setErrorLog(error.message);
     }
+  }
+
+  function handleFocusAbout() {
+    setAboutFocus(!aboutFocus);
   }
 
   return (
@@ -86,10 +92,16 @@ export const Login = () => {
           </C.InputsContainer>
 
           <C.Footer>
-            <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
+
+            <div onClick={handleFocusAbout} style={{ position: 'relative', cursor: 'pointer', width: 'fit-content', fontSize: '1.4rem', fontWeight: 'bold', color: 'rgba(255,255,255, 0.6)' }}>Sobre
+              {
+                aboutFocus && <About />
+              }
+            </div>
+            {/* <Marquee pauseOnHover gradient={false} gradientColor={[0, 0, 0]}>
               <span>2023 - Disponibilizado gratuitamente ao TJMA - Fórum de São Luís Gonzaga do Maranhão/MA por </span>
               <strong style={{ marginLeft: '.5rem', marginRight: '.5rem' }}>@AdailtonMesquita </strong> <span style={{ marginRight: '2rem' }}> - Projeto desenvolvido com o apoio do servidor do TJMA @FranciscoBogea</span>
-            </Marquee>
+            </Marquee> */}
           </C.Footer>
 
         </C.Content>
