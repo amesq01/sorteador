@@ -18,8 +18,6 @@ import {
   Footer,
 } from './styles';
 
-
-
 import { authUser } from '../../contexts/userContext';
 import { db } from '../../utils/firebase';
 import { collection, getDocs, orderBy, query, } from 'firebase/firestore';
@@ -28,7 +26,6 @@ import { ResultItem } from '../../components/ResultItem';
 import { OverlayLoading } from '../../components/OverlayLoading';
 
 export function Results() {
-
 
   async function handleLogout(e: any) {
     e.preventDefault();
