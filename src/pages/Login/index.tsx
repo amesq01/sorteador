@@ -42,7 +42,10 @@ export const Login = () => {
   }
 
   function handleFocusAbout() {
-    setAboutFocus(!aboutFocus);
+    setAboutFocus(true);
+  }
+  function handleFocusAboutLevar() {
+    setAboutFocus(false);
   }
 
   return (
@@ -93,7 +96,9 @@ export const Login = () => {
 
           <C.Footer>
 
-            <div onClick={handleFocusAbout} style={{ position: 'relative', cursor: 'pointer', width: 'fit-content', fontSize: '1.4rem', fontWeight: 'bold', color: 'rgba(255,255,255, 0.6)' }}>Sobre
+            <div onMouseEnter={handleFocusAbout} onMouseLeave={handleFocusAboutLevar} style={{
+              position: 'relative', cursor: 'pointer', width: '90%', fontSize: '1.2rem', fontWeight: 'bold', color: 'rgba(255,255,255, 0.6)', fontFamily: 'Open Sans'
+            }}>© Sobre
               {
                 aboutFocus && <About />
               }
@@ -105,7 +110,7 @@ export const Login = () => {
           </C.Footer>
 
         </C.Content>
-      </C.Container>
+      </C.Container >
 
     </>
   );
