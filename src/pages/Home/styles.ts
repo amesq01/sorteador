@@ -258,6 +258,7 @@ export const ModalJurorTitle = styled.strong`
   animation: ${teste2} 4s;
   text-align: center ;
   color: #333;
+  text-transform: uppercase;
 `;
 
 export const Buttons = styled.div`
